@@ -13,21 +13,29 @@ public class AppStarter extends Application {
         var app = App.getInstance();
 
         // Main Scence
-        FXMLLoader fxmlLoaderMainScene = new FXMLLoader(AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/MainView.fxml"));
+        FXMLLoader fxmlLoaderMainScene = new FXMLLoader(
+                AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/MainView.fxml"));
         Scene mainScene = new Scene(fxmlLoaderMainScene.load(), 320, 240);
 
         // Login Scene
-        FXMLLoader fxmlLoaderLoginScene = new FXMLLoader(AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/LoginView.fxml"));
+        FXMLLoader fxmlLoaderLoginScene = new FXMLLoader(
+                AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/LoginView.fxml"));
         Scene loginScene = new Scene(fxmlLoaderLoginScene.load(), 320, 240);
 
+        // Register Scene
+        FXMLLoader fxmlLoaderRegisterScene = new FXMLLoader(
+                AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/Register.fxml"));
+        Scene registerScene = new Scene(fxmlLoaderRegisterScene.load());
+
         app.setStage(stage);
-        app.setMainScene(mainScene);
-        app.setLoginScene(loginScene);
+        // app.setMainScene(mainScene);
+        // app.setLoginScene(loginScene);
+        app.setRegisterScene(registerScene);
 
         // ----------------
         // Initial scene
         // ----------------
-        app.changeToMainScene();
+        app.changeToRegisterScene();
     }
 
     public static void main(String[] args) {
