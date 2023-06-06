@@ -40,6 +40,10 @@ public class App {
         this.registerViewScene = scene;
     }
 
+    public void setMenuScene(Scene scene) {
+        this.menuViewScene = scene;
+    }
+
     public void changeToLoginScene() {
         this.currentScene = this.loginViewScene;
         this.stage.setScene(this.currentScene);

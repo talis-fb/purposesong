@@ -7,7 +7,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,11 +22,11 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" styleClass="anchorpane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrn.controle.LoginController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" styleClass="anchorpane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imd.ufrn.br.purposesong.view.MenuView">
    <children>
       <BorderPane prefHeight="699.0" prefWidth="1172.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <left>
-            <Pane prefHeight="388.0" prefWidth="288.0" style="-fx-background-color: black;" styleClass="vBoxPlayer" BorderPane.alignment="CENTER">
+            <Pane prefHeight="464.0" prefWidth="288.0" styleClass="vboxPlaylists" stylesheets="@../themes/global.css" BorderPane.alignment="CENTER">
                <children>
                   <GridPane layoutX="14.0" layoutY="42.0" prefHeight="143.0" prefWidth="269.0">
                      <columnConstraints>
@@ -63,7 +62,7 @@
             </Pane>
          </left>
          <bottom>
-            <GridPane prefHeight="94.0" prefWidth="750.0" BorderPane.alignment="CENTER">
+            <GridPane prefHeight="94.0" prefWidth="750.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -73,32 +72,6 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <Label layoutX="70.0" layoutY="21.0" prefHeight="17.0" prefWidth="162.0" text="Good,Good Father" />
-                        <Label layoutX="97.0" layoutY="39.0" prefHeight="17.0" prefWidth="98.0" text="- Maverick City" />
-                        <GridPane>
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
-                        </GridPane>
-                     </children>
-                  </Pane>
-                  <Pane prefHeight="94.0" prefWidth="183.0" GridPane.columnIndex="2">
-                     <children>
-                        <ImageView fitHeight="102.0" fitWidth="104.0" layoutX="74.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/headphoneLOGO.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </Pane>
                   <VBox prefHeight="102.0" prefWidth="294.0" styleClass="vBoxPlayer" stylesheets="@../themes/global.css" GridPane.columnIndex="1">
                      <children>
                         <HBox prefHeight="26.0" prefWidth="201.0" styleClass="hBoxPlayer" stylesheets="@../themes/global.css">
@@ -150,31 +123,48 @@
                         </HBox>
                      </children>
                   </VBox>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ImageView fitHeight="41.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/listar-musicas.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets left="60.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                     </children>
+                  </GridPane>
+                  <GridPane GridPane.columnIndex="2">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ImageView fitHeight="80.0" fitWidth="86.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                           <image>
+                              <Image url="@../images/headphoneLOGO.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets right="10.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                     </children>
+                  </GridPane>
                </children>
             </GridPane>
          </bottom>
-         <center>
-            <GridPane prefHeight="397.0" prefWidth="531.0" BorderPane.alignment="CENTER">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-               </rowConstraints>
-               <children>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="428.0" prefWidth="262.0">
-                           <children>
-                              <ImageView fitHeight="2000.0" fitWidth="2000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-0.75" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-423.6" AnchorPane.topAnchor="0.0" />
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </ScrollPane>
-               </children>
-            </GridPane>
-         </center>
          <right>
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
@@ -189,7 +179,7 @@
                      </font>
                   </Label>
                   <Button layoutX="22.0" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Settings" />
-                  <Button layoutX="21.0" layoutY="95.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" text="Sair da minha conta" />
+                  <Button layoutX="21.0" layoutY="95.0" mnemonicParsing="false" onAction="#goToRegister" prefHeight="25.0" prefWidth="157.0" text="add new person" />
                </children>
             </Pane>
          </right>
@@ -213,7 +203,7 @@
                   </Menu>
                </menus>
                <BorderPane.margin>
-                  <Insets bottom="50.0" />
+                  <Insets />
                </BorderPane.margin>
             </MenuBar>
          </top>

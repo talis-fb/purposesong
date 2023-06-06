@@ -18,6 +18,6 @@ public class RegisterViewModel {
     private App app = App.getInstance();
 
     public void goToMenu() {
-        // this.app.changeToMenuScene();
+        this.app.changeToMenuScene();
     }
 }
