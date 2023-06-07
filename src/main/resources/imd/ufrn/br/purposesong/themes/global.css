@@ -92,3 +92,8 @@
 .color {
     -fx-background-color: gray;
 }
+
+.SongView {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}

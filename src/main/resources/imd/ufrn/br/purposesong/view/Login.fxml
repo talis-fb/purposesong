@@ -31,7 +31,7 @@
                   </Pane>
                   <Pane prefHeight="397.0" prefWidth="236.0" VBox.vgrow="NEVER">
                      <children>
-                        <TextField fx:id="userNameInput" alignment="TOP_LEFT" layoutX="22.0" layoutY="42.0" prefHeight="26.0" prefWidth="192.0" promptText="Type your username..." styleClass="userName" stylesheets="@../themes/global.css" />
+                        <TextField fx:id="userNameInput" alignment="TOP_LEFT" layoutX="22.0" layoutY="42.0" prefHeight="26.0" prefWidth="192.0" promptText="Type your username..." style="-fx-background-color: black;" styleClass="userName" stylesheets="@../themes/global.css" />
                         <Label layoutX="23.0" layoutY="14.0" text="USERNAME:" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
@@ -42,14 +42,13 @@
                               <Font name="Arial Bold" size="12.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="PasswordInput" layoutX="21.0" layoutY="127.0" prefHeight="26.0" prefWidth="194.0" promptText="Type your password" styleClass="userName" stylesheets="@../themes/global.css" />
+                        <PasswordField fx:id="PasswordInput" layoutX="21.0" layoutY="127.0" prefHeight="26.0" prefWidth="194.0" promptText="Type your password" style="-fx-background-color: black;" styleClass="userName" stylesheets="@../themes/global.css" />
                         <ImageView fx:id="easterEggImage" fitHeight="137.0" fitWidth="109.0" layoutX="64.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/headphoneLOGO.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="23.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#goToMenu" prefHeight="38.0" prefWidth="84.0" text="Sign In" />
-                        <Button layoutX="136.0" layoutY="169.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="80.0" text="Sign Up" />
+                        <Button layoutX="23.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#goToMenu" prefHeight="38.0" prefWidth="194.0" text="Sign In" />
                      </children>
                      <opaqueInsets>
                         <Insets />

@@ -3,21 +3,26 @@ package imd.ufrn.br.purposesong.view;
 import imd.ufrn.br.purposesong.App;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.ListView;
 
 public class MainViewModel {
     // Singleton ----------
     private static MainViewModel instance = new MainViewModel();
-    private MainViewModel() {}
+
+    private MainViewModel() {
+    }
+
     public static MainViewModel getInstance() {
         return MainViewModel.instance;
     }
     // -----------------
 
-
-
     // Fields
     private App app = App.getInstance();
-    private final StringProperty helloMessage = new SimpleStringProperty("Essa é a tela principal: Aperte para adicionar");
+    private final StringProperty helloMessage = new SimpleStringProperty(
+            "Essa é a tela principal: Aperte para adicionar");
 
     public StringProperty helloMessage() {
         return helloMessage;
