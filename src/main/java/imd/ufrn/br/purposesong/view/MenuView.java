@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.util.Pair;
 
 import java.net.URL;
@@ -33,6 +34,9 @@ public class MenuView implements Initializable {
     @FXML
     private Label myLabel;
 
+    @FXML
+    private AnchorPane currentSong;
+
     // String[] food = { "pizza", "sushi", "ramen", "minha alma", "Grandioso és Tu",
     // "Esperança", "Só Tu és Poderoso" };
     String song_name = "Esperança";
@@ -51,7 +55,9 @@ public class MenuView implements Initializable {
 
     @FXML
     protected void goToLogin() {
+        currentSong.visibleProperty().set(false);
         this.viewModel.goToLogin();
+
     }
 
     @Override
@@ -71,6 +77,7 @@ public class MenuView implements Initializable {
         SongView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
+                currentSong.visibleProperty().set(true);
                 currentfood = SongView.getSelectionModel().getSelectedItem();
                 try {
                     atual_imagem.setImage(images.get(SongView.getSelectionModel().getSelectedIndex()));
@@ -80,6 +87,8 @@ public class MenuView implements Initializable {
                 }
                 // myLabel.setImage(currentfood);
                 myLabel.setText(currentfood);
+
+                ;
             }
         });
 

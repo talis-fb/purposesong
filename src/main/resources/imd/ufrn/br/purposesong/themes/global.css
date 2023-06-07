@@ -97,3 +97,8 @@
     -fx-background-color: transparent;
     -fx-text-fill: white;
 }
+
+.Song_now {
+    -fx-background-radius: 24;
+    -fx-background-color: black;
+}
