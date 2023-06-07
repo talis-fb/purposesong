@@ -1,11 +1,14 @@
 package imd.ufrn.br.purposesong.view;
 
+import java.util.ArrayList;
+
 import imd.ufrn.br.purposesong.App;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 
 public class MainViewModel {
     // Singleton ----------
