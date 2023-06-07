@@ -14,6 +14,11 @@ public class MenuView implements Initializable {
         this.viewModel.goToRegister();
     }
 
+    @FXML
+    protected void goToLogin() {
+        this.viewModel.goToLogin();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

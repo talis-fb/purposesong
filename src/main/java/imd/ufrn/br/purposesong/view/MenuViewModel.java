@@ -20,4 +20,8 @@ public class MenuViewModel {
     public void goToRegister() {
         this.app.changeToRegisterScene();
     }
+
+    public void goToLogin() {
+        this.app.changeToLoginScene();
+    }
 }

@@ -7,17 +7,19 @@ import javafx.beans.property.StringProperty;
 public class LoginViewModel {
     // Singleton ----------
     private static LoginViewModel instance = new LoginViewModel();
-    private LoginViewModel() {}
+
+    private LoginViewModel() {
+    }
+
     public static LoginViewModel getInstance() {
         return LoginViewModel.instance;
     }
     // -----------------
 
-
-
     // Fields
     private App app = App.getInstance();
     private final StringProperty labelContent = new SimpleStringProperty("conteudo: ");
+
     public StringProperty helloMessage() {
         return labelContent;
     }
@@ -30,7 +32,7 @@ public class LoginViewModel {
         labelContent.set(message);
     }
 
-    public void goToMain() {
-        this.app.changeToMainScene();
+    public void goToMenu() {
+        this.app.changeToMenuScene();
     }
 }

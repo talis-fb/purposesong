@@ -18,10 +18,12 @@ public class AppStarter extends Application {
                 Scene mainScene = new Scene(fxmlLoaderMainScene.load(), 320, 240);
 
                 // Login Scene
-                FXMLLoader fxmlLoaderLoginScene = new FXMLLoader(
-                                AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/LoginView.fxml"));
-                Scene loginScene = new Scene(fxmlLoaderLoginScene.load(), 320, 240);
-
+                /*
+                 * FXMLLoader fxmlLoaderLoginScene = new FXMLLoader(
+                 * AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/LoginView.fxml"))
+                 * ;
+                 * Scene loginScene = new Scene(fxmlLoaderLoginScene.load(), 320, 240);
+                 */
                 // Register Scene
                 FXMLLoader fxmlLoaderRegisterScene = new FXMLLoader(
                                 AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/Register.fxml"));
@@ -31,16 +33,20 @@ public class AppStarter extends Application {
                                 AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/MenuView.fxml"));
                 Scene menuScene = new Scene(fxmlLoaderMenuScene.load());
 
+                FXMLLoader fxmlLoaderLoginScene = new FXMLLoader(
+                                AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/Login.fxml"));
+                Scene loginScene = new Scene(fxmlLoaderLoginScene.load());
+
                 app.setStage(stage);
                 // app.setMainScene(mainScene);
-                // app.setLoginScene(loginScene);
+                app.setLoginScene(loginScene);
                 app.setRegisterScene(registerScene);
                 app.setMenuScene(menuScene);
                 // ----------------
                 // Initial scene
                 // ----------------
                 // app.changeToRegisterScene();
-                app.changeToMenuScene();
+                app.changeToLoginScene();
         }
 
         public static void main(String[] args) {

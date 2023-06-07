@@ -69,6 +69,14 @@
 
 }
 
+.playerBottom {
+    fx-padding: 32;
+    -fx-spacing: 12;
+    -fx-padding-bottom: 10;
+    -fx-alignment: center;
+    -fx-background-color: black;
+}
+
 .vboxPlaylists {
     -fx-padding: 32;
     -fx-spacing: 12;

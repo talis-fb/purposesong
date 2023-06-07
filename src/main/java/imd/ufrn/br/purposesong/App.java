@@ -1,6 +1,7 @@
 package imd.ufrn.br.purposesong;
 
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App {
@@ -65,7 +66,16 @@ public class App {
     public void changeToMenuScene() {
         this.currentScene = this.menuViewScene;
         this.stage.setScene(this.currentScene);
+        // this.stage.getIcons()
+        // .add(new
+        // Image("../../../../../resources/imd/ufrn/br/purposesong/images/headphoneLOGO.jpg"));
         this.stage.show();
+    }
+
+    public void verifyMaximized() {
+        if (this.stage.isMaximized()) {
+
+        }
     }
 
 }

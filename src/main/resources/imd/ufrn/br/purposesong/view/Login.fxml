@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" styleClass="anchorpane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imd.ufrn.br.purposesong.view.LoginView">
+   <children>
+      <BorderPane prefHeight="699.0" prefWidth="1172.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="500.0" prefWidth="300.0" styleClass="central-box" stylesheets="@../themes/global.css" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="256.0" fitWidth="378.0" layoutX="-43.0" layoutY="-50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/purposeLOGO.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="397.0" prefWidth="236.0" VBox.vgrow="NEVER">
+                     <children>
+                        <TextField fx:id="userNameInput" alignment="TOP_LEFT" layoutX="22.0" layoutY="42.0" prefHeight="26.0" prefWidth="192.0" promptText="Type your username..." styleClass="userName" stylesheets="@../themes/global.css" />
+                        <Label layoutX="23.0" layoutY="14.0" text="USERNAME:" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="22.0" layoutY="100.0" text="PASSWORD:" textFill="WHITE">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="PasswordInput" layoutX="21.0" layoutY="127.0" prefHeight="26.0" prefWidth="194.0" promptText="Type your password" styleClass="userName" stylesheets="@../themes/global.css" />
+                        <ImageView fx:id="easterEggImage" fitHeight="137.0" fitWidth="109.0" layoutX="64.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/headphoneLOGO.png" />
+                           </image>
+                        </ImageView>
+                        <Button layoutX="23.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#goToMenu" prefHeight="38.0" prefWidth="84.0" text="Sign In" />
+                        <Button layoutX="136.0" layoutY="169.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="80.0" text="Sign Up" />
+                     </children>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Pane>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+   </children>
+   <stylesheets>
+      <URL value="@../themes/global.css" />
+      <URL value="@../themes/dark.css" />
+   </stylesheets>
+</AnchorPane>

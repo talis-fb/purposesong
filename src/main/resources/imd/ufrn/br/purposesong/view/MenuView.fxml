@@ -72,7 +72,7 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <VBox prefHeight="102.0" prefWidth="294.0" styleClass="vBoxPlayer" stylesheets="@../themes/global.css" GridPane.columnIndex="1">
+                  <VBox prefHeight="102.0" prefWidth="294.0" styleClass="playerBottom" stylesheets="@../themes/global.css" GridPane.columnIndex="1">
                      <children>
                         <HBox prefHeight="26.0" prefWidth="201.0" styleClass="hBoxPlayer" stylesheets="@../themes/global.css">
                            <children>
@@ -179,7 +179,10 @@
                      </font>
                   </Label>
                   <Button layoutX="22.0" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Settings" />
-                  <Button layoutX="21.0" layoutY="95.0" mnemonicParsing="false" onAction="#goToRegister" prefHeight="25.0" prefWidth="157.0" text="add new person" />
+                  <Button layoutX="21.0" layoutY="95.0" mnemonicParsing="false" onAction="#goToRegister" prefHeight="25.0" prefWidth="157.0" text="Add new User" />
+                  <Button layoutX="22.0" layoutY="135.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="25.0" prefWidth="157.0" text="Finalize Session" />
+                  <Button layoutX="22.0" layoutY="189.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: #800a6f;" text="Add new Playlist" />
+                  <Button layoutX="22.0" layoutY="232.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: #800a6f;" text="Add new Song" />
                </children>
             </Pane>
          </right>
@@ -198,7 +201,7 @@
                   </Menu>
                   <Menu mnemonicParsing="false" text="Help">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem mnemonicParsing="false" text="Exit" />
                      </items>
                   </Menu>
                </menus>
@@ -207,10 +210,14 @@
                </BorderPane.margin>
             </MenuBar>
          </top>
+         <center>
+            <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
       </BorderPane>
    </children>
    <stylesheets>
       <URL value="@../themes/global.css" />
       <URL value="@../themes/dark.css" />
+      <URL value="@../themes/light.css" />
    </stylesheets>
 </AnchorPane>
