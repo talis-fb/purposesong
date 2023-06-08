@@ -35,10 +35,11 @@ public class MenuViewModel {
     }
 
     public void initializeSongs() {
-        /* Simulation a file reader */
+        /* Simulating a file reader */
         Image imagem = new Image(
                 "file:src/main/resources/imd/ufrn/br/purposesong/images/headphoneLOGO.png");
         Image imagem2 = new Image("file:src/main/resources/imd/ufrn/br/purposesong/images/retroceder.png");
+        Image imagem3 = new Image("file:src/main/resources/imd/ufrn/br/purposesong/images/melevapracasa.jpg");
         musicas = new ArrayList<>();
         musicas.add("Sua Graça me Basta");
         musicas.add("Apena Ti");
@@ -50,6 +51,7 @@ public class MenuViewModel {
         images = new ArrayList<>();
         images.add(imagem);
         images.add(imagem2);
+        images.add(imagem3);
     }
 
     public ArrayList<String> getMusicas() {

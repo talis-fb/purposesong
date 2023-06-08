@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
@@ -59,6 +60,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
+                  <ButtonBar layoutY="22.0" prefHeight="40.0" prefWidth="200.0" />
                </children>
             </Pane>
          </left>
@@ -143,7 +145,7 @@
                         </ImageView>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <ImageView fitHeight="91.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="playing_song" fitHeight="91.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../images/default.png" />
                                  </image>
@@ -190,6 +192,11 @@
                               <Insets right="10.0" />
                            </GridPane.margin>
                         </ImageView>
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="13.0" />
+                           </GridPane.margin>
+                        </VBox>
                      </children>
                   </GridPane>
                </children>
@@ -198,36 +205,73 @@
          <right>
             <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="82.0" fitWidth="62.0" layoutX="120.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="101.0" fitWidth="122.0" layoutX="56.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/person.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="21.0" layoutY="32.0" prefHeight="17.0" prefWidth="78.0" text="Olá, Juliana!">
+                  <Label layoutX="67.0" layoutY="140.0" prefHeight="17.0" prefWidth="78.0" text="Olá, Juliana!">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Button layoutX="22.0" layoutY="58.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" text="Settings" />
-                  <Button layoutX="21.0" layoutY="95.0" mnemonicParsing="false" onAction="#goToRegister" prefHeight="25.0" prefWidth="157.0" text="Add new User" />
-                  <Button layoutX="22.0" layoutY="135.0" mnemonicParsing="false" onAction="#goToLogin" prefHeight="25.0" prefWidth="157.0" text="Finalize Session" />
-                  <AnchorPane fx:id="currentSong" layoutX="22.0" layoutY="246.0" prefHeight="200.0" prefWidth="168.0" visible="false">
+                  <AnchorPane layoutX="-55.0" layoutY="128.0" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <VBox prefHeight="205.0" prefWidth="176.0" styleClass="Song_now" stylesheets="@../themes/global.css">
+                        <VBox layoutY="-30.0" prefHeight="469.0" prefWidth="342.0">
                            <children>
-                              <Label fx:id="myLabel" prefHeight="55.0" prefWidth="170.0">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
+                              <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="100.0" style="-fx-background-color: #800a6f; -fx-background-radius: 10;" text="Add&#10;List">
+                                 <graphic>
+                                    <ImageView fitHeight="45.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/comentar-musica-alternativa.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                                  <VBox.margin>
-                                    <Insets left="17.0" />
+                                    <Insets left="110.0" top="80.0" />
                                  </VBox.margin>
-                              </Label>
-                              <ImageView fx:id="atual_imagem" fitHeight="118.0" fitWidth="153.0" pickOnBounds="true" preserveRatio="true">
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="100.0" style="-fx-background-color: #800a6f; -fx-background-radius: 10;" text=" Add&#10;Song">
+                                 <graphic>
+                                    <ImageView fitHeight="45.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/musica-alt.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
                                  <VBox.margin>
-                                    <Insets left="17.0" />
+                                    <Insets left="110.0" top="30.0" />
                                  </VBox.margin>
-                              </ImageView>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#goToRegister" prefHeight="90.0" prefWidth="100.0" style="-fx-background-color: #800a6f; -fx-background-radius: 10;" text="New&#10;User">
+                                 <graphic>
+                                    <ImageView fitHeight="45.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/adicionar-usuario.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <VBox.margin>
+                                    <Insets left="110.0" top="30.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="100.0" style="-fx-background-color: #800a6f; -fx-background-radius: 10;" text="Set-&#10;tings">
+                                 <graphic>
+                                    <ImageView fitHeight="45.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../images/definicoes.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <VBox.margin>
+                                    <Insets left="110.0" top="30.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#goToLogin" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #800a6f; -fx-background-radius: 10;" text="Exit">
+                                 <VBox.margin>
+                                    <Insets left="110.0" top="30.0" />
+                                 </VBox.margin>
+                              </Button>
                            </children>
                         </VBox>
                      </children>
@@ -271,12 +315,35 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <ListView fx:id="SongView" layoutY="63.0" prefHeight="452.0" prefWidth="342.0" style="-fx-background-color: transparent; -fx-alignment: center;" styleClass="SongView" stylesheets="@../themes/global.css" AnchorPane.bottomAnchor="63.39999999999998" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="63.0" />
-                        <Button layoutX="60.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: #800a6f;" text="Add new Playlist" />
-                        <Button layoutX="244.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: #800a6f;" text="Add new Song" />
+                        <ListView fx:id="SongView" layoutY="63.0" prefHeight="452.0" prefWidth="342.0" style="-fx-control-inner-background: transparent; -fx-alignment: center;" styleClass="SongView" stylesheets="@../themes/global.css" AnchorPane.bottomAnchor="63.39999999999998" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="63.0" />
                      </children>
                   </AnchorPane>
-                  <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                  <AnchorPane fx:id="currentSong" prefHeight="200.0" prefWidth="168.0" style="-fx-alignment: center;" visible="false" GridPane.columnIndex="1">
+                     <children>
+                        <VBox layoutX="36.0" layoutY="110.0" prefHeight="402.0" prefWidth="279.0" styleClass="Song_now" stylesheets="@../themes/global.css" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="110.0">
+                           <children>
+                              <Label fx:id="myLabel" prefHeight="55.0" prefWidth="170.0" style="-fx-alignment: center;">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets left="60.0" top="30.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <ImageView fx:id="atual_imagem" fitHeight="146.0" fitWidth="164.0" pickOnBounds="true" preserveRatio="true">
+                                 <VBox.margin>
+                                    <Insets left="60.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <Label text="Essa música foi feita em: " textFill="WHITE">
+                                 <VBox.margin>
+                                    <Insets left="30.0" top="20.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
                </children>
             </GridPane>
          </center>
