@@ -1,6 +1,8 @@
 package imd.ufrn.br.purposesong.view;
 
 import imd.ufrn.br.purposesong.App;
+import imd.ufrn.br.purposesong.database.inmemory.InMemoryUserRepositoryImpl;
+import imd.ufrn.br.purposesong.entity.User;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -32,6 +34,19 @@ public class MainViewModel {
     }
 
     public void goToLogin() {
+
+        System.out.println("Begin ->Bancquinho");
+
+        try {
+            var ele = new InMemoryUserRepositoryImpl();
+            ele.create(new User());
+        } catch (Exception e) {
+            System.out.println("ERRO");
+            System.out.println(e.getMessage());
+        }
+
+
+        System.out.println("END -> Bancquinho");
 
         this.app.changeToLoginScene();
     }
