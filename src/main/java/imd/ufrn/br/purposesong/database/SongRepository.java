@@ -5,15 +5,9 @@ import imd.ufrn.br.purposesong.entity.User;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
-public interface SongRepository {
-    /*
-    Optional<Song> findById(String id);
-    List<Song> findAll();
-    void update(String id, Song song);
-    void delete(String id);
-
-    Optional<Song> login(String email, String password);
-    */
+public interface SongRepository extends AbstractRepository<Song> {
+    List<Song> findAllSongsOfUser(User user);
 
 }
