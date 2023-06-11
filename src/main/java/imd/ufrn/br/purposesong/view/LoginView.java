@@ -19,7 +19,7 @@ public class LoginView implements Initializable {
 
     @FXML
     protected void submitLogin() {
-        boolean isAuth = this.viewModel.authenticityLogin();
+        boolean isAuth = this.viewModel.submitLogin();
         if (!isAuth) {
             System.out.println("aqui vc pode executar a lógica de negocio que exibe o erro para o usuario");
             // Mas se for possivel fazer no ViewModel é ate melhor

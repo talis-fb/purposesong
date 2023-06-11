@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 public class InMemoryUserRepositoryImpl implements UserRepository {
     private static List<User> users = new ArrayList<User>();
@@ -44,6 +45,11 @@ public class InMemoryUserRepositoryImpl implements UserRepository {
 
     @Override
     public void create(User user) {
+        if (user.getId().isPresent()){
+            System.out.println("[ERRO]: Voce deve criar usuario nao registrados no banco de dados");
+        }
+
+        user.setId(UUID.randomUUID().toString());
         InMemoryUserRepositoryImpl.users.add(user);
     }
 

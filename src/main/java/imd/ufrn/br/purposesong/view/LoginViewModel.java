@@ -25,7 +25,7 @@ public class LoginViewModel {
     public final StringProperty password = new SimpleStringProperty();
 
 
-    public boolean authenticityLogin() {
+    public boolean submitLogin() {
         String email = this.username.get();
         String password = this.password.get();
 
