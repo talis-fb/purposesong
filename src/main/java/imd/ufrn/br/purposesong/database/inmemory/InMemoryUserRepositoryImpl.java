@@ -49,9 +49,11 @@ public class InMemoryUserRepositoryImpl implements UserRepository {
 
     @Override
     public void update(String id, User user) {
-        for (var user_it : InMemoryUserRepositoryImpl.users) {
+        for (int i = 0; i < users.size(); i++) {
+            var user_it = users.get(i);
             if (user_it.getId().orElse("").equals(id)) {
-                user_it = user;
+                users.set(i, user);
+                break;
             }
         }
     }
@@ -61,7 +63,12 @@ public class InMemoryUserRepositoryImpl implements UserRepository {
         Iterator<User> iterator = users.iterator();
         while (iterator.hasNext()) {
             User person = iterator.next();
-            if (person.getId().orElse("").equals(id)) {
+
+            if (person.getId().isEmpty()) {
+                continue;
+            }
+
+            if (person.getId().get().equals(id)) {
                 iterator.remove();
             }
         }
@@ -72,7 +79,7 @@ public class InMemoryUserRepositoryImpl implements UserRepository {
         for (var user_it : InMemoryUserRepositoryImpl.users) {
             var it_email = user_it.getEmail();
             var it_password = user_it.getPassword();
-            if (it_email == email && it_password == password) {
+            if (it_email.equals(email) && it_password.equals(password)) {
                 return Optional.of(user_it);
             }
         }

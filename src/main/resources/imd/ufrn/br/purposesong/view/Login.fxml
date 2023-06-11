@@ -48,7 +48,7 @@
                               <Image url="@../images/headphoneLOGO.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="23.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#goToMenu" prefHeight="38.0" prefWidth="194.0" text="Sign In" />
+                        <Button layoutX="23.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#submitLogin" prefHeight="38.0" prefWidth="194.0" text="Sign In" />
                      </children>
                      <opaqueInsets>
                         <Insets />
