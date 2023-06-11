@@ -1,0 +1,104 @@
+.central-box {
+    -fx-padding: 32;
+    -fx-spacing: 12;
+    -fx-padding-bottom: 10;
+    /*-fx-alignment: center;
+    /*align-content: center;*/
+    -fx-background-radius: 24;
+}
+
+.icon {
+    /* -fx-background-color: #FF7373;
+    -fx-pref-height: 50;*/
+}
+
+.title {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+.subtitle {
+    -fx-font-size: 14;
+    -fx-opacity: .8;
+    -fx-text-alignment: center;
+}
+
+
+.userName {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-underline: true;
+    -fx-border-color: transparent;
+    -fx-background-radius: 24;
+    /*-fx-text-fill:white;
+/*	-fx-background-color: white;*/
+}
+
+.textfield {
+    -fx-background-color: white;
+}
+
+.button {
+    -fx-background-color: #006ee6;
+    -fx-text-fill: white;
+    -fx-ellipsis-string: string;
+}
+
+.anchorpane {
+    -fx-background-image: url("../images/background_image.jpg");
+}
+
+.bottomBarPlayer {
+    -fx-alignment: center;
+}
+
+.hBoxPlayer {
+    -fx-spacing: 12;
+    -fx-alignment: center;
+}
+
+.vBoxPlayer {
+    -fx-padding: 32;
+    -fx-spacing: 12;
+    -fx-padding-bottom: 10;
+    -fx-alignment: center;
+    /*align-content: center;*/
+    -fx-background-radius: 24;
+    -fx-background-color: black;
+
+}
+
+.playerBottom {
+    fx-padding: 32;
+    -fx-spacing: 12;
+    -fx-padding-bottom: 10;
+    -fx-alignment: center;
+    -fx-background-color: black;
+}
+
+.vboxPlaylists {
+    -fx-padding: 32;
+    -fx-spacing: 12;
+    -fx-padding-bottom: 10;
+    -fx-alignment: center;
+    -fx-background-color: black;
+}
+
+.progressBar {
+    -fx-background-color: white;
+}
+
+.color {
+    -fx-background-color: gray;
+}
+
+.SongView {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.Song_now {
+    -fx-background-radius: 24;
+    -fx-background-color: black;
+}
