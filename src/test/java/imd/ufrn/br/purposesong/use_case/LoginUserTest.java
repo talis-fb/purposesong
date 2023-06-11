@@ -51,4 +51,5 @@ class LoginUserTest {
 
         assertFalse(result.isPresent());
     }
+
 }

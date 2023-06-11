@@ -1,15 +1,16 @@
 package imd.ufrn.br.purposesong.entity;
 
 import java.util.Optional;
+import java.util.UUID;
 
 public abstract class ModelDatabaseEntity {
-    Optional<String> id;
+    Optional<UUID> id = Optional.empty();
 
-    public Optional<String> getId() {
+    public Optional<UUID> getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(UUID id) {
         this.id = Optional.of(id);
     }
 }

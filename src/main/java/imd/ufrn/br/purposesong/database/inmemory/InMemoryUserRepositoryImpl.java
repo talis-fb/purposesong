@@ -29,10 +29,15 @@ public class InMemoryUserRepositoryImpl implements UserRepository {
 
 
     @Override
-    public Optional<User> findById(String id) {
-        for (var user : InMemoryUserRepositoryImpl.users) {
-            if (user.getId().orElse("").equals(id)) {
-                return Optional.ofNullable(user);
+    public Optional<User> findById(UUID id) {
+        for (User user : InMemoryUserRepositoryImpl.users) {
+            Optional<UUID> user_id = user.getId();
+            if (user_id.isEmpty()) {
+                continue;
+            }
+
+            if (user_id.get().equals(id)) {
+                return Optional.of(user);
             }
         }
         return Optional.empty();
@@ -45,19 +50,19 @@ public class InMemoryUserRepositoryImpl implements UserRepository {
 
     @Override
     public void create(User user) {
-        if (user.getId().isPresent()){
+         if (user.getId().isEmpty()){
             System.out.println("[ERRO]: Voce deve criar usuario nao registrados no banco de dados");
         }
 
-        user.setId(UUID.randomUUID().toString());
+        user.setId(UUID.randomUUID());
         InMemoryUserRepositoryImpl.users.add(user);
     }
 
     @Override
-    public void update(String id, User user) {
+    public void update(UUID id, User user) {
         for (int i = 0; i < users.size(); i++) {
-            var user_it = users.get(i);
-            if (user_it.getId().orElse("").equals(id)) {
+            Optional<UUID> user_id = users.get(i).getId();
+            if (user_id.isPresent() && user_id.get().equals(id)) {
                 users.set(i, user);
                 break;
             }
@@ -65,7 +70,7 @@ public class InMemoryUserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(UUID id) {
         Iterator<User> iterator = users.iterator();
         while (iterator.hasNext()) {
             User person = iterator.next();
