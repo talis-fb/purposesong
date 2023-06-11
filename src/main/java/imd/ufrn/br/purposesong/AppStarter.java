@@ -1,11 +1,14 @@
 package imd.ufrn.br.purposesong;
 
 import javafx.application.Application;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Observable;
 
 public class AppStarter extends Application {
         @Override
@@ -47,6 +50,7 @@ public class AppStarter extends Application {
                 // ----------------
                 // app.changeToRegisterScene();
                 app.changeToLoginScene();
+
         }
 
         public static void main(String[] args) {

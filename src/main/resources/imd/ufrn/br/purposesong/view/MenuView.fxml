@@ -26,42 +26,6 @@
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" styleClass="anchorpane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imd.ufrn.br.purposesong.view.MenuView">
    <children>
       <BorderPane prefHeight="699.0" prefWidth="1172.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <left>
-            <Pane prefHeight="464.0" prefWidth="288.0" styleClass="vboxPlaylists" stylesheets="@../themes/global.css" BorderPane.alignment="CENTER">
-               <children>
-                  <GridPane layoutX="14.0" layoutY="69.0" prefHeight="143.0" prefWidth="269.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="136.4000244140625" minWidth="10.0" prefWidth="77.20001220703125" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.79998779296875" minWidth="10.0" prefWidth="205.79998779296875" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
-                     <children>
-                        <ImageView fitHeight="52.0" fitWidth="75.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/purposeLOGO.png" />
-                           </image>
-                        </ImageView>
-                        <Label contentDisplay="RIGHT" prefHeight="34.0" prefWidth="180.0" text="Nome da Playlist..." textAlignment="RIGHT" textOverrun="CENTER_ELLIPSIS" GridPane.columnIndex="1" />
-                        <ImageView fitHeight="47.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-                           <image>
-                              <Image url="@../images/background_image.jpg" />
-                           </image>
-                        </ImageView>
-                        <Label prefHeight="33.0" prefWidth="196.0" text="Nome da Playlist..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                     </children>
-                  </GridPane>
-                  <Label layoutX="14.0" layoutY="32.0" prefHeight="20.0" prefWidth="106.0" text="Suas playlists:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-         </left>
          <bottom>
             <GridPane prefHeight="94.0" prefWidth="750.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
                <columnConstraints>
@@ -217,7 +181,7 @@
                      <children>
                         <VBox layoutY="-30.0" prefHeight="469.0" prefWidth="342.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="100.0" style="-fx-background-color: #800a6f; -fx-background-radius: 10;" text="Add&#10;List">
+                              <Button mnemonicParsing="false" onAction="#addNewFolder" prefHeight="90.0" prefWidth="100.0" style="-fx-background-color: #800a6f; -fx-background-radius: 10;" text="Add&#10;List">
                                  <graphic>
                                     <ImageView fitHeight="45.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -229,7 +193,7 @@
                                     <Insets left="110.0" top="80.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="100.0" style="-fx-background-color: #800a6f; -fx-background-radius: 10;" text=" Add&#10;Song">
+                              <Button mnemonicParsing="false" onAction="#addNewFile" prefHeight="90.0" prefWidth="100.0" style="-fx-background-color: #800a6f; -fx-background-radius: 10;" text=" Add&#10;Song">
                                  <graphic>
                                     <ImageView fitHeight="45.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -316,16 +280,22 @@
                         <ListView fx:id="SongView" layoutY="63.0" prefHeight="452.0" prefWidth="342.0" style="-fx-control-inner-background: transparent; -fx-alignment: center;" styleClass="SongView" stylesheets="@../themes/global.css" AnchorPane.bottomAnchor="63.39999999999998" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="63.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="currentSong" prefHeight="200.0" prefWidth="168.0" style="-fx-alignment: center;" visible="false" GridPane.columnIndex="1">
+                  <GridPane GridPane.columnIndex="1">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <VBox layoutX="36.0" layoutY="110.0" prefHeight="402.0" prefWidth="279.0" styleClass="Song_now" stylesheets="@../themes/global.css" AnchorPane.leftAnchor="36.0" AnchorPane.topAnchor="110.0">
+                        <VBox fx:id="currentSong" alignment="CENTER" fillWidth="false" prefHeight="522.0" prefWidth="300.0" style="-fx-alignment: center;" styleClass="Song_now" stylesheets="@../themes/global.css" visible="false">
                            <children>
                               <Label fx:id="myLabel" prefHeight="55.0" prefWidth="170.0" style="-fx-alignment: center;">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets left="60.0" top="30.0" />
+                                    <Insets left="30.0" top="30.0" />
                                  </VBox.margin>
                               </Label>
                               <ImageView fx:id="atual_imagem" fitHeight="213.0" fitWidth="249.0" pickOnBounds="true" preserveRatio="true">
@@ -341,10 +311,22 @@
                            </children>
                         </VBox>
                      </children>
-                  </AnchorPane>
+                  </GridPane>
                </children>
             </GridPane>
          </center>
+         <left>
+            <AnchorPane prefHeight="579.0" prefWidth="248.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+               <children>
+                  <ListView fx:id="PlaylistView" layoutX="7.0" layoutY="136.0" prefHeight="290.0" prefWidth="200.0" style="-fx-control-inner-background: transparent;" styleClass="SongView" stylesheets="@../themes/global.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="60.0" />
+                  <Label layoutX="66.0" layoutY="29.0" text="User Playlists">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </left>
       </BorderPane>
    </children>
    <stylesheets>

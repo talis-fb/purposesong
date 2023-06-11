@@ -18,21 +18,14 @@ public class LoginViewModel {
 
     // Fields
     private App app = App.getInstance();
-    private final StringProperty labelContent = new SimpleStringProperty("conteudo: ");
-
-    public StringProperty helloMessage() {
-        return labelContent;
-    }
-
-    public String getHelloMessage() {
-        return labelContent.get();
-    }
-
-    public void setHelloMessage(String message) {
-        labelContent.set(message);
-    }
 
     public void goToMenu() {
         this.app.changeToMenuScene();
+    }
+
+    public void authenticityLogin() {
+        // !Verify login
+
+        // !Found out which type of user it's using the application
     }
 }

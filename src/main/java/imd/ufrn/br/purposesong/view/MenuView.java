@@ -11,14 +11,11 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.util.Pair;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import imd.ufrn.br.purposesong.App;
 
 public class MenuView implements Initializable {
     private MenuViewModel viewModel = MenuViewModel.getInstance();
@@ -27,13 +24,16 @@ public class MenuView implements Initializable {
     private ListView<String> SongView;
 
     @FXML
+    private ListView<String> PlaylistView;
+
+    @FXML
     private ImageView atual_imagem;
 
     @FXML
     private Label myLabel;
 
     @FXML
-    private AnchorPane currentSong;
+    private VBox currentSong;
 
     @FXML
     private Button play;
@@ -50,9 +50,29 @@ public class MenuView implements Initializable {
 
     }
 
+    @FXML
+    protected void addNewFile() {
+        this.viewModel.openFileChooser();
+    }
+
+    @FXML
+    protected void addNewFolder() {
+        this.viewModel.openFolderChooser();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // !conditionals by type of user
+        PlaylistView.getItems().addAll(viewModel.getPlaylists());
+        PlaylistView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
+                // SongView.getItems().add("Adicionando nova música...");
+                ;
+            }
+        });
 
+        // !Songs for testing
         SongView.getItems().addAll(viewModel.getMusicas());
 
         SongView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -71,5 +91,6 @@ public class MenuView implements Initializable {
                 ;
             }
         });
+
     }
 }

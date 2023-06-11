@@ -6,15 +6,38 @@ import imd.ufrn.br.purposesong.App;
 import javafx.scene.image.Image;
 
 public class MenuViewModel {
+
+    // !private User user;
     // Singleton
     private static MenuViewModel instance = new MenuViewModel();
 
     private MenuViewModel() {
+        initializePlaylists();
+        // initializeSongs();
+    }
+
+    public void initializePlaylists() {
+        playlists = new ArrayList<>();
+        playlists.add("Rock Pesadão");
+        playlists.add("MPB");
+        playlists.add("Paz que acalma a alma");
+        playlists.add("Maranata ora vem!!");
         initializeSongs();
+        // !Call initializeSongs here!!
     }
 
     public static MenuViewModel getInstance() {
         return MenuViewModel.instance;
+    }
+
+    private ArrayList<String> playlists;
+
+    public ArrayList<String> getPlaylists() {
+        return playlists;
+    }
+
+    public void setPlaylists(ArrayList<String> playlists) {
+        this.playlists = playlists;
     }
 
     private ArrayList<String> musicas;
@@ -47,6 +70,15 @@ public class MenuViewModel {
         musicas.add("Only you God");
         musicas.add("Promises");
         musicas.add("Esperança");
+        musicas.add("Dandelions");
+        musicas.add("Fortress");
+        musicas.add("I wanna know");
+        musicas.add("Somewhere only we know");
+        musicas.add("You are not the only one");
+        musicas.add("Clocks");
+        musicas.add("Paradise");
+        musicas.add("Counting Stars");
+        musicas.add("Sky full of stars");
 
         images = new ArrayList<>();
         images.add(imagem);
@@ -72,5 +104,13 @@ public class MenuViewModel {
 
     public void goToLogin() {
         this.app.changeToLoginScene();
+    }
+
+    public void openFileChooser() {
+        this.app.changeToFileChooser();
+    }
+
+    public void openFolderChooser() {
+        this.app.changeToFolderChooser();
     }
 }
