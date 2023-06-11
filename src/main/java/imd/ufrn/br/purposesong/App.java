@@ -35,6 +35,11 @@ public class App {
     private Scene loginViewScene;
     private Scene registerViewScene;
     private Scene menuViewScene;
+    private Scene settingsViewScene;
+
+    public void setSettingsScene(Scene scene) {
+        this.settingsViewScene = scene;
+    }
 
     public void setLoginScene(Scene scene) {
         this.loginViewScene = scene;
@@ -79,6 +84,13 @@ public class App {
         // this.stage.getIcons()
         // .add(new
         // Image("../../../../../resources/imd/ufrn/br/purposesong/images/headphoneLOGO.jpg"));
+        changeSize();
+        this.stage.show();
+    }
+
+    public void changeToSettingsScene() {
+        this.currentScene = this.settingsViewScene;
+        this.stage.setScene(this.currentScene);
         changeSize();
         this.stage.show();
     }

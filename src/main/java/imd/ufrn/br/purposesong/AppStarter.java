@@ -3,6 +3,7 @@ package imd.ufrn.br.purposesong;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -40,11 +41,15 @@ public class AppStarter extends Application {
                                 AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/Login.fxml"));
                 Scene loginScene = new Scene(fxmlLoaderLoginScene.load());
 
+                FXMLLoader fxmlLoaderSettingsScene = new FXMLLoader(
+                                AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/Settings.fxml"));
+                Scene settingsScene = new Scene(fxmlLoaderSettingsScene.load());
                 app.setStage(stage);
                 // app.setMainScene(mainScene);
                 app.setLoginScene(loginScene);
                 app.setRegisterScene(registerScene);
                 app.setMenuScene(menuScene);
+                app.setSettingsScene(settingsScene);
                 // ----------------
                 // Initial scene
                 // ----------------

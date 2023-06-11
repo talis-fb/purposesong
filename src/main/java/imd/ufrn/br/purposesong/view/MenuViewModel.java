@@ -106,6 +106,10 @@ public class MenuViewModel {
         this.app.changeToLoginScene();
     }
 
+    public void goToSettings() {
+        this.app.changeToSettingsScene();
+    }
+
     public void openFileChooser() {
         this.app.changeToFileChooser();
     }

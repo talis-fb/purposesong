@@ -51,6 +51,11 @@ public class MenuView implements Initializable {
     }
 
     @FXML
+    protected void goToSettings() {
+        this.viewModel.goToSettings();
+    }
+
+    @FXML
     protected void addNewFile() {
         this.viewModel.openFileChooser();
     }

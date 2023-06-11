@@ -217,7 +217,7 @@
                                     <Insets left="110.0" top="30.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="90.0" prefWidth="100.0" style="-fx-background-color: #800a6f; -fx-background-radius: 10;" text="Set-&#10;tings">
+                              <Button mnemonicParsing="false" onAction="#goToSettings" prefHeight="90.0" prefWidth="100.0" style="-fx-background-color: #800a6f; -fx-background-radius: 10;" text="Set-&#10;tings">
                                  <graphic>
                                     <ImageView fitHeight="45.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
