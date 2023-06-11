@@ -12,14 +12,6 @@ import java.util.Optional;
 public class LoginViewModel {
     private App app = App.getInstance();
 
-    // Singleton ----------
-    private static LoginViewModel instance = new LoginViewModel();
-    private LoginViewModel() {}
-    public static LoginViewModel getInstance() {
-        return LoginViewModel.instance;
-    }
-    // -----------------
-
     // Fields
     public final StringProperty username = new SimpleStringProperty();
     public final StringProperty password = new SimpleStringProperty();
@@ -42,5 +34,12 @@ public class LoginViewModel {
 
         return isUserLogged;
 
+    }
+
+    // Singleton ----------
+    private static final LoginViewModel instance = new LoginViewModel();
+    private LoginViewModel() {}
+    public static LoginViewModel getInstance() {
+        return LoginViewModel.instance;
     }
 }

@@ -4,7 +4,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public abstract class ModelDatabaseEntity {
-    Optional<UUID> id = Optional.empty();
+    private Optional<UUID> id = Optional.empty();
 
     public Optional<UUID> getId() {
         return id;

@@ -6,5 +6,5 @@ import java.util.UUID;
 public class Playlist extends ModelDatabaseEntity {
     List<Song> songs;
     String name;
-    UUID userID;
+    public UUID userID;
 }

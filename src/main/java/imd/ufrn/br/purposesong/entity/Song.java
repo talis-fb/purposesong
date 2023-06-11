@@ -9,5 +9,5 @@ public class Song extends ModelDatabaseEntity {
     String photo;
     String hashFile;
 
-    UUID userID;
+    public UUID userID;
 }
