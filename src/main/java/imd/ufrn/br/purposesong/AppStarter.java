@@ -16,19 +16,6 @@ public class AppStarter extends Application {
         public void start(Stage stage) throws IOException {
                 var app = App.getInstance();
 
-                // Main Scence
-                FXMLLoader fxmlLoaderMainScene = new FXMLLoader(
-                                AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/MainView.fxml"));
-                Scene mainScene = new Scene(fxmlLoaderMainScene.load(), 320, 240);
-
-                // Login Scene
-                /*
-                 * FXMLLoader fxmlLoaderLoginScene = new FXMLLoader(
-                 * AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/LoginView.fxml"))
-                 * ;
-                 * Scene loginScene = new Scene(fxmlLoaderLoginScene.load(), 320, 240);
-                 */
-                // Register Scene
                 FXMLLoader fxmlLoaderRegisterScene = new FXMLLoader(
                                 AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/Register.fxml"));
                 Scene registerScene = new Scene(fxmlLoaderRegisterScene.load());
@@ -45,7 +32,6 @@ public class AppStarter extends Application {
                                 AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/Settings.fxml"));
                 Scene settingsScene = new Scene(fxmlLoaderSettingsScene.load());
                 app.setStage(stage);
-                // app.setMainScene(mainScene);
                 app.setLoginScene(loginScene);
                 app.setRegisterScene(registerScene);
                 app.setMenuScene(menuScene);

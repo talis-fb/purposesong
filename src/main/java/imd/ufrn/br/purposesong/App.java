@@ -31,7 +31,6 @@ public class App {
 
     // Scenes
     private Scene currentScene;
-    private Scene mainViewScene;
     private Scene loginViewScene;
     private Scene registerViewScene;
     private Scene menuViewScene;
@@ -45,10 +44,6 @@ public class App {
         this.loginViewScene = scene;
     }
 
-    public void setMainScene(Scene scene) {
-        this.mainViewScene = scene;
-    }
-
     public void setRegisterScene(Scene scene) {
         this.registerViewScene = scene;
     }
@@ -59,13 +54,6 @@ public class App {
 
     public void changeToLoginScene() {
         this.currentScene = this.loginViewScene;
-        this.stage.setScene(this.currentScene);
-        changeSize();
-        this.stage.show();
-    }
-
-    public void changeToMainScene() {
-        this.currentScene = this.mainViewScene;
         this.stage.setScene(this.currentScene);
         changeSize();
         this.stage.show();
