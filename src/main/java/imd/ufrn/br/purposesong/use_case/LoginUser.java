@@ -14,5 +14,4 @@ public class LoginUser {
     public Optional<User> execute(String email, String password) {
         return this.userRepository.login(email, password);
     }
-
 }

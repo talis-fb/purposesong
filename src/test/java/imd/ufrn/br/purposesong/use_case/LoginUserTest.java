@@ -16,8 +16,15 @@ class LoginUserTest {
 
     @BeforeEach
     void setUp() {
-        userRepository = new InMemoryUserRepositoryImpl();
+        userRepository = InMemoryUserRepositoryImpl.getInstance();
         loginUser = new LoginUser(userRepository);
+    }
+
+    @Test
+    void testExecute_LoginAdminDefault() {
+        Optional<User> result = loginUser.execute("admin", "admin");
+        assertTrue(result.isPresent());
+        assertTrue(result.get().isVipUser());
     }
 
     @Test

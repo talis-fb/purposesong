@@ -2,6 +2,7 @@ package imd.ufrn.br.purposesong.database.inmemory;
 
 import imd.ufrn.br.purposesong.database.UserRepository;
 import imd.ufrn.br.purposesong.entity.User;
+import imd.ufrn.br.purposesong.view.LoginViewModel;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,6 +11,21 @@ import java.util.Optional;
 
 public class InMemoryUserRepositoryImpl implements UserRepository {
     private static List<User> users = new ArrayList<User>();
+    private static InMemoryUserRepositoryImpl instance = new InMemoryUserRepositoryImpl();
+    private InMemoryUserRepositoryImpl() {
+        var userAdmin = new User();
+        userAdmin.setEmail("admin");
+        userAdmin.setName("admin");
+        userAdmin.setPassword("admin");
+        userAdmin.setVipUser();
+        users.add(userAdmin);
+    }
+    public static InMemoryUserRepositoryImpl getInstance() {
+        return InMemoryUserRepositoryImpl.instance;
+    }
+
+
+
 
     @Override
     public Optional<User> findById(String id) {

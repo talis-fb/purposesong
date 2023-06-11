@@ -38,7 +38,7 @@ public class MainViewModel {
         System.out.println("Begin ->Bancquinho");
 
         try {
-            var ele = new InMemoryUserRepositoryImpl();
+            var ele = InMemoryUserRepositoryImpl.getInstance();
             ele.create(new User());
         } catch (Exception e) {
             System.out.println("ERRO");
