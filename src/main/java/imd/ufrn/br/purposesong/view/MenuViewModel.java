@@ -8,27 +8,6 @@ import javafx.scene.image.Image;
 public class MenuViewModel {
 
     // !private User user;
-    // Singleton
-    private static MenuViewModel instance = new MenuViewModel();
-
-    private MenuViewModel() {
-        initializePlaylists();
-        // initializeSongs();
-    }
-
-    public void initializePlaylists() {
-        playlists = new ArrayList<>();
-        playlists.add("Rock Pesadão");
-        playlists.add("MPB");
-        playlists.add("Paz que acalma a alma");
-        playlists.add("Maranata ora vem!!");
-        initializeSongs();
-        // !Call initializeSongs here!!
-    }
-
-    public static MenuViewModel getInstance() {
-        return MenuViewModel.instance;
-    }
 
     private ArrayList<String> playlists;
 
@@ -116,5 +95,27 @@ public class MenuViewModel {
 
     public void openFolderChooser() {
         this.app.changeToFolderChooser();
+    }
+
+
+    // Singleton ---------------------------
+    private static final MenuViewModel instance = new MenuViewModel();
+
+    private MenuViewModel() {
+        initializePlaylists();
+    }
+
+    public void initializePlaylists() {
+        playlists = new ArrayList<>();
+        playlists.add("Rock Pesadão");
+        playlists.add("MPB");
+        playlists.add("Paz que acalma a alma");
+        playlists.add("Maranata ora vem!!");
+        initializeSongs();
+        // !Call initializeSongs here!!
+    }
+
+    public static MenuViewModel getInstance() {
+        return MenuViewModel.instance;
     }
 }

@@ -12,17 +12,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class App {
-    // Singleton ----------
-    private static App instance = new App();
-
-    private App() {
-    }
-
-    public static App getInstance() {
-        return App.instance;
-    }
-    // -----------------
-
     private Stage stage;
 
     public void setStage(Stage stage) {
@@ -101,8 +90,7 @@ public class App {
     public void changeSize() {
         stage.widthProperty().addListener(new ChangeListener<Number>() {
             @Override
-            public void changed(ObservableValue<? extends Number> Observablevalue, Number number,
-                    Number number2) {
+            public void changed(ObservableValue<? extends Number> Observablevalue, Number number, Number number2) {
                 stage.setWidth((double) number2);
             }
 
@@ -119,5 +107,13 @@ public class App {
         final boolean resizable = stage.isResizable();
         stage.setResizable(!resizable);
         stage.setResizable(resizable);
+    }
+
+
+    // Singleton ----------
+    private static final App instance = new App();
+    private App() {}
+    public static App getInstance() {
+        return App.instance;
     }
 }

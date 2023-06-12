@@ -1,31 +1,51 @@
 package imd.ufrn.br.purposesong.view;
 
 import imd.ufrn.br.purposesong.App;
+import imd.ufrn.br.purposesong.database.FolderRepository;
+import imd.ufrn.br.purposesong.database.inmemory.InMemoryFolderRepositoryImpl;
+import imd.ufrn.br.purposesong.database.inmemory.InMemoryUserRepositoryImpl;
+import imd.ufrn.br.purposesong.entity.Folder;
+import imd.ufrn.br.purposesong.entity.User;
+import imd.ufrn.br.purposesong.use_case.AddFolder;
+import imd.ufrn.br.purposesong.use_case.GetAllSongsInUserFolder;
+import imd.ufrn.br.purposesong.use_case.GetAllSongsOfFolder;
+import imd.ufrn.br.purposesong.use_case.LoginUser;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.Optional;
+
 public class LoginViewModel {
-    // Singleton ----------
-    private static LoginViewModel instance = new LoginViewModel();
-
-    private LoginViewModel() {
-    }
-
-    public static LoginViewModel getInstance() {
-        return LoginViewModel.instance;
-    }
-    // -----------------
-
-    // Fields
     private App app = App.getInstance();
 
-    public void goToMenu() {
-        this.app.changeToMenuScene();
+    // Fields
+    public final StringProperty username = new SimpleStringProperty("admin");
+    public final StringProperty password = new SimpleStringProperty("admin");
+
+
+    public boolean submitLogin() {
+        String email = this.username.get();
+        String password = this.password.get();
+
+        var repo = InMemoryUserRepositoryImpl.getInstance();
+        Optional<User> output = new LoginUser(repo).execute(email, password);
+        boolean isUserLogged = output.isPresent();
+
+        if (isUserLogged) {
+            System.out.println("[LOGIN]: Sucesso");
+            this.app.changeToMenuScene();
+        } else {
+            System.out.println("[LOGIN]: ERRO -> ususário não encontrado");
+        }
+
+        return isUserLogged;
+
     }
 
-    public void authenticityLogin() {
-        // !Verify login
-
-        // !Found out which type of user it's using the application
+    // Singleton ----------
+    private static final LoginViewModel instance = new LoginViewModel();
+    private LoginViewModel() {}
+    public static LoginViewModel getInstance() {
+        return LoginViewModel.instance;
     }
 }
