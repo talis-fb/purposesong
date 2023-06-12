@@ -39,7 +39,6 @@ public class InMemoryUserRepositoryImpl extends InMemoryAbstractRepository<User>
         userAdmin.setName("admin");
         userAdmin.setPassword("admin");
         userAdmin.setVipUser();
-
         this.create(userAdmin);
     }
     public static InMemoryUserRepositoryImpl getInstance() {

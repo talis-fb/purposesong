@@ -6,5 +6,4 @@ import java.util.List;
 
 public interface SongRepository extends AbstractRepository<Song> {
     List<Song> findAllSongsOfUser(User user);
-
 }
