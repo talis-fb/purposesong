@@ -12,6 +12,8 @@ import imd.ufrn.br.purposesong.use_case.GetAllSongsOfFolder;
 import imd.ufrn.br.purposesong.use_case.LoginUser;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 import java.util.Optional;
 
@@ -21,7 +23,6 @@ public class LoginViewModel {
     // Fields
     public final StringProperty username = new SimpleStringProperty("admin");
     public final StringProperty password = new SimpleStringProperty("admin");
-
 
     public boolean submitLogin() {
         String email = this.username.get();
@@ -33,9 +34,15 @@ public class LoginViewModel {
 
         if (isUserLogged) {
             System.out.println("[LOGIN]: Sucesso");
+
+            // Add User Loged
+            UserSession.getInstance().setUser(output.get());
+            System.out.println(UserSession.getInstance().getUser().getName());
+            // !Change to Menu screen
             this.app.changeToMenuScene();
         } else {
             System.out.println("[LOGIN]: ERRO -> ususário não encontrado");
+            this.app.alertLoginMessage();
         }
 
         return isUserLogged;
@@ -44,7 +51,10 @@ public class LoginViewModel {
 
     // Singleton ----------
     private static final LoginViewModel instance = new LoginViewModel();
-    private LoginViewModel() {}
+
+    private LoginViewModel() {
+    }
+
     public static LoginViewModel getInstance() {
         return LoginViewModel.instance;
     }

@@ -172,7 +172,7 @@
                         <Image url="@../images/person.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="67.0" layoutY="140.0" prefHeight="17.0" prefWidth="78.0" text="Olá, Juliana!">
+                  <Label fx:id="nameActiiveUser" layoutX="67.0" layoutY="140.0" onContextMenuRequested="#setNameUser" prefHeight="17.0" prefWidth="78.0" text="Olá, Juliana!">
                      <font>
                         <Font size="14.0" />
                      </font>

@@ -9,6 +9,7 @@ import java.util.Optional;
 
 public class InMemoryUserRepositoryImpl extends InMemoryAbstractRepository<User> implements UserRepository {
     private static final List<User> users = new ArrayList<>();
+
     @Override
     public List<User> findAll() {
         return InMemoryUserRepositoryImpl.users;
@@ -29,10 +30,9 @@ public class InMemoryUserRepositoryImpl extends InMemoryAbstractRepository<User>
                 .findFirst();
     }
 
-
-
     // Singleton ---------------------
     private static final InMemoryUserRepositoryImpl instance = new InMemoryUserRepositoryImpl();
+
     private InMemoryUserRepositoryImpl() {
         var userAdmin = new User();
         userAdmin.setEmail("admin");
@@ -41,6 +41,7 @@ public class InMemoryUserRepositoryImpl extends InMemoryAbstractRepository<User>
         userAdmin.setVipUser();
         this.create(userAdmin);
     }
+
     public static InMemoryUserRepositoryImpl getInstance() {
         return InMemoryUserRepositoryImpl.instance;
     }

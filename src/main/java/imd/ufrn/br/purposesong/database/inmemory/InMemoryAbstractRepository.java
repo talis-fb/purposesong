@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public abstract class InMemoryAbstractRepository<Entity extends ModelDatabaseEntity> implements AbstractRepository<Entity> {
-    // This should return the static value that 'mock' database. All other methods here uses this to iterate with datas
+public abstract class InMemoryAbstractRepository<Entity extends ModelDatabaseEntity>
+        implements AbstractRepository<Entity> {
+    // This should return the static value that 'mock' database. All other methods
+    // here uses this to iterate with datas
     abstract public List<Entity> findAll();
 
     @Override
@@ -19,15 +21,15 @@ public abstract class InMemoryAbstractRepository<Entity extends ModelDatabaseEnt
                 .findFirst();
     }
 
-
     @Override
-    public void create(Entity value) {
-        if (value.getId().isEmpty()){
+    public Entity create(Entity value) {
+        if (value.getId().isEmpty()) {
             System.out.println("[ERRO]: Voce deve criar usuario nao registrados no banco de dados");
         }
 
         value.setId(UUID.randomUUID());
         this.findAll().add(value);
+        return value;
     }
 
     @Override

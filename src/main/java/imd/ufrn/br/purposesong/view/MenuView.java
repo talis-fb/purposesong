@@ -15,7 +15,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import imd.ufrn.br.purposesong.entity.Song;
 
 public class MenuView implements Initializable {
     private MenuViewModel viewModel = MenuViewModel.getInstance();
@@ -39,6 +42,9 @@ public class MenuView implements Initializable {
     private Button play;
 
     @FXML
+    private Label nameActiiveUser;
+
+    @FXML
     protected void goToRegister() {
         this.viewModel.goToRegister();
     }
@@ -57,7 +63,8 @@ public class MenuView implements Initializable {
 
     @FXML
     protected void addNewFile() {
-        this.viewModel.openFileChooser();
+        this.viewModel.addNewFile();
+        this.viewModel.updateListSongName();
     }
 
     @FXML
@@ -65,8 +72,17 @@ public class MenuView implements Initializable {
         this.viewModel.openFolderChooser();
     }
 
+    @FXML
+    public void setNameUser() {
+        nameActiiveUser.setText(viewModel.setNameUser());
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        SongView.itemsProperty().bind(this.viewModel.songNames);
+
+        System.out.println("HELLOOOOO");
         // !conditionals by type of user
         PlaylistView.getItems().addAll(viewModel.getPlaylists());
         PlaylistView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
@@ -78,7 +94,6 @@ public class MenuView implements Initializable {
         });
 
         // !Songs for testing
-        SongView.getItems().addAll(viewModel.getMusicas());
 
         SongView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override

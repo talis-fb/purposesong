@@ -2,10 +2,17 @@ package imd.ufrn.br.purposesong;
 
 import java.io.File;
 
+import imd.ufrn.br.purposesong.database.FolderRepository;
+import imd.ufrn.br.purposesong.use_case.AddFolder;
+import imd.ufrn.br.purposesong.use_case.GetAllSongsOfFolder;
+import imd.ufrn.br.purposesong.utils.OpenChooseFileDialog;
+import imd.ufrn.br.purposesong.view.MenuView;
+import imd.ufrn.br.purposesong.view.UserSession;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -16,6 +23,8 @@ public class App {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+        this.stage.getIcons()
+                .add(new Image("file:src/main/resources/imd/ufrn/br/purposesong/images/headphoneLOGO.png"));
     }
 
     // Scenes
@@ -24,6 +33,10 @@ public class App {
     private Scene registerViewScene;
     private Scene menuViewScene;
     private Scene settingsViewScene;
+
+    public Scene getCurrentScene() {
+        return this.currentScene;
+    }
 
     public void setSettingsScene(Scene scene) {
         this.settingsViewScene = scene;
@@ -41,43 +54,39 @@ public class App {
         this.menuViewScene = scene;
     }
 
+    public Stage getStage() {
+        return this.stage;
+    }
+
     public void changeToLoginScene() {
         this.currentScene = this.loginViewScene;
         this.stage.setScene(this.currentScene);
-        changeSize();
+        // changeSize();
         this.stage.show();
     }
 
     public void changeToRegisterScene() {
         this.currentScene = this.registerViewScene;
         this.stage.setScene(this.currentScene);
-        changeSize();
+        // changeSize();
         this.stage.show();
     }
 
     public void changeToMenuScene() {
         this.currentScene = this.menuViewScene;
         this.stage.setScene(this.currentScene);
-        // this.stage.getIcons()
-        // .add(new
-        // Image("../../../../../resources/imd/ufrn/br/purposesong/images/headphoneLOGO.jpg"));
-        changeSize();
+        // changeSize();
+        if (UserSession.getInstance().getUser().isVipUser()) {
+
+        }
         this.stage.show();
     }
 
     public void changeToSettingsScene() {
         this.currentScene = this.settingsViewScene;
         this.stage.setScene(this.currentScene);
-        changeSize();
+        // changeSize();
         this.stage.show();
-    }
-
-    public void changeToFileChooser() {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choose a music file");
-        File selectedFile = fileChooser.showOpenDialog(stage);
-        this.stage.show();
-        System.out.println(selectedFile); // !Enviar isso para a lista de músicas!!!!
     }
 
     public void changeToFolderChooser() {
@@ -85,6 +94,14 @@ public class App {
         File selectedDirectory = directoryChooser.showDialog(stage);
         this.stage.show();
         System.out.println(selectedDirectory);
+    }
+
+    public void alertLoginMessage() {
+        Alert alert = new Alert(AlertType.WARNING);
+        alert.setTitle("USER NOT FOUND");
+        alert.setHeaderText("Something is wrong!");
+        alert.setContentText("Please, check your information and try again");
+        alert.show();
     }
 
     public void changeSize() {
@@ -109,10 +126,12 @@ public class App {
         stage.setResizable(resizable);
     }
 
-
     // Singleton ----------
     private static final App instance = new App();
-    private App() {}
+
+    private App() {
+    }
+
     public static App getInstance() {
         return App.instance;
     }
