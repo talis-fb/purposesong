@@ -1,5 +1,7 @@
 package imd.ufrn.br.purposesong.view;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -56,11 +58,6 @@ public class MenuViewNormal implements Initializable {
     @FXML
     protected void addNewFolder() {
         this.viewModel.addNewFolder();
-    }
-
-    @FXML
-    public void setNameUser() {
-        nameActiiveUser.setText(viewModel.setNameUser());
     }
 
     @Override

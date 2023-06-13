@@ -41,7 +41,6 @@ public class AppStarter extends Application {
                 // ----------------
                 // Initial scene
                 // ----------------
-                // app.changeToRegisterScene();
                 app.changeToLoginScene();
 
         }

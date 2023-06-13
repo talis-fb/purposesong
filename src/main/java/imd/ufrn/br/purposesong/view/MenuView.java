@@ -66,11 +66,6 @@ public class MenuView implements Initializable {
         this.viewModel.addNewFolder();
     }
 
-    @FXML
-    public void setNameUser() {
-        nameActiiveUser.setText(viewModel.setNameUser());
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

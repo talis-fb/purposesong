@@ -27,7 +27,7 @@ public class InMemoryUserRepositoryImpl extends InMemoryAbstractRepository<User>
     @Override
     public Optional<User> login(String email, String password) {
         return findAll().stream()
-                .filter(user -> user.getEbmail().equals(email) && user.getPassword().equals(password))
+                .filter(user -> user.getEmail().equals(email) && user.getPassword().equals(password))
                 .findFirst();
     }
 
