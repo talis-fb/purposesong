@@ -2,11 +2,6 @@ package imd.ufrn.br.purposesong;
 
 import java.io.File;
 
-import imd.ufrn.br.purposesong.database.FolderRepository;
-import imd.ufrn.br.purposesong.use_case.AddFolder;
-import imd.ufrn.br.purposesong.use_case.GetAllSongsOfFolder;
-import imd.ufrn.br.purposesong.utils.OpenChooseFileDialog;
-import imd.ufrn.br.purposesong.view.MenuView;
 import imd.ufrn.br.purposesong.view.UserSession;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -15,7 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.DirectoryChooser;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class App {
@@ -87,13 +81,6 @@ public class App {
         this.stage.setScene(this.currentScene);
         // changeSize();
         this.stage.show();
-    }
-
-    public void changeToFolderChooser() {
-        DirectoryChooser directoryChooser = new DirectoryChooser();
-        File selectedDirectory = directoryChooser.showDialog(stage);
-        this.stage.show();
-        System.out.println(selectedDirectory);
     }
 
     public void alertLoginMessage() {

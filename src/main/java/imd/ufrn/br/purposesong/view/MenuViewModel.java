@@ -3,13 +3,18 @@ package imd.ufrn.br.purposesong.view;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import imd.ufrn.br.purposesong.App;
+import imd.ufrn.br.purposesong.database.inmemory.InMemoryFolderRepositoryImpl;
 import imd.ufrn.br.purposesong.database.inmemory.InMemorySongRepositoryImpl;
+import imd.ufrn.br.purposesong.entity.Folder;
 import imd.ufrn.br.purposesong.entity.Song;
+import imd.ufrn.br.purposesong.use_case.AddFolder;
 import imd.ufrn.br.purposesong.use_case.AddSong;
 import imd.ufrn.br.purposesong.use_case.GetAllSongsOfUser;
 import imd.ufrn.br.purposesong.utils.OpenChooseFileDialog;
+import imd.ufrn.br.purposesong.utils.OpenChooseFolderDialog;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
@@ -47,6 +52,19 @@ public class MenuViewModel {
                 .println("New music file:" + file.toString() + " added to playlist");
         System.out.println(song.getId() + " " + song.name + " " + song.path);
         return savedSong;
+    }
+
+    public List<Song> sendNewFolderOfSongs(File file) {
+        // !Catching folder files
+        Folder folder = new Folder();
+        folder.path = file.toPath().toString();
+        folder.userID = UserSession.getInstance().getUser().getId().get();
+        var songsOfFolder = folder.scanSongFiles();
+
+        // !Adding to dataBase
+        var repo = InMemoryFolderRepositoryImpl.getInstance();
+        new AddFolder(repo).execute(folder);
+        return songsOfFolder;
     }
 
     /* DEPRECATED */
@@ -106,18 +124,37 @@ public class MenuViewModel {
 
     public void addNewFile() {
         var file = this.openFileChooser();
-        var songFile = this.sendNewMusicFile(file);
-        this.musicas.add(songFile);
+        if (file != null) {
+            var songFile = this.sendNewMusicFile(file);
+            this.musicas.add(songFile);
+        }
     }
 
     public File openFileChooser() {
         var stage = this.app.getStage();
         var selectedFile = OpenChooseFileDialog.showChooseFileDialog(stage);
-        return selectedFile;
+        if (selectedFile.isPresent()) {
+            return selectedFile.get();
+        } else {
+            return null;
+        }
     }
 
-    public void openFolderChooser() {
-        this.app.changeToFolderChooser();
+    public void addNewFolder() {
+        var file = this.openFolderChooser();
+        var listOfFolderSongs = this.sendNewFolderOfSongs(file);
+        // !Adding new songs to musicas
+        for (Song song : listOfFolderSongs) {
+            this.musicas.add(song);
+        }
+        // !Updating listView
+        updateListSongName();
+    }
+
+    public File openFolderChooser() {
+        var stage = this.app.getStage();
+        var selectedFolder = OpenChooseFolderDialog.showChooseFolderDialog(stage);
+        return selectedFolder;
     }
 
     public String setNameUser() {

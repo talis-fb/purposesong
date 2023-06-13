@@ -63,7 +63,7 @@ public class MenuView implements Initializable {
 
     @FXML
     protected void addNewFolder() {
-        this.viewModel.openFolderChooser();
+        this.viewModel.addNewFolder();
     }
 
     @FXML
