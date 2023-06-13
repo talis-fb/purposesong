@@ -1,7 +1,5 @@
 package imd.ufrn.br.purposesong;
 
-import java.io.File;
-
 import imd.ufrn.br.purposesong.view.UserSession;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -9,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 
 public class App {
@@ -25,8 +22,9 @@ public class App {
     private Scene currentScene;
     private Scene loginViewScene;
     private Scene registerViewScene;
-    private Scene menuViewScene;
+    private Scene menuVipViewScene;
     private Scene settingsViewScene;
+    private Scene menuNormalViewScene;
 
     public Scene getCurrentScene() {
         return this.currentScene;
@@ -44,8 +42,12 @@ public class App {
         this.registerViewScene = scene;
     }
 
-    public void setMenuScene(Scene scene) {
-        this.menuViewScene = scene;
+    public void setMenuVipScene(Scene scene) {
+        this.menuVipViewScene = scene;
+    }
+
+    public void setMenuNormalViewScene(Scene scene) {
+        this.menuNormalViewScene = scene;
     }
 
     public Stage getStage() {
@@ -67,12 +69,13 @@ public class App {
     }
 
     public void changeToMenuScene() {
-        this.currentScene = this.menuViewScene;
+        if (UserSession.getInstance().getUser().isVipUser()) {
+            this.currentScene = this.menuVipViewScene;
+        } else {
+            this.currentScene = this.menuNormalViewScene;
+        }
         this.stage.setScene(this.currentScene);
         // changeSize();
-        if (UserSession.getInstance().getUser().isVipUser()) {
-
-        }
         this.stage.show();
     }
 

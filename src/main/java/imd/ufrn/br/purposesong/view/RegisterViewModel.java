@@ -12,7 +12,10 @@ public class RegisterViewModel {
 
     // Singleton -------------------
     private static final RegisterViewModel instance = new RegisterViewModel();
-    private RegisterViewModel() {}
+
+    private RegisterViewModel() {
+    }
+
     public static RegisterViewModel getInstance() {
         return RegisterViewModel.instance;
     }

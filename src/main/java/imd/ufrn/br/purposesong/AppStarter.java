@@ -16,9 +16,13 @@ public class AppStarter extends Application {
                                 AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/Login.fxml"));
                 Scene loginScene = new Scene(fxmlLoaderLoginScene.load());
 
-                FXMLLoader fxmlLoaderMenuScene = new FXMLLoader(
-                                AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/MenuView.fxml"));
-                Scene menuScene = new Scene(fxmlLoaderMenuScene.load());
+                FXMLLoader fxmlLoaderMenuVIPScene = new FXMLLoader(
+                                AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/MenuViewVIP.fxml"));
+                Scene menuVIPScene = new Scene(fxmlLoaderMenuVIPScene.load());
+
+                FXMLLoader fxmlLoaderMenuNormalScene = new FXMLLoader(
+                                AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/MenuViewNormal.fxml"));
+                Scene menuNormalScene = new Scene(fxmlLoaderMenuNormalScene.load());
 
                 FXMLLoader fxmlLoaderRegisterScene = new FXMLLoader(
                                 AppStarter.class.getResource("/imd/ufrn/br/purposesong/view/Register.fxml"));
@@ -31,8 +35,9 @@ public class AppStarter extends Application {
                 app.setStage(stage);
                 app.setLoginScene(loginScene);
                 app.setRegisterScene(registerScene);
-                app.setMenuScene(menuScene);
+                app.setMenuVipScene(menuVIPScene);
                 app.setSettingsScene(settingsScene);
+                app.setMenuNormalViewScene(menuNormalScene);
                 // ----------------
                 // Initial scene
                 // ----------------
