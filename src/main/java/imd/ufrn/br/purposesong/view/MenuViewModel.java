@@ -142,19 +142,25 @@ public class MenuViewModel {
 
     public void addNewFolder() {
         var file = this.openFolderChooser();
-        var listOfFolderSongs = this.sendNewFolderOfSongs(file);
-        // !Adding new songs to musicas
-        for (Song song : listOfFolderSongs) {
-            this.musicas.add(song);
+        if (file != null) {
+            var listOfFolderSongs = this.sendNewFolderOfSongs(file);
+            // !Adding new songs to musicas
+            for (Song song : listOfFolderSongs) {
+                this.musicas.add(song);
+            }
+            // !Updating listView
+            updateListSongName();
         }
-        // !Updating listView
-        updateListSongName();
     }
 
     public File openFolderChooser() {
         var stage = this.app.getStage();
         var selectedFolder = OpenChooseFolderDialog.showChooseFolderDialog(stage);
-        return selectedFolder;
+        if (selectedFolder.isPresent()) {
+            return selectedFolder.get();
+        } else {
+            return null;
+        }
     }
 
     public String setNameUser() {
