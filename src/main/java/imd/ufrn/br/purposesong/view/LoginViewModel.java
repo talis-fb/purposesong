@@ -1,19 +1,11 @@
 package imd.ufrn.br.purposesong.view;
 
 import imd.ufrn.br.purposesong.App;
-import imd.ufrn.br.purposesong.database.FolderRepository;
-import imd.ufrn.br.purposesong.database.inmemory.InMemoryFolderRepositoryImpl;
 import imd.ufrn.br.purposesong.database.inmemory.InMemoryUserRepositoryImpl;
-import imd.ufrn.br.purposesong.entity.Folder;
 import imd.ufrn.br.purposesong.entity.User;
-import imd.ufrn.br.purposesong.use_case.AddFolder;
-import imd.ufrn.br.purposesong.use_case.GetAllSongsInUserFolder;
-import imd.ufrn.br.purposesong.use_case.GetAllSongsOfFolder;
 import imd.ufrn.br.purposesong.use_case.LoginUser;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 import java.util.Optional;
 

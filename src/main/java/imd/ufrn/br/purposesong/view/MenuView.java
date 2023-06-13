@@ -2,8 +2,6 @@ package imd.ufrn.br.purposesong.view;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -12,13 +10,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import imd.ufrn.br.purposesong.entity.Song;
 
 public class MenuView implements Initializable {
     private MenuViewModel viewModel = MenuViewModel.getInstance();
@@ -82,8 +76,7 @@ public class MenuView implements Initializable {
 
         SongView.itemsProperty().bind(this.viewModel.songNames);
 
-        System.out.println("HELLOOOOO");
-        // !conditionals by type of user
+        // ! Properties of playlist and song listViews
         PlaylistView.getItems().addAll(viewModel.getPlaylists());
         PlaylistView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -92,8 +85,6 @@ public class MenuView implements Initializable {
                 ;
             }
         });
-
-        // !Songs for testing
 
         SongView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override

@@ -3,21 +3,16 @@ package imd.ufrn.br.purposesong.view;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import imd.ufrn.br.purposesong.App;
 import imd.ufrn.br.purposesong.database.inmemory.InMemorySongRepositoryImpl;
-import imd.ufrn.br.purposesong.database.inmemory.InMemoryUserRepositoryImpl;
 import imd.ufrn.br.purposesong.entity.Song;
-import imd.ufrn.br.purposesong.entity.User;
 import imd.ufrn.br.purposesong.use_case.AddSong;
 import imd.ufrn.br.purposesong.use_case.GetAllSongsOfUser;
-import imd.ufrn.br.purposesong.use_case.LoginUser;
 import imd.ufrn.br.purposesong.utils.OpenChooseFileDialog;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.collections.FXCollections;
 import javafx.scene.image.Image;
 
 public class MenuViewModel {
@@ -28,51 +23,20 @@ public class MenuViewModel {
     private String default_song_image = "file:src/main/resources/imd/ufrn/br/purposesong/images/default.png";
     private String current_song = "";
 
-    public final ListProperty<String> songNames = new SimpleListProperty<String>();
+    public ListProperty<String> songNames = new SimpleListProperty<String>(FXCollections.observableArrayList());
 
     public void updateListSongName() {
         try {
             songNames.clear();
-            for (Song song : getMusicas()) {
-                songNames.add(song.name);
+            System.out.println(this.musicas.size());
+            for (Song song : this.musicas) {
+                this.songNames.get().add(song.name);
+                System.out.println("'Addings");
             }
         } catch (Exception e) {
-            System.out.println("Nops");
+            System.out.println("Error! " + e.toString());
         }
     }
-    /*
-     * public void initializeSongs() {
-     * /* Simulating a file reader
-     * Image imagem = new Image(
-     * "file:src/main/resources/imd/ufrn/br/purposesong/images/headphoneLOGO.png");
-     * Image imagem2 = new
-     * Image("file:src/main/resources/imd/ufrn/br/purposesong/images/retroceder.png"
-     * );
-     * Image imagem3 = new Image(
-     * "file:src/main/resources/imd/ufrn/br/purposesong/images/melevapracasa.jpg");
-     * musicas = new ArrayList<>();
-     * musicas.add("Sua Graça me Basta");
-     * musicas.add("Apena Ti");
-     * musicas.add("Me leva pra casa");
-     * musicas.add("Only you God");
-     * musicas.add("Promises");
-     * musicas.add("Esperança");
-     * musicas.add("Dandelions");
-     * musicas.add("Fortress");
-     * musicas.add("I wanna know");
-     * musicas.add("Somewhere only we know");
-     * musicas.add("You are not the only one");
-     * musicas.add("Clocks");
-     * musicas.add("Paradise");
-     * musicas.add("Counting Stars");
-     * musicas.add("Sky full of stars");
-     * 
-     * images = new ArrayList<>();
-     * images.add(imagem);
-     * images.add(imagem2);
-     * images.add(imagem3);
-     * }
-     */
 
     public Song sendNewMusicFile(File file) {
         var repo = InMemorySongRepositoryImpl.getInstance();
@@ -128,7 +92,6 @@ public class MenuViewModel {
     // Fields
     private App app = App.getInstance();
 
-    // !Only VIP users have acess to this method
     public void goToRegister() {
         this.app.changeToRegisterScene();
     }
@@ -168,16 +131,6 @@ public class MenuViewModel {
         playlists.add("Paz que acalma a alma");
         playlists.add("Maranata ora vem!!");
         // initializeSongs();
-        // !Call initializeSongs here!!
-    }
-
-    public void initializeUserVIP() {
-        System.out.println("Initializing user vip...");
-    }
-
-    public void initializeUserNormal() {
-        System.out.println("Initializing normal user...");
-
     }
 
     // Singleton ---------------------------
