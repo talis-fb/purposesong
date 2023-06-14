@@ -8,6 +8,7 @@ import java.util.Optional;
 public class SongPlayer {
     private Optional<Player> player;
     private Optional<Song> currentSong = Optional.empty();
+    private boolean isPlaying = false;
     private long currentSongTimeSeconds = 0;
     private long songDurationSeconds = 0;
 
@@ -31,8 +32,10 @@ public class SongPlayer {
 
             new Thread(() -> {
                 try {
+                    this.isPlaying = true;
                     player.play();
                 } catch (Exception e) {
+                    this.isPlaying = false;
                     e.printStackTrace();
                 }
             }).start();
@@ -47,6 +50,7 @@ public class SongPlayer {
         if (player.isPresent()) {
             try {
                 player.get().close();
+                this.isPlaying = false;
             } catch (Exception e) {
                 e.printStackTrace();
             }
