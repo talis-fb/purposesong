@@ -66,9 +66,9 @@
                                     </RadialGradient>
                                  </textFill>
                               </Button>
-                              <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#playSong" style="-fx-background-color: transparent;">
                                  <graphic>
-                                    <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="buttonPlay" fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/toque.png" />
                                        </image>

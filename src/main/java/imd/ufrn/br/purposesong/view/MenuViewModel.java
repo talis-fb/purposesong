@@ -1,12 +1,19 @@
 package imd.ufrn.br.purposesong.view;
 
 import java.util.ArrayList;
+
+import imd.ufrn.br.purposesong.entity.Song;
+import imd.ufrn.br.purposesong.player.SongPlayer;
 import javafx.scene.image.Image;
 
 public class MenuViewModel extends MenuAbstractModel {
 
     private ArrayList<String> playlists;
     private ArrayList<Image> images;
+
+    public void playSong(Song song) {
+        SongPlayer.getInstance().play(song);
+    }
 
     public ArrayList<String> getPlaylists() {
         return playlists;

@@ -18,7 +18,7 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 
 public class MenuAbstractModel {
-    private ArrayList<Song> musicas = new ArrayList<>();
+    public ListProperty<Song> musicas = new SimpleListProperty<Song>(FXCollections.observableArrayList());
     private String default_song_image = "file:src/main/resources/imd/ufrn/br/purposesong/images/default.png";
     private String current_song = "";
     public ListProperty<String> songNames = new SimpleListProperty<String>(FXCollections.observableArrayList());
@@ -128,9 +128,9 @@ public class MenuAbstractModel {
         this.current_song = currentSong;
     }
 
-    public ArrayList<Song> getMusicas() {
-        return musicas;
-    }
+    // public ArrayList<Song> getMusicas() {
+    // return musicas;
+    // }
 
     public void addSongInMusicas(Song song) {
         this.musicas.add(song);
