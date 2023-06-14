@@ -1,15 +1,10 @@
 package imd.ufrn.br.purposesong.view;
 
 import imd.ufrn.br.purposesong.App;
-import imd.ufrn.br.purposesong.database.FolderRepository;
-import imd.ufrn.br.purposesong.database.inmemory.InMemoryFolderRepositoryImpl;
 import imd.ufrn.br.purposesong.database.inmemory.InMemoryUserRepositoryImpl;
-import imd.ufrn.br.purposesong.entity.Folder;
 import imd.ufrn.br.purposesong.entity.User;
-import imd.ufrn.br.purposesong.use_case.AddFolder;
-import imd.ufrn.br.purposesong.use_case.GetAllSongsInUserFolder;
-import imd.ufrn.br.purposesong.use_case.GetAllSongsOfFolder;
 import imd.ufrn.br.purposesong.use_case.LoginUser;
+import imd.ufrn.br.purposesong.utils.UserAlerts;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -22,7 +17,6 @@ public class LoginViewModel {
     public final StringProperty username = new SimpleStringProperty("admin");
     public final StringProperty password = new SimpleStringProperty("admin");
 
-
     public boolean submitLogin() {
         String email = this.username.get();
         String password = this.password.get();
@@ -33,9 +27,15 @@ public class LoginViewModel {
 
         if (isUserLogged) {
             System.out.println("[LOGIN]: Sucesso");
+
+            // Add User Loged
+            UserSession.getInstance().setUser(output.get());
+            System.out.println(UserSession.getInstance().getUser().getName());
+            // !Change to Menu screen
             this.app.changeToMenuScene();
         } else {
             System.out.println("[LOGIN]: ERRO -> ususário não encontrado");
+            UserAlerts.alertLoginMessage();
         }
 
         return isUserLogged;
@@ -44,7 +44,10 @@ public class LoginViewModel {
 
     // Singleton ----------
     private static final LoginViewModel instance = new LoginViewModel();
-    private LoginViewModel() {}
+
+    private LoginViewModel() {
+    }
+
     public static LoginViewModel getInstance() {
         return LoginViewModel.instance;
     }

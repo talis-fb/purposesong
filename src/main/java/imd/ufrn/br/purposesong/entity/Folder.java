@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class Folder extends ModelDatabaseEntity{
+public class Folder extends ModelDatabaseEntity {
     public String path;
     public UUID userID;
 

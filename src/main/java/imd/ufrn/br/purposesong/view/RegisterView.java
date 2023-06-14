@@ -4,11 +4,11 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
-import java.util.ResourceBundle;
 
 public class RegisterView implements Initializable {
     private RegisterViewModel viewModel = RegisterViewModel.getInstance();
@@ -17,7 +17,7 @@ public class RegisterView implements Initializable {
     private PasswordField RepeatPasswordField;
 
     @FXML
-    private TextField FullNameField;
+    private TextField UserNameField;
 
     @FXML
     private PasswordField PasswordField;
@@ -26,12 +26,32 @@ public class RegisterView implements Initializable {
     private TextField EmailField;
 
     @FXML
+    private CheckBox isVip;
+
+    @FXML
     protected void goToMenu() {
         this.viewModel.goToMenu();
-        FullNameField.clear();
+        UserNameField.clear();
         EmailField.clear();
         PasswordField.clear();
         RepeatPasswordField.clear();
+    }
+
+    @FXML
+    protected void createNewUser() {
+        if (UserNameField.getText().isEmpty() || EmailField.getText().isEmpty() || PasswordField.getText().isEmpty()
+                || RepeatPasswordField.getText().isEmpty()) {
+            this.viewModel.empty();
+        } else {
+            if (this.viewModel.createNewUser(UserNameField.getText(), EmailField.getText(), PasswordField.getText(),
+                    isVip.isSelected())) {
+                UserNameField.clear();
+                EmailField.clear();
+                PasswordField.clear();
+                RepeatPasswordField.clear();
+            }
+        }
+
     }
 
     @Override

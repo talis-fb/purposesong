@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" styleClass="anchorpane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imd.ufrn.br.purposesong.view.LoginView">
+<AnchorPane fx:id="anchorpane" minHeight="-Infinity" minWidth="-Infinity" styleClass="anchorpane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imd.ufrn.br.purposesong.view.LoginView">
    <children>
       <BorderPane prefHeight="699.0" prefWidth="1172.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>

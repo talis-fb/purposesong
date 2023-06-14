@@ -5,6 +5,7 @@ import imd.ufrn.br.purposesong.entity.User;
 
 public class CreateNewUser {
     final UserRepository userRepository;
+
     public CreateNewUser(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

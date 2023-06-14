@@ -7,10 +7,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 public class LoginView implements Initializable {
     private LoginViewModel viewModel = LoginViewModel.getInstance();
 
+    @FXML
+    private AnchorPane anchorpane;
     @FXML
     private TextField userNameInput;
 

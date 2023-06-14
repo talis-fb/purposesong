@@ -2,6 +2,7 @@ package imd.ufrn.br.purposesong.database.inmemory;
 
 import imd.ufrn.br.purposesong.database.UserRepository;
 import imd.ufrn.br.purposesong.entity.User;
+import javafx.beans.property.SetPropertyBase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Optional;
 
 public class InMemoryUserRepositoryImpl extends InMemoryAbstractRepository<User> implements UserRepository {
     private static final List<User> users = new ArrayList<>();
+
     @Override
     public List<User> findAll() {
         return InMemoryUserRepositoryImpl.users;
@@ -29,10 +31,9 @@ public class InMemoryUserRepositoryImpl extends InMemoryAbstractRepository<User>
                 .findFirst();
     }
 
-
-
     // Singleton ---------------------
     private static final InMemoryUserRepositoryImpl instance = new InMemoryUserRepositoryImpl();
+
     private InMemoryUserRepositoryImpl() {
         var userAdmin = new User();
         userAdmin.setEmail("admin");
@@ -40,7 +41,14 @@ public class InMemoryUserRepositoryImpl extends InMemoryAbstractRepository<User>
         userAdmin.setPassword("admin");
         userAdmin.setVipUser();
         this.create(userAdmin);
+
+        var userNormal = new User();
+        userNormal.setEmail("normal");
+        userNormal.setName("normal");
+        userNormal.setPassword("normal");
+        this.create(userNormal);
     }
+
     public static InMemoryUserRepositoryImpl getInstance() {
         return InMemoryUserRepositoryImpl.instance;
     }

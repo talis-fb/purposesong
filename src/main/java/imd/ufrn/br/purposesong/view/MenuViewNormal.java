@@ -1,5 +1,7 @@
 package imd.ufrn.br.purposesong.view;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -14,14 +16,11 @@ import javafx.scene.layout.VBox;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MenuView implements Initializable {
-    private MenuViewModel viewModel = MenuViewModel.getInstance();
+public class MenuViewNormal implements Initializable {
+    private MenuViewNormalModel viewModel = MenuViewNormalModel.getInstance();
 
     @FXML
     private ListView<String> SongView;
-
-    @FXML
-    private ListView<String> PlaylistView;
 
     @FXML
     private ImageView atual_imagem;
@@ -37,11 +36,6 @@ public class MenuView implements Initializable {
 
     @FXML
     private Label nameActiiveUser;
-
-    @FXML
-    protected void goToRegister() {
-        this.viewModel.goToRegister();
-    }
 
     @FXML
     protected void goToLogin() {
@@ -72,15 +66,6 @@ public class MenuView implements Initializable {
         SongView.itemsProperty().bind(this.viewModel.songNames);
 
         // ! Properties of playlist and song listViews
-        PlaylistView.getItems().addAll(viewModel.getPlaylists());
-        PlaylistView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
-                // SongView.getItems().add("Adicionando nova música...");
-                ;
-            }
-        });
-
         SongView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {

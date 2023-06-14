@@ -6,8 +6,12 @@ import java.util.UUID;
 
 public interface AbstractRepository<T> {
     Optional<T> findById(UUID id);
+
     List<T> findAll();
+
     void update(UUID id, T value);
-    void create(T value);
+
+    T create(T value);
+
     void delete(UUID id);
 }
