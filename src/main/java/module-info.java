@@ -2,6 +2,7 @@ module imd.ufrn.br.purposesong {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires jlayer;
 
 
     opens imd.ufrn.br.purposesong to javafx.fxml;
