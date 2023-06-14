@@ -4,6 +4,7 @@ import imd.ufrn.br.purposesong.App;
 import imd.ufrn.br.purposesong.database.inmemory.InMemoryUserRepositoryImpl;
 import imd.ufrn.br.purposesong.entity.User;
 import imd.ufrn.br.purposesong.use_case.LoginUser;
+import imd.ufrn.br.purposesong.utils.UserAlerts;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -34,7 +35,7 @@ public class LoginViewModel {
             this.app.changeToMenuScene();
         } else {
             System.out.println("[LOGIN]: ERRO -> ususário não encontrado");
-            this.app.alertLoginMessage();
+            UserAlerts.alertLoginMessage();
         }
 
         return isUserLogged;

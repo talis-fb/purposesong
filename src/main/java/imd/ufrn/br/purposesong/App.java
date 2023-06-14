@@ -4,8 +4,6 @@ import imd.ufrn.br.purposesong.view.UserSession;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
@@ -84,14 +82,6 @@ public class App {
         this.stage.setScene(this.currentScene);
         // changeSize();
         this.stage.show();
-    }
-
-    public void alertLoginMessage() {
-        Alert alert = new Alert(AlertType.WARNING);
-        alert.setTitle("USER NOT FOUND");
-        alert.setHeaderText("Something is wrong!");
-        alert.setContentText("Please, check your information and try again");
-        alert.show();
     }
 
     public void changeSize() {

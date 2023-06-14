@@ -39,10 +39,17 @@ public class RegisterView implements Initializable {
 
     @FXML
     protected void createNewUser() {
-        if (isVip.isSelected()) {
-            viewModel.createNewUser(UserNameField.getText(), EmailField.getText(), PasswordField.getText(), true);
+        if (UserNameField.getText().isEmpty() || EmailField.getText().isEmpty() || PasswordField.getText().isEmpty()
+                || RepeatPasswordField.getText().isEmpty()) {
+            this.viewModel.empty();
         } else {
-            viewModel.createNewUser(UserNameField.getText(), EmailField.getText(), PasswordField.getText(), false);
+            if (this.viewModel.createNewUser(UserNameField.getText(), EmailField.getText(), PasswordField.getText(),
+                    isVip.isSelected())) {
+                UserNameField.clear();
+                EmailField.clear();
+                PasswordField.clear();
+                RepeatPasswordField.clear();
+            }
         }
 
     }
