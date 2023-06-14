@@ -8,7 +8,7 @@ import java.util.Optional;
 public class SongPlayer {
     private Optional<Player> player;
     private Optional<Song> currentSong = Optional.empty();
-    private boolean isPlaying = false;
+    private boolean isPlayingState = false;
     private long currentSongTimeSeconds = 0;
     private long songDurationSeconds = 0;
 
@@ -32,10 +32,10 @@ public class SongPlayer {
 
             new Thread(() -> {
                 try {
-                    this.isPlaying = true;
+                    this.isPlayingState = true;
                     player.play();
                 } catch (Exception e) {
-                    this.isPlaying = false;
+                    this.isPlayingState = false;
                     e.printStackTrace();
                 }
             }).start();
@@ -50,11 +50,15 @@ public class SongPlayer {
         if (player.isPresent()) {
             try {
                 player.get().close();
-                this.isPlaying = false;
+                this.isPlayingState = false;
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public boolean isPlaying() {
+        return this.isPlayingState;
     }
 
     // Singleton ---------
