@@ -28,6 +28,7 @@ public abstract class InMemoryAbstractRepository<Entity extends ModelDatabaseEnt
         }
 
         value.setId(UUID.randomUUID());
+        System.out.println("Adding new ID...");
         this.findAll().add(value);
         return value;
     }

@@ -63,6 +63,7 @@ public class SongPlayer {
 
     // Singleton ---------
     private static final SongPlayer instance = new SongPlayer();
+
     public static SongPlayer getInstance() {
         return SongPlayer.instance;
     }

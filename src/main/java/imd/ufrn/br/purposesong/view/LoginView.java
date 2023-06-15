@@ -18,20 +18,16 @@ public class LoginView implements Initializable {
     private TextField userNameInput;
 
     @FXML
-    private PasswordField PasswordInput;
+    private PasswordField passwordInput;
 
     @FXML
     protected void submitLogin() {
-        boolean isAuth = this.viewModel.submitLogin();
-        if (!isAuth) {
-            System.out.println("aqui vc pode executar a lógica de negocio que exibe o erro para o usuario");
-            // Mas se for possivel fazer no ViewModel é ate melhor
-        }
+        this.viewModel.submitLogin();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         userNameInput.textProperty().bindBidirectional(this.viewModel.username);
-        PasswordInput.textProperty().bindBidirectional(this.viewModel.password);
+        passwordInput.textProperty().bindBidirectional(this.viewModel.password);
     }
 }

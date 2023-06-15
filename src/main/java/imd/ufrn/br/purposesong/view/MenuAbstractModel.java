@@ -1,20 +1,24 @@
 package imd.ufrn.br.purposesong.view;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import imd.ufrn.br.purposesong.App;
+import imd.ufrn.br.purposesong.UserSession;
 import imd.ufrn.br.purposesong.database.inmemory.InMemoryFolderRepositoryImpl;
 import imd.ufrn.br.purposesong.database.inmemory.InMemorySongRepositoryImpl;
 import imd.ufrn.br.purposesong.entity.Folder;
 import imd.ufrn.br.purposesong.entity.Song;
+import imd.ufrn.br.purposesong.player.SongPlayer;
 import imd.ufrn.br.purposesong.use_case.AddFolder;
 import imd.ufrn.br.purposesong.use_case.AddSong;
+import imd.ufrn.br.purposesong.use_case.GetAllSongsOfFolder;
+import imd.ufrn.br.purposesong.use_case.GetAllSongsOfUser;
 import imd.ufrn.br.purposesong.utils.OpenChooseFileDialog;
 import imd.ufrn.br.purposesong.utils.OpenChooseFolderDialog;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 
 public class MenuAbstractModel {
@@ -22,49 +26,60 @@ public class MenuAbstractModel {
     private String default_song_image = "file:src/main/resources/imd/ufrn/br/purposesong/images/default.png";
     private String current_song = "";
     public ListProperty<String> songNames = new SimpleListProperty<String>(FXCollections.observableArrayList());
+    public static StringProperty ActiveUserLabelName;
 
-    public void updateListSongName() {
-        try {
-            songNames.clear();
-            System.out.println(this.musicas.size());
-            for (Song song : this.musicas) {
-                this.songNames.get().add(song.name);
-                System.out.println("'Addings");
-            }
-        } catch (Exception e) {
-            System.out.println("Error! " + e.toString());
-        }
+    public void playSong(Song song) {
+        SongPlayer.getInstance().play(song);
     }
 
-    public Song sendNewMusicFile(File file) {
+    public void stopSong() {
+        SongPlayer.getInstance().pause();
+    }
+
+    public void updateListSongView() {
+        var repo = InMemorySongRepositoryImpl.getInstance();
+        this.musicas.addAll(new GetAllSongsOfUser(repo).execute(UserSession.getInstance().getUser()));
+        System.out.println(this.musicas.size());
+    }
+
+    public void updateListSongViewNewSong(Song song) {
+        this.musicas.add(song);
+    }
+
+    public void updateListSongViewFolder(Folder folder) {
+        var songOfFOLDER = new GetAllSongsOfFolder().execute(folder);
+        this.musicas.addAll(songOfFOLDER);
+    }
+
+    public void sendNewMusicFileInMemory(File file) {
         var repo = InMemorySongRepositoryImpl.getInstance();
         var song = Song.fromFile(file);
-        song.setId(UserSession.getInstance().getUser().getId().get());
-        var savedSong = new AddSong(repo).execute(song);
-        System.out
-                .println("New music file:" + file.toString() + " added to playlist");
-        System.out.println(song.getId() + " " + song.name + " " + song.path);
-        return savedSong;
+        song.setUserID(UserSession.getInstance().getUser().getId().get());
+        new AddSong(repo).execute(song);
+
+        // ! Updating song in ListView
+        this.updateListSongViewNewSong(song);
     }
 
-    public List<Song> sendNewFolderOfSongs(File file) {
+    public void sendNewFolderOfSongs(File file) {
         // !Catching folder files
         Folder folder = new Folder();
         folder.path = file.toPath().toString();
         folder.userID = UserSession.getInstance().getUser().getId().get();
-        var songsOfFolder = folder.scanSongFiles();
+        folder.scanSongFiles();
 
         // !Adding to dataBase
         var repo = InMemoryFolderRepositoryImpl.getInstance();
         new AddFolder(repo).execute(folder);
-        return songsOfFolder;
+
+        // !Updating songs in ListView
+        this.updateListSongViewFolder(folder);
     }
 
     public void addNewFile() {
         var file = this.openFileChooser();
         if (file != null) {
-            var songFile = this.sendNewMusicFile(file);
-            this.musicas.add(songFile);
+            this.sendNewMusicFileInMemory(file);
         }
     }
 
@@ -81,13 +96,7 @@ public class MenuAbstractModel {
     public void addNewFolder() {
         var file = this.openFolderChooser();
         if (file != null) {
-            var listOfFolderSongs = this.sendNewFolderOfSongs(file);
-            // !Adding new songs to musicas
-            for (Song song : listOfFolderSongs) {
-                this.musicas.add(song);
-            }
-            // !Updating listView
-            updateListSongName();
+            this.sendNewFolderOfSongs(file);
         }
     }
 
@@ -109,6 +118,7 @@ public class MenuAbstractModel {
     }
 
     public void goToLogin() {
+        this.musicas.clear();
         this.app.changeToLoginScene();
     }
 
@@ -126,13 +136,5 @@ public class MenuAbstractModel {
 
     public void setCurrentSong(String currentSong) {
         this.current_song = currentSong;
-    }
-
-    // public ArrayList<Song> getMusicas() {
-    // return musicas;
-    // }
-
-    public void addSongInMusicas(Song song) {
-        this.musicas.add(song);
     }
 }

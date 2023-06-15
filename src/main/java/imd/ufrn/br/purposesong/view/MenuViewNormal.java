@@ -50,7 +50,7 @@ public class MenuViewNormal implements Initializable {
     @FXML
     protected void addNewFile() {
         this.viewModel.addNewFile();
-        this.viewModel.updateListSongName();
+        this.viewModel.updateListSongView();
     }
 
     @FXML

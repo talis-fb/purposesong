@@ -1,6 +1,7 @@
 package imd.ufrn.br.purposesong.view;
 
 import imd.ufrn.br.purposesong.App;
+import imd.ufrn.br.purposesong.UserSession;
 import imd.ufrn.br.purposesong.database.inmemory.InMemoryUserRepositoryImpl;
 import imd.ufrn.br.purposesong.entity.User;
 import imd.ufrn.br.purposesong.use_case.LoginUser;
@@ -30,8 +31,9 @@ public class LoginViewModel {
 
             // Add User Loged
             UserSession.getInstance().setUser(output.get());
-            System.out.println(UserSession.getInstance().getUser().getName());
+
             // !Change to Menu screen
+            MenuViewModel.getInstance().updateListSongView();
             this.app.changeToMenuScene();
         } else {
             System.out.println("[LOGIN]: ERRO -> ususário não encontrado");

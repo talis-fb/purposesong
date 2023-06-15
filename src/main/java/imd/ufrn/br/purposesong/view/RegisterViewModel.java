@@ -19,7 +19,6 @@ public class RegisterViewModel {
         } else {
             user.setNormalUser();
         }
-        // user.setId(null); // !ALGO PRECISA PUXAR UM NOVO ID
 
         // !Alert to user + confirmation
         if (UserAlerts.alertVerifyaddUser(user)) {

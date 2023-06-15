@@ -45,7 +45,6 @@ public class MenuAbstract {
     @FXML
     protected void addNewFile() {
         this.viewModel.addNewFile();
-        this.viewModel.updateListSongName();
     }
 
     @FXML

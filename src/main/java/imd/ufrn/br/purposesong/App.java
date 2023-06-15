@@ -1,6 +1,8 @@
 package imd.ufrn.br.purposesong;
 
-import imd.ufrn.br.purposesong.view.UserSession;
+import imd.ufrn.br.purposesong.view.MenuAbstractModel;
+import imd.ufrn.br.purposesong.view.MenuViewModel;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
@@ -72,6 +74,7 @@ public class App {
         } else {
             this.currentScene = this.menuNormalViewScene;
         }
+        MenuAbstractModel.ActiveUserLabelName = new SimpleStringProperty(UserSession.getInstance().getUser().getName());
         this.stage.setScene(this.currentScene);
         // changeSize();
         this.stage.show();

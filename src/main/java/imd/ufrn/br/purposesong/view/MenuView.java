@@ -1,5 +1,6 @@
 package imd.ufrn.br.purposesong.view;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -9,26 +10,28 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.function.Consumer;
 
 import imd.ufrn.br.purposesong.entity.Song;
+import imd.ufrn.br.purposesong.player.SongPlayer;
 import imd.ufrn.br.purposesong.utils.SongCellFactory;
 
 public class MenuView implements Initializable {
     private MenuViewModel viewModel = MenuViewModel.getInstance();
 
     @FXML
-    private ListView<Song> SongView;
+    private ListView<Song> songView;
 
     @FXML
-    private ListView<String> PlaylistView;
+    private ListView<String> playlistView;
 
     @FXML
-    private ImageView atual_imagem;
+    private ImageView currentImage;
 
     @FXML
     private Label myLabel;
@@ -40,16 +43,24 @@ public class MenuView implements Initializable {
     private Button play;
 
     @FXML
-    private Label nameActiiveUser;
+    private Label nameActiveUser;
 
     @FXML
     private ImageView buttonPlay;
 
     @FXML
+    private AnchorPane anchor;
+
+    @FXML
     private void playSong() {
         try {
-            buttonPlay.setImage(new Image("file:src/main/resources/imd/ufrn/br/purposesong/images/pausa.png"));
-            this.viewModel.playSong(SongView.getSelectionModel().getSelectedItem());
+            if (!SongPlayer.getInstance().isPlaying()) {
+                buttonPlay.setImage(new Image("file:src/main/resources/imd/ufrn/br/purposesong/images/pausa.png"));
+                this.viewModel.playSong(songView.getSelectionModel().getSelectedItem());
+            } else {
+                buttonPlay.setImage(new Image("file:src/main/resources/imd/ufrn/br/purposesong/images/toque.png"));
+                this.viewModel.stopSong();
+            }
         } catch (Exception e) {
             System.out.println("We are still working on this....");
             buttonPlay.setImage(new Image("file:src/main/resources/imd/ufrn/br/purposesong/images/toque.png"));
@@ -65,7 +76,6 @@ public class MenuView implements Initializable {
     protected void goToLogin() {
         currentSong.visibleProperty().set(false);
         this.viewModel.goToLogin();
-
     }
 
     @FXML
@@ -76,7 +86,6 @@ public class MenuView implements Initializable {
     @FXML
     protected void addNewFile() {
         this.viewModel.addNewFile();
-        this.viewModel.updateListSongName();
     }
 
     @FXML
@@ -86,33 +95,41 @@ public class MenuView implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        SongView.itemsProperty().bind(this.viewModel.musicas);
-        SongView.cellFactoryProperty().set(new SongCellFactory());
+        songView.itemsProperty().bind(this.viewModel.musicas);
+        songView.cellFactoryProperty().set(new SongCellFactory());
+        nameActiveUser.textProperty().bindBidirectional(
+                MenuAbstractModel.ActiveUserLabelName == null ? new SimpleStringProperty("default")
+                        : MenuAbstractModel.ActiveUserLabelName);
 
         // ! Properties of playlist and song listViews
-        PlaylistView.getItems().addAll(viewModel.getPlaylists());
-        PlaylistView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+
+        playlistView.getItems().addAll(viewModel.getPlaylists());
+        playlistView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
-                // SongView.getItems().add("Adicionando nova música...");
+                // songView.getItems().add("Adicionando nova música...");
                 ;
             }
         });
+
+        playlistView.getSelectionModel().selectedItemProperty().addListener((e) -> {
+            // Song e o troço ai q precisar botar na funcao
+        });
+
         /*
-         * SongView.getSelectionModel().selectedItemProperty().addListener(new
+         * songView.getSelectionModel().selectedItemProperty().addListener(new
          * ChangeListener<String>() {
          * 
          * @Override
          * public void changed(ObservableValue<? extends String> arg0, String arg1,
          * String arg2) {
          * currentSong.visibleProperty().set(true);
-         * viewModel.setCurrentSong(SongView.getSelectionModel().getSelectedItem());
+         * viewModel.setCurrentSong(songView.getSelectionModel().getSelectedItem());
          * try {
-         * atual_imagem.setImage(viewModel.getImages().get(SongView.getSelectionModel().
+         * currentImage.setImage(viewModel.getImages().get(songView.getSelectionModel().
          * getSelectedIndex()));
          * } catch (Exception e) {
-         * atual_imagem
+         * currentImage
          * .setImage(new Image(viewModel.getDefaultImage()));
          * }
          * myLabel.setText(viewModel.getCurrentSong());

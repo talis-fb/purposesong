@@ -1,4 +1,4 @@
-package imd.ufrn.br.purposesong.view;
+package imd.ufrn.br.purposesong;
 
 import imd.ufrn.br.purposesong.entity.User;
 
