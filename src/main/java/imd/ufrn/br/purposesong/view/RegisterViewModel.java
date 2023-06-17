@@ -1,6 +1,7 @@
 package imd.ufrn.br.purposesong.view;
 
 import imd.ufrn.br.purposesong.App;
+import imd.ufrn.br.purposesong.database.RepositoryFactory;
 import imd.ufrn.br.purposesong.database.inmemory.InMemoryUserRepositoryImpl;
 import imd.ufrn.br.purposesong.entity.User;
 import imd.ufrn.br.purposesong.use_case.CreateNewUser;
@@ -23,7 +24,7 @@ public class RegisterViewModel {
         // !Alert to user + confirmation
         if (UserAlerts.alertVerifyaddUser(user)) {
             // !Adding to dataBase
-            var repo = InMemoryUserRepositoryImpl.getInstance();
+            var repo = RepositoryFactory.getUserRepository();
             new CreateNewUser(repo).execute(user);
             System.out.println("Novo usuário adicionado ao sistema!");
             this.goToMenu();

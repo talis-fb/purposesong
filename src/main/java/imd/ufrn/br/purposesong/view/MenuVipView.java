@@ -1,8 +1,7 @@
 package imd.ufrn.br.purposesong.view;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import imd.ufrn.br.purposesong.view.session.SongStore;
+import imd.ufrn.br.purposesong.view.session.UserStore;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,14 +14,13 @@ import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.function.Consumer;
 
 import imd.ufrn.br.purposesong.entity.Song;
 import imd.ufrn.br.purposesong.player.SongPlayer;
 import imd.ufrn.br.purposesong.utils.SongCellFactory;
 
-public class MenuView implements Initializable {
-    private MenuViewModel viewModel = MenuViewModel.getInstance();
+public class MenuVipView implements Initializable {
+    private MenuVipViewModel viewModel = MenuVipViewModel.getInstance();
 
     @FXML
     private ListView<Song> songView;
@@ -95,49 +93,14 @@ public class MenuView implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        songView.itemsProperty().bind(this.viewModel.musicas);
-        songView.cellFactoryProperty().set(new SongCellFactory());
-        nameActiveUser.textProperty().bindBidirectional(
-                MenuAbstractModel.ActiveUserLabelName == null ? new SimpleStringProperty("default")
-                        : MenuAbstractModel.ActiveUserLabelName);
+        var songStore = SongStore.getInstance();
+        var userStore = UserStore.getInstance();
 
-        // ! Properties of playlist and song listViews
+        songView.itemsProperty().bind(songStore.songs);
+        songView.cellFactoryProperty().set(new SongCellFactory());
+
+        nameActiveUser.textProperty().bind(userStore.activeUserLabelName);
 
         playlistView.getItems().addAll(viewModel.getPlaylists());
-        playlistView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> arg0, String arg1, String arg2) {
-                // songView.getItems().add("Adicionando nova música...");
-                ;
-            }
-        });
-
-        playlistView.getSelectionModel().selectedItemProperty().addListener((e) -> {
-            // Song e o troço ai q precisar botar na funcao
-        });
-
-        /*
-         * songView.getSelectionModel().selectedItemProperty().addListener(new
-         * ChangeListener<String>() {
-         * 
-         * @Override
-         * public void changed(ObservableValue<? extends String> arg0, String arg1,
-         * String arg2) {
-         * currentSong.visibleProperty().set(true);
-         * viewModel.setCurrentSong(songView.getSelectionModel().getSelectedItem());
-         * try {
-         * currentImage.setImage(viewModel.getImages().get(songView.getSelectionModel().
-         * getSelectedIndex()));
-         * } catch (Exception e) {
-         * currentImage
-         * .setImage(new Image(viewModel.getDefaultImage()));
-         * }
-         * myLabel.setText(viewModel.getCurrentSong());
-         * 
-         * ;
-         * }
-         * });
-         */
-
     }
 }

@@ -1,24 +1,25 @@
 package imd.ufrn.br.purposesong.view;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import imd.ufrn.br.purposesong.entity.Song;
+import imd.ufrn.br.purposesong.utils.SongCellFactory;
+import imd.ufrn.br.purposesong.view.session.SongStore;
+import imd.ufrn.br.purposesong.view.session.UserStore;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class MenuViewNormal implements Initializable {
-    private MenuViewNormalModel viewModel = MenuViewNormalModel.getInstance();
+public class MenuNormalView implements Initializable {
+    private MenuNormalViewModel viewModel = MenuNormalViewModel.getInstance();
 
     @FXML
-    private ListView<String> SongView;
+    private ListView<Song> songView;
 
     @FXML
     private ImageView atual_imagem;
@@ -33,7 +34,7 @@ public class MenuViewNormal implements Initializable {
     private Button play;
 
     @FXML
-    private Label nameActiiveUser;
+    private Label nameActiveUser;
 
     @FXML
     protected void goToLogin() {
@@ -50,7 +51,7 @@ public class MenuViewNormal implements Initializable {
     @FXML
     protected void addNewFile() {
         this.viewModel.addNewFile();
-        this.viewModel.updateListSongView();
+        // this.viewModel.updateListSongView();
     }
 
     @FXML
@@ -60,7 +61,17 @@ public class MenuViewNormal implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        var songStore = SongStore.getInstance();
+        var userStore = UserStore.getInstance();
 
+        songView.itemsProperty().bind(songStore.songs);
+        songView.cellFactoryProperty().set(new SongCellFactory());
+
+        nameActiveUser.textProperty().bind(userStore.activeUserLabelName);
+
+        // playlistView.getItems().addAll(viewModel.getPlaylists());
+
+        /*
         SongView.itemsProperty().bind(this.viewModel.songNames);
 
         // ! Properties of playlist and song listViews
@@ -80,6 +91,7 @@ public class MenuViewNormal implements Initializable {
                 ;
             }
         });
+         */
 
     }
 }

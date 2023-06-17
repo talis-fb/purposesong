@@ -1,15 +1,16 @@
 package imd.ufrn.br.purposesong;
 
-import imd.ufrn.br.purposesong.view.MenuAbstractModel;
-import imd.ufrn.br.purposesong.view.MenuViewModel;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import imd.ufrn.br.purposesong.view.session.SongStore;
+import imd.ufrn.br.purposesong.view.session.UserStore;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class App {
+
+    private UserStore userStore = UserStore.getInstance();
+    private SongStore songStore = SongStore.getInstance();
+
     private Stage stage;
 
     public void setStage(Stage stage) {
@@ -56,57 +57,30 @@ public class App {
 
     public void changeToLoginScene() {
         this.currentScene = this.loginViewScene;
+        this.songStore.resetStore();
         this.stage.setScene(this.currentScene);
-        // changeSize();
         this.stage.show();
     }
 
     public void changeToRegisterScene() {
         this.currentScene = this.registerViewScene;
         this.stage.setScene(this.currentScene);
-        // changeSize();
         this.stage.show();
     }
 
     public void changeToMenuScene() {
-        if (UserSession.getInstance().getUser().isVipUser()) {
-            this.currentScene = this.menuVipViewScene;
-        } else {
-            this.currentScene = this.menuNormalViewScene;
-        }
-        MenuAbstractModel.ActiveUserLabelName = new SimpleStringProperty(UserSession.getInstance().getUser().getName());
+        this.currentScene = this.userStore.getUser().isVipUser() ? this.menuVipViewScene : this.menuNormalViewScene;
+
+        this.songStore.fetchSongListOfCurrentUser();
+
         this.stage.setScene(this.currentScene);
-        // changeSize();
         this.stage.show();
     }
 
     public void changeToSettingsScene() {
         this.currentScene = this.settingsViewScene;
         this.stage.setScene(this.currentScene);
-        // changeSize();
         this.stage.show();
-    }
-
-    public void changeSize() {
-        stage.widthProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> Observablevalue, Number number, Number number2) {
-                stage.setWidth((double) number2);
-            }
-
-        });
-
-        stage.heightProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observableValue, Number number,
-                    Number number2) {
-                stage.setHeight((double) number2);
-            }
-        });
-        // !Trying to fix the problem
-        final boolean resizable = stage.isResizable();
-        stage.setResizable(!resizable);
-        stage.setResizable(resizable);
     }
 
     // Singleton ----------
