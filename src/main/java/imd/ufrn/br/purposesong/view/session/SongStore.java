@@ -59,7 +59,7 @@ public class SongStore {
     // Scan e busca de musicas
     public void fetchSongListOfCurrentUser() {
         var repo = RepositoryFactory.getSongRepository();
-        var user = this.userStore.getUser();
+        var user = this.userStore.getUser().get();
         this.setSongList(new GetAllSongsOfUser(repo).execute(user));
     }
 
@@ -74,7 +74,7 @@ public class SongStore {
         var repo = RepositoryFactory.getSongRepository();
 
         var song = Song.fromFile(file);
-        var user = this.userStore.getUser();
+        var user = this.userStore.getUser().get();
         song.setUserID(user.getId().get());
         new AddSong(repo).execute(song);
 
@@ -82,7 +82,7 @@ public class SongStore {
     }
 
     public void saveFolderInDB(File file) {
-        var user = this.userStore.getUser();
+        var user = this.userStore.getUser().get();
 
         Folder folder = new Folder();
         folder.path = file.toPath().toString();

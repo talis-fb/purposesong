@@ -1,5 +1,6 @@
 package imd.ufrn.br.purposesong.view;
 
+import imd.ufrn.br.purposesong.entity.User;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
@@ -14,6 +15,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class LoginView implements Initializable {
     private LoginViewModel viewModel = LoginViewModel.getInstance();
+    private UserStore userStore = UserStore.getInstance();
 
     @FXML
     private AnchorPane anchorpane;
@@ -54,8 +56,9 @@ public class LoginView implements Initializable {
     protected void updateFirstUserField() {
         // !Não permite mais cadastros foram do sistema.
         // !Funcionalidade não aplica ainda.
-        System.out.println("Usuários cadastrados: " + UserStore.getInstance().quantityOfUsers());
-        var userRegistered = UserStore.getInstance().quantityOfUsers() != 0 ? true : false;
+        System.out.println("Usuários cadastrados: " + this.userStore.quantityOfUsers());
+        boolean userRegistered = this.userStore.quantityOfUsers() != 0;
+
         if (userRegistered) {
             signAddNewUser.setVisible(false);
             bigLogoImage.setDisable(true);

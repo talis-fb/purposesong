@@ -74,7 +74,7 @@ public class App {
     }
 
     public void changeToMenuScene() {
-        this.currentScene = this.userStore.getUser().isVipUser() ? this.menuVipViewScene : this.menuNormalViewScene;
+        this.currentScene = this.userStore.getUser().get().isVipUser() ? this.menuVipViewScene : this.menuNormalViewScene;
 
         this.songStore.fetchSongListOfCurrentUser();
 

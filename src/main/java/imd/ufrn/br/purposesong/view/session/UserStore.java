@@ -7,17 +7,19 @@ import imd.ufrn.br.purposesong.use_case.GetAllUsers;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.Optional;
+
 public class UserStore {
-    private User user;
+    private Optional<User> user;
     public StringProperty activeUserLabelName = new SimpleStringProperty("");
 
-    public User getUser() {
+    public Optional<User> getUser() {
         return user;
     }
 
     public void setUser(User user) {
-        this.user = user;
-        this.activeUserLabelName.set("Olá, " + this.user.getName());
+        this.user = Optional.of(user);
+        this.activeUserLabelName.set("Olá, " + user.getName());
     }
 
     public int quantityOfUsers() {
