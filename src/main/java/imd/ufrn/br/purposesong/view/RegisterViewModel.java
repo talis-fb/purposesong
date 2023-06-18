@@ -1,12 +1,17 @@
 package imd.ufrn.br.purposesong.view;
 
+import java.util.Optional;
+
 import imd.ufrn.br.purposesong.App;
-import imd.ufrn.br.purposesong.database.inmemory.InMemoryUserRepositoryImpl;
+import imd.ufrn.br.purposesong.database.RepositoryFactory;
 import imd.ufrn.br.purposesong.entity.User;
 import imd.ufrn.br.purposesong.use_case.CreateNewUser;
 import imd.ufrn.br.purposesong.utils.UserAlerts;
+import imd.ufrn.br.purposesong.view.session.UserStore;
 
 public class RegisterViewModel {
+    private App app = App.getInstance();
+    private UserStore userStore = UserStore.getInstance();
 
     public boolean createNewUser(String name, String email, String password, boolean isVip) {
         // !Setting new user
@@ -19,15 +24,14 @@ public class RegisterViewModel {
         } else {
             user.setNormalUser();
         }
-        // user.setId(null); // !ALGO PRECISA PUXAR UM NOVO ID
 
         // !Alert to user + confirmation
         if (UserAlerts.alertVerifyaddUser(user)) {
             // !Adding to dataBase
-            var repo = InMemoryUserRepositoryImpl.getInstance();
+            var repo = RepositoryFactory.getUserRepository();
             new CreateNewUser(repo).execute(user);
             System.out.println("Novo usuário adicionado ao sistema!");
-            this.goToMenu();
+            this.back();
             return true;
         } else {
             return false;
@@ -38,7 +42,17 @@ public class RegisterViewModel {
         UserAlerts.alertEmpytUser();
     }
 
-    private App app = App.getInstance();
+    public void back() {
+        if (this.userStore.getUser().isPresent()) {
+            this.goToMenu();
+        } else {
+            this.goToLogin();
+        }
+    }
+
+    public void goToLogin() {
+        this.app.changeToLoginScene();
+    }
 
     public void goToMenu() {
         this.app.changeToMenuScene();

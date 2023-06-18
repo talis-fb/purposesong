@@ -1,10 +1,12 @@
 package imd.ufrn.br.purposesong.view;
 
 import imd.ufrn.br.purposesong.App;
+import imd.ufrn.br.purposesong.database.RepositoryFactory;
 import imd.ufrn.br.purposesong.database.inmemory.InMemoryUserRepositoryImpl;
 import imd.ufrn.br.purposesong.entity.User;
 import imd.ufrn.br.purposesong.use_case.LoginUser;
 import imd.ufrn.br.purposesong.utils.UserAlerts;
+import imd.ufrn.br.purposesong.view.session.UserStore;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -12,16 +14,17 @@ import java.util.Optional;
 
 public class LoginViewModel {
     private App app = App.getInstance();
+    private UserStore userStore = UserStore.getInstance();
 
     // Fields
-    public final StringProperty username = new SimpleStringProperty("admin");
-    public final StringProperty password = new SimpleStringProperty("admin");
+    public final StringProperty username = new SimpleStringProperty("");
+    public final StringProperty password = new SimpleStringProperty("");
 
     public boolean submitLogin() {
         String email = this.username.get();
         String password = this.password.get();
 
-        var repo = InMemoryUserRepositoryImpl.getInstance();
+        var repo = RepositoryFactory.getUserRepository();
         Optional<User> output = new LoginUser(repo).execute(email, password);
         boolean isUserLogged = output.isPresent();
 
@@ -29,8 +32,8 @@ public class LoginViewModel {
             System.out.println("[LOGIN]: Sucesso");
 
             // Add User Loged
-            UserSession.getInstance().setUser(output.get());
-            System.out.println(UserSession.getInstance().getUser().getName());
+            userStore.setUser(output.get());
+
             // !Change to Menu screen
             this.app.changeToMenuScene();
         } else {
@@ -40,6 +43,10 @@ public class LoginViewModel {
 
         return isUserLogged;
 
+    }
+
+    public void signUpFirstUser() {
+        this.app.changeToRegisterScene();
     }
 
     // Singleton ----------

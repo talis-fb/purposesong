@@ -76,7 +76,7 @@
                            </effect>
                         </Button>
                         <TextField fx:id="EmailField" alignment="TOP_LEFT" layoutX="167.0" layoutY="164.0" prefHeight="27.0" prefWidth="458.0" promptText="Type your email..." style="-fx-background-color: black;" styleClass="userName" stylesheets="@../themes/global.css" />
-                        <Button layoutX="49.0" layoutY="320.0" mnemonicParsing="false" onAction="#goToMenu" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: #800a6f;" text="back" />
+                        <Button fx:id="backButton" layoutX="49.0" layoutY="320.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: #800a6f;" text="back" />
                         <Button layoutX="213.0" layoutY="320.0" mnemonicParsing="false" onAction="#createNewUser" prefHeight="35.0" prefWidth="294.0" style="-fx-background-color: #800a6f;" text="Register" />
                         <CheckBox fx:id="isVip" layoutX="642.0" layoutY="117.0" mnemonicParsing="false" text="Vip User?" textFill="WHITE" />
                      </children>

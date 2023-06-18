@@ -4,6 +4,8 @@ import imd.ufrn.br.purposesong.entity.User;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class UserAlerts {
     public static void alertLoginMessage() {
@@ -31,6 +33,22 @@ public class UserAlerts {
         alert.setTitle("EMPYT FIELD");
         alert.setHeaderText("Some field is empty");
         alert.setContentText("You need to complete all the register fields too continue");
+        alert.show();
+    }
+
+    public static void alertStartHere() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        // alert.setGraphic(new
+        // ImageView("file:src/main/resources/imd/ufrn/br/purposesong/images/headphoneLOGO.png"));
+        alert.getDialogPane().getStylesheets()
+                .add("file:src/main/resources/imd/ufrn/br/purposesong/themes/userAlert.css");
+        alert.getDialogPane().getStyleClass().add("userAlert");
+        alert.setTitle("Welcome, you!");
+        alert.setHeaderText("Welcome to PurposeSong!");
+        alert.setContentText("Please follow the steps bellow before you continue: \n"
+                + "1st. You need to create a new account before start using this application. \n Click in the headphone for sign up for the first time!");
+        alert.setWidth(400);
+        alert.setHeight(400);
         alert.show();
     }
 }

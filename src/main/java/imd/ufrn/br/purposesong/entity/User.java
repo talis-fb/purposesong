@@ -43,6 +43,7 @@ public class User extends ModelDatabaseEntity {
     public void setVipUser() {
         this.access = Access.VIP;
     }
+
     public void setNormalUser() {
         this.access = Access.NORMAL;
     }

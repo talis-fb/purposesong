@@ -61,8 +61,13 @@ public class SongPlayer {
         return this.isPlayingState;
     }
 
+    public Optional<Song> getCurrentSong() {
+        return currentSong;
+    }
+
     // Singleton ---------
     private static final SongPlayer instance = new SongPlayer();
+
     public static SongPlayer getInstance() {
         return SongPlayer.instance;
     }

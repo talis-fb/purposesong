@@ -17,6 +17,14 @@ public class Song extends ModelDatabaseEntity {
     Optional<String> artist;
     Optional<String> photo;
 
+    public void setUserID(UUID id) {
+        this.userID = id;
+    }
+
+    public UUID getUserID() {
+        return this.userID;
+    }
+
     public void setFileHash() {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");

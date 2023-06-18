@@ -23,7 +23,7 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" styleClass="anchorpane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imd.ufrn.br.purposesong.view.MenuView">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" styleClass="anchorpane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imd.ufrn.br.purposesong.view.MenuVipView">
    <children>
       <BorderPane prefHeight="699.0" prefWidth="1172.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <bottom>
@@ -66,9 +66,9 @@
                                     </RadialGradient>
                                  </textFill>
                               </Button>
-                              <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: transparent;">
+                              <Button alignment="CENTER" mnemonicParsing="false" onAction="#playSong" style="-fx-background-color: transparent;">
                                  <graphic>
-                                    <ImageView fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="buttonPlay" fitHeight="34.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/toque.png" />
                                        </image>
@@ -172,7 +172,7 @@
                         <Image url="@../images/person.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="nameActiiveUser" layoutX="67.0" layoutY="140.0" prefHeight="17.0" prefWidth="78.0" text="Olá, Juliana!">
+                  <Label fx:id="nameActiveUser" layoutX="67.0" layoutY="140.0" prefHeight="17.0" prefWidth="78.0" text="Olá, Juliana!">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -277,7 +277,7 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <ListView fx:id="SongView" layoutY="63.0" prefHeight="452.0" prefWidth="342.0" style="-fx-control-inner-background: transparent; -fx-alignment: center;" styleClass="SongView" stylesheets="@../themes/global.css" AnchorPane.bottomAnchor="63.39999999999998" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="63.0" />
+                        <ListView fx:id="songView" layoutY="63.0" prefHeight="452.0" prefWidth="342.0" style="-fx-control-inner-background: transparent; -fx-alignment: center;" styleClass="SongView" stylesheets="@../themes/global.css" AnchorPane.bottomAnchor="63.39999999999998" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="63.0" />
                      </children>
                   </AnchorPane>
                   <GridPane GridPane.columnIndex="1">
@@ -318,7 +318,7 @@
          <left>
             <AnchorPane prefHeight="579.0" prefWidth="248.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
                <children>
-                  <ListView fx:id="PlaylistView" layoutX="7.0" layoutY="136.0" prefHeight="290.0" prefWidth="200.0" style="-fx-control-inner-background: transparent;" styleClass="SongView" stylesheets="@../themes/global.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="60.0" />
+                  <ListView fx:id="playlistView" layoutX="7.0" layoutY="136.0" prefHeight="290.0" prefWidth="200.0" style="-fx-control-inner-background: transparent;" styleClass="SongView" stylesheets="@../themes/global.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="60.0" />
                   <Label layoutX="66.0" layoutY="29.0" text="User Playlists">
                      <font>
                         <Font size="20.0" />
