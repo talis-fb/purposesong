@@ -2,6 +2,7 @@ package imd.ufrn.br.purposesong.view;
 
 import java.util.ResourceBundle;
 
+import imd.ufrn.br.purposesong.utils.UserAlerts;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -43,16 +44,23 @@ public class RegisterView implements Initializable {
 
     @FXML
     protected void createNewUser() {
+        // !Verify empty fields
         if (UserNameField.getText().isEmpty() || EmailField.getText().isEmpty() || PasswordField.getText().isEmpty()
                 || RepeatPasswordField.getText().isEmpty()) {
             this.viewModel.empty();
         } else {
-            if (this.viewModel.createNewUser(UserNameField.getText(), EmailField.getText(), PasswordField.getText(),
-                    isVip.isSelected())) {
-                UserNameField.clear();
-                EmailField.clear();
-                PasswordField.clear();
-                RepeatPasswordField.clear();
+            System.out.println(PasswordField.getText().toString() + " e " + RepeatPasswordField.getText().toString());
+            if (!this.viewModel.verifyingRepeatPassword(PasswordField.getText().toString(),
+                    RepeatPasswordField.getText().toString())) {
+                UserAlerts.alertPasswordsDoNotMatch();
+            } else {
+                if (this.viewModel.createNewUser(UserNameField.getText(), EmailField.getText(), PasswordField.getText(),
+                        isVip.isSelected())) {
+                    UserNameField.clear();
+                    EmailField.clear();
+                    PasswordField.clear();
+                    RepeatPasswordField.clear();
+                }
             }
         }
 

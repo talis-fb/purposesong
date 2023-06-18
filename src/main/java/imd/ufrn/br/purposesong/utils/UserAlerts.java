@@ -51,4 +51,12 @@ public class UserAlerts {
         alert.setHeight(400);
         alert.show();
     }
+
+    public static void alertPasswordsDoNotMatch() {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Passwords do not match");
+        alert.setContentText(
+                "Please ensure that Password and Confirm password fields match exactly.  The following passwords were not correctly confirmed:");
+        alert.showAndWait();
+    }
 }
