@@ -43,12 +43,17 @@
                            </font>
                         </Label>
                         <PasswordField fx:id="passwordInput" layoutX="21.0" layoutY="127.0" prefHeight="26.0" prefWidth="194.0" promptText="Type your password" style="-fx-background-color: black;" styleClass="userName" stylesheets="@../themes/global.css" />
-                        <ImageView fx:id="easterEggImage" fitHeight="137.0" fitWidth="109.0" layoutX="64.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="bigLogoImage" fitHeight="137.0" fitWidth="109.0" layoutX="64.0" layoutY="220.0" onDragDetected="#updateFirstUserField" onMouseClicked="#signUpFirstUser" onMouseEntered="#showNewUserProperty" onMouseExited="#hideNewUserProperty" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/headphoneLOGO.png" />
                            </image>
                         </ImageView>
                         <Button layoutX="23.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#submitLogin" prefHeight="38.0" prefWidth="194.0" text="Sign In" />
+                        <ImageView fx:id="signAddNewUser" fitHeight="45.0" fitWidth="52.0" layoutX="141.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                           <image>
+                              <Image url="@../images/fullStop.png" />
+                           </image>
+                        </ImageView>
                      </children>
                      <opaqueInsets>
                         <Insets />

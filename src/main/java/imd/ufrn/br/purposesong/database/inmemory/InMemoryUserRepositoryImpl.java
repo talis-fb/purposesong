@@ -31,22 +31,29 @@ public class InMemoryUserRepositoryImpl extends InMemoryAbstractRepository<User>
                 .findFirst();
     }
 
+    @Override
+    public int quantityORegisterUsers() {
+        return users.size();
+    }
+
     // Singleton ---------------------
     private static final InMemoryUserRepositoryImpl instance = new InMemoryUserRepositoryImpl();
 
     private InMemoryUserRepositoryImpl() {
-        var userAdmin = new User();
-        userAdmin.setEmail("admin");
-        userAdmin.setName("admin");
-        userAdmin.setPassword("admin");
-        userAdmin.setVipUser();
-        this.create(userAdmin);
-
-        var userNormal = new User();
-        userNormal.setEmail("normal");
-        userNormal.setName("normal");
-        userNormal.setPassword("normal");
-        this.create(userNormal);
+        /*
+         * var userAdmin = new User();
+         * userAdmin.setEmail("admin");
+         * userAdmin.setName("admin");
+         * userAdmin.setPassword("admin");
+         * userAdmin.setVipUser();
+         * this.create(userAdmin);
+         * 
+         * var userNormal = new User();
+         * userNormal.setEmail("normal");
+         * userNormal.setName("normal");
+         * userNormal.setPassword("normal");
+         * this.create(userNormal);
+         */
     }
 
     public static InMemoryUserRepositoryImpl getInstance() {
