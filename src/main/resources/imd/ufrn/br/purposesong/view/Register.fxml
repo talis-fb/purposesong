@@ -79,6 +79,20 @@
                         <Button fx:id="backButton" layoutX="49.0" layoutY="320.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="93.0" style="-fx-background-color: #800a6f;" text="back" />
                         <Button layoutX="213.0" layoutY="320.0" mnemonicParsing="false" onAction="#createNewUser" prefHeight="35.0" prefWidth="294.0" style="-fx-background-color: #800a6f;" text="Register" />
                         <CheckBox fx:id="isVip" layoutX="642.0" layoutY="117.0" mnemonicParsing="false" text="Vip User?" textFill="WHITE" />
+                        <Button layoutX="592.0" layoutY="218.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="31.0" style="-fx-background-color: transparent;">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/eye.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <ImageView fitHeight="16.0" fitWidth="18.0" layoutX="600.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/eye.png" />
+                           </image>
+                        </ImageView>
                      </children>
                      <opaqueInsets>
                         <Insets />

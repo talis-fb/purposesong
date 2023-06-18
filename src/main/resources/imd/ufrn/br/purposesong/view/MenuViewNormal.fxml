@@ -229,30 +229,6 @@
                </children>
             </Pane>
          </right>
-         <top>
-            <MenuBar style="-fx-background-color: black;" BorderPane.alignment="CENTER">
-               <menus>
-                  <Menu mnemonicParsing="false" text="File">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Close" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Edit">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                     </items>
-                  </Menu>
-                  <Menu mnemonicParsing="false" text="Help">
-                     <items>
-                        <MenuItem mnemonicParsing="false" text="Exit" />
-                     </items>
-                  </Menu>
-               </menus>
-               <BorderPane.margin>
-                  <Insets />
-               </BorderPane.margin>
-            </MenuBar>
-         </top>
          <center>
             <GridPane prefHeight="549.0" prefWidth="684.0" BorderPane.alignment="CENTER">
               <columnConstraints>
@@ -306,6 +282,34 @@
          <left>
             <AnchorPane prefHeight="579.0" prefWidth="248.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER" />
          </left>
+         <top>
+            <MenuBar style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+               <menus>
+                  <Menu mnemonicParsing="false" style="-fx-control-inner-background: black;" text="Files">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#addNewFile" text="Add new Song" />
+                        <MenuItem mnemonicParsing="false" onAction="#addNewFolder" text="Add new List" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" style="-fx-control-inner-background: black;" text="Player">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#playSong" text="Play/Stop Song" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" style="-fx-control-inner-background: black;" text="Edit">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#goToSettings" text="Settings" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" style="-fx-control-inner-background: black;" text="Help">
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#openAlertAboutUs" text="About us" />
+                        <MenuItem mnemonicParsing="false" onAction="#goToLogin" text="Exit" />
+                     </items>
+                  </Menu>
+               </menus>
+            </MenuBar>
+         </top>
       </BorderPane>
    </children>
    <stylesheets>

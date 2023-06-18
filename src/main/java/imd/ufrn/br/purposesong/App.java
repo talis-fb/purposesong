@@ -62,6 +62,7 @@ public class App {
 
     public void changeToLoginScene() {
         this.currentScene = this.loginViewScene;
+        this.userStore.resetUser();
         this.songStore.resetStore();
         this.stage.setScene(this.currentScene);
         this.stage.show();
@@ -74,7 +75,8 @@ public class App {
     }
 
     public void changeToMenuScene() {
-        this.currentScene = this.userStore.getUser().get().isVipUser() ? this.menuVipViewScene : this.menuNormalViewScene;
+        this.currentScene = this.userStore.getUser().get().isVipUser() ? this.menuVipViewScene
+                : this.menuNormalViewScene;
 
         this.songStore.fetchSongListOfCurrentUser();
 

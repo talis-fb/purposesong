@@ -48,7 +48,7 @@
                               <Image url="@../images/headphoneLOGO.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="23.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#submitLogin" prefHeight="38.0" prefWidth="194.0" text="Sign In" />
+                        <Button layoutX="23.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#submitLogin" prefHeight="38.0" prefWidth="194.0" styleClass="signInButton" stylesheets="@../themes/global.css" text="Sign In" />
                         <ImageView fx:id="signAddNewUser" fitHeight="45.0" fitWidth="52.0" layoutX="141.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true" visible="false">
                            <image>
                               <Image url="@../images/fullStop.png" />
