@@ -5,5 +5,8 @@ import java.util.Optional;
 
 public interface UserRepository extends AbstractRepository<User> {
     Optional<User> findUserByUsername(String username);
+
     Optional<User> login(String email, String password);
+
+    int quantityORegisterUsers();
 }

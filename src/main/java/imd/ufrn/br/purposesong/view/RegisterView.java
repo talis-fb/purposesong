@@ -4,6 +4,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -29,8 +30,11 @@ public class RegisterView implements Initializable {
     private CheckBox isVip;
 
     @FXML
-    protected void goToMenu() {
-        this.viewModel.goToMenu();
+    private Button backButton;
+
+    @FXML
+    protected void back() {
+        this.viewModel.back();
         UserNameField.clear();
         EmailField.clear();
         PasswordField.clear();

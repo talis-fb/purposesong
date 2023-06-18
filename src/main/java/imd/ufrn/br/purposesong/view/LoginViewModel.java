@@ -17,8 +17,8 @@ public class LoginViewModel {
     private UserStore userStore = UserStore.getInstance();
 
     // Fields
-    public final StringProperty username = new SimpleStringProperty("admin");
-    public final StringProperty password = new SimpleStringProperty("admin");
+    public final StringProperty username = new SimpleStringProperty("");
+    public final StringProperty password = new SimpleStringProperty("");
 
     public boolean submitLogin() {
         String email = this.username.get();
@@ -43,6 +43,10 @@ public class LoginViewModel {
 
         return isUserLogged;
 
+    }
+
+    public void signUpFirstUser() {
+        this.app.changeToRegisterScene();
     }
 
     // Singleton ----------

@@ -1,7 +1,12 @@
 package imd.ufrn.br.purposesong;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
+import imd.ufrn.br.purposesong.utils.UserAlerts;
 import imd.ufrn.br.purposesong.view.session.SongStore;
 import imd.ufrn.br.purposesong.view.session.UserStore;
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -81,6 +86,13 @@ public class App {
         this.currentScene = this.settingsViewScene;
         this.stage.setScene(this.currentScene);
         this.stage.show();
+    }
+
+    public void startHere() {
+        this.changeToLoginScene();
+
+        if (this.userStore.quantityOfUsers() == 0)
+            UserAlerts.alertStartHere();
     }
 
     // Singleton ----------

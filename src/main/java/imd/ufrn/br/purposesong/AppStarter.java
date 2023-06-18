@@ -41,8 +41,7 @@ public class AppStarter extends Application {
                 // ----------------
                 // Initial scene
                 // ----------------
-                app.changeToLoginScene();
-
+                app.startHere();
         }
 
         public static void main(String[] args) {

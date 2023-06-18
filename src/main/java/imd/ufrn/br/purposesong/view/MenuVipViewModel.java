@@ -34,7 +34,6 @@ public class MenuVipViewModel {
         playlists.add("MPB");
         playlists.add("Paz que acalma a alma");
         playlists.add("Maranata ora vem!!");
-        // initializeSongs();
     }
 
     public void playSong(Song song) {
@@ -44,7 +43,6 @@ public class MenuVipViewModel {
     public void stopSong() {
         this.songStore.stopSong();
     }
-
 
     // Gerenciamento de arquivos ----------
     public void addNewFile() {
@@ -56,8 +54,6 @@ public class MenuVipViewModel {
         var file = OpenChooseFolderDialog.showChooseFolderDialog(this.app.getStage());
         file.ifPresent(this.songStore::saveFolderInDB);
     }
-
-
 
     // Troca de tela ----------------
     public void goToRegister() {
@@ -71,10 +67,6 @@ public class MenuVipViewModel {
     public void goToSettings() {
         this.app.changeToSettingsScene();
     }
-
-
-
-
 
     // Singleton ---------------------------
     private static final MenuVipViewModel instance = new MenuVipViewModel();
