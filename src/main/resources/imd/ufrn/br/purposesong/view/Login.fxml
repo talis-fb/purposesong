@@ -32,7 +32,7 @@
                   <Pane prefHeight="397.0" prefWidth="236.0" VBox.vgrow="NEVER">
                      <children>
                         <TextField fx:id="userNameInput" alignment="TOP_LEFT" layoutX="22.0" layoutY="42.0" prefHeight="26.0" prefWidth="192.0" promptText="Type your username..." style="-fx-background-color: black;" styleClass="userName" stylesheets="@../themes/global.css" />
-                        <Label layoutX="23.0" layoutY="14.0" text="USERNAME:" textFill="WHITE">
+                        <Label layoutX="23.0" layoutY="14.0" text="EMAIL:" textFill="WHITE">
                            <font>
                               <Font name="Arial Bold" size="12.0" />
                            </font>
@@ -48,7 +48,7 @@
                               <Image url="@../images/headphoneLOGO.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="23.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#submitLogin" prefHeight="38.0" prefWidth="194.0" text="Sign In" />
+                        <Button layoutX="23.0" layoutY="169.0" mnemonicParsing="false" onMouseClicked="#submitLogin" prefHeight="38.0" prefWidth="194.0" styleClass="signInButton" stylesheets="@../themes/global.css" text="Sign In" />
                         <ImageView fx:id="signAddNewUser" fitHeight="45.0" fitWidth="52.0" layoutX="141.0" layoutY="220.0" pickOnBounds="true" preserveRatio="true" visible="false">
                            <image>
                               <Image url="@../images/fullStop.png" />

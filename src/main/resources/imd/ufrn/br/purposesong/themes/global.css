@@ -45,6 +45,18 @@
     -fx-ellipsis-string: string;
 }
 
+.signInButton {
+    -fx-text-fill: white;
+    -fx-wrap-text: true;
+    -fx-background-color: #006ee6;
+}
+
+.signInButton:hover {
+    -fx-effect: dropshadow(three-pass-box, rgb(100, 27, 90), 10.0, 0.0, 0.0, 0.0);
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+}
+
 .anchorpane {
     -fx-background-image: url("../images/background_image.jpg");
 }

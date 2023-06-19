@@ -19,7 +19,11 @@ public class UserStore {
 
     public void setUser(User user) {
         this.user = Optional.of(user);
-        this.activeUserLabelName.set("Olá, " + user.getName());
+        this.activeUserLabelName.set("Olá, " + this.user.map(User::getName).orElse(" "));
+    }
+
+    public void resetUser() {
+        this.user = Optional.empty();
     }
 
     public int quantityOfUsers() {

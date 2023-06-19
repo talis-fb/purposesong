@@ -91,6 +91,11 @@ public class MenuVipView implements Initializable {
         this.viewModel.addNewFolder();
     }
 
+    @FXML
+    protected void openAlertAboutUs() {
+        this.viewModel.openAlertAboutUs();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         var songStore = SongStore.getInstance();

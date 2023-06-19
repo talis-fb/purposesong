@@ -6,6 +6,7 @@ import imd.ufrn.br.purposesong.App;
 import imd.ufrn.br.purposesong.entity.Song;
 import imd.ufrn.br.purposesong.utils.OpenChooseFileDialog;
 import imd.ufrn.br.purposesong.utils.OpenChooseFolderDialog;
+import imd.ufrn.br.purposesong.utils.UserAlerts;
 import imd.ufrn.br.purposesong.view.session.SongStore;
 import javafx.scene.image.Image;
 
@@ -61,11 +62,16 @@ public class MenuVipViewModel {
     }
 
     public void goToLogin() {
+
         this.app.changeToLoginScene();
     }
 
     public void goToSettings() {
         this.app.changeToSettingsScene();
+    }
+
+    public void openAlertAboutUs() {
+        UserAlerts.alertAboutUs();
     }
 
     // Singleton ---------------------------

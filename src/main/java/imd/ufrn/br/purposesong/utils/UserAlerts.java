@@ -46,9 +46,26 @@ public class UserAlerts {
         alert.setTitle("Welcome, you!");
         alert.setHeaderText("Welcome to PurposeSong!");
         alert.setContentText("Please follow the steps bellow before you continue: \n"
-                + "1st. You need to create a new account before start using this application. \n Click in the headphone for sign up for the first time!");
+                + "1st. You need to create a new account before start using this application. \n Click on the headphone for sign up for the first time!");
         alert.setWidth(400);
         alert.setHeight(400);
+        alert.show();
+    }
+
+    public static void alertPasswordsDoNotMatch() {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Passwords do not match");
+        alert.setContentText(
+                "Please ensure that Password and Confirm password fields match exactly.  The following passwords were not correctly confirmed:");
+        alert.showAndWait();
+    }
+
+    public static void alertAboutUs() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("About us | Contacts");
+        alert.setContentText(
+                "If you have any issue, you can contact us by the links bellow:\n"
+                        + "Talison: https://github.com/talis-fb\nJuliana: https://github.com/julianasantiago100");
         alert.show();
     }
 }
