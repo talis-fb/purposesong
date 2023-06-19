@@ -43,7 +43,7 @@ public class RegisterViewModel {
     }
 
     public void back() {
-        if (Optional.ofNullable(this.userStore.getUser()).isPresent()) {
+        if (this.userStore.getUser().isPresent()) {
             this.goToMenu();
         } else {
             this.goToLogin();

@@ -51,24 +51,25 @@ public class RegisterView implements Initializable {
 
     @FXML
     protected void createNewUser() {
-        // !Verify empty fields
+
         if (UserNameField.getText().isEmpty() || EmailField.getText().isEmpty() || PasswordField.getText().isEmpty()
                 || RepeatPasswordField.getText().isEmpty()) {
             this.viewModel.empty();
-        } else {
-            System.out.println(PasswordField.getText().toString() + " e " + RepeatPasswordField.getText().toString());
-            if (!this.viewModel.verifyingRepeatPassword(PasswordField.getText().toString(),
-                    RepeatPasswordField.getText().toString())) {
-                UserAlerts.alertPasswordsDoNotMatch();
-            } else {
-                if (this.viewModel.createNewUser(UserNameField.getText(), EmailField.getText(), PasswordField.getText(),
-                        isVip.isSelected())) {
-                    UserNameField.clear();
-                    EmailField.clear();
-                    PasswordField.clear();
-                    RepeatPasswordField.clear();
-                }
-            }
+            return;
+        }
+
+        if (!this.viewModel.verifyingRepeatPassword(PasswordField.getText().toString(),
+                RepeatPasswordField.getText().toString())) {
+            UserAlerts.alertPasswordsDoNotMatch();
+            return;
+        }
+
+        if (this.viewModel.createNewUser(UserNameField.getText(), EmailField.getText(), PasswordField.getText(),
+                isVip.isSelected())) {
+            UserNameField.clear();
+            EmailField.clear();
+            PasswordField.clear();
+            RepeatPasswordField.clear();
         }
 
     }

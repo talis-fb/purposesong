@@ -253,7 +253,7 @@
                   </Menu>
                   <Menu mnemonicParsing="false" style="-fx-control-inner-background: black;" text="Player">
                      <items>
-                        <MenuItem mnemonicParsing="false" onAction="#playSong" text="Play Song" />
+                        <MenuItem mnemonicParsing="false" onAction="#playSong" text="Play/Stop Song" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" style="-fx-control-inner-background: black;" text="Edit">
