@@ -17,13 +17,16 @@ public class SettingsViewModel {
     public void updateAllUserSettings(String name, String email, String oldPass, String newPass, String repeatNewPass) {
         user.getUser().get().setName(name);
         user.getUser().get().setEmail(email);
+
+        // !Veryfing passwords
         if (this.authenticationOldPassword(oldPass) && this.verifyingRepeatPassword(newPass, oldPass)) {
             user.getUser().get().setPassword(newPass);
             UserAlerts.alertUpdateConfirmation();
         } else {
             UserAlerts.alertSomePasswordIsWrong();
+            return;
         }
-        // !Veryfing passwords
+        this.goToMenu();
     }
 
     public void empty() {

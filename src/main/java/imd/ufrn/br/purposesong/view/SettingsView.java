@@ -65,31 +65,34 @@ public class SettingsView implements Initializable {
         newPasswordField.clear();
         oldPasswordField.clear();
         repeatPasswordField.clear();
-        userNameField.clear();
-        emailField.clear();
+        // userNameField.clear();
+        // emailField.clear();
     }
 
     @FXML
     protected void updateUserSettings() {
-        if ((userNameField.getText().isEmpty() || emailField.getText().isEmpty()) && !changePassword.isSelected()) {
+        System.out.println(oldPasswordField.getText().toString());
+        if (userNameField.getText().isEmpty() || emailField.getText().isEmpty()) {
             this.viewModel.empty();
             return;
         }
 
         if (changePassword.isSelected()) {
-            if (userNameField.getText().isEmpty() || emailField.getText().isEmpty() || oldPassword.getText().isEmpty()
-                    || newPassword.getText().isEmpty()
-                    || repeatPassword.getText().isEmpty()) {
+            if (oldPasswordField.getText().isEmpty()
+                    || newPasswordField.getText().isEmpty()
+                    || repeatPasswordField.getText().isEmpty()) {
                 this.viewModel.empty();
                 return;
             } else {
-                this.viewModel.updateUserNameEmail(userNameField.getText().toString(), emailField.getText().toString());
                 this.viewModel.updateAllUserSettings(userNameField.getText().toString(),
-                        emailField.getText().toString(), oldPassword.getText().toString(),
-                        newPassword.getText().toString(),
-                        repeatPassword.getText().toString());
+                        emailField.getText().toString(), oldPasswordField.getText().toString(),
+                        newPasswordField.getText().toString(),
+                        repeatPasswordField.getText().toString());
+                return;
             }
-            return;
+        } else {
+            this.viewModel.updateUserNameEmail(userNameField.getText().toString(), emailField.getText().toString());
+
         }
 
     }
