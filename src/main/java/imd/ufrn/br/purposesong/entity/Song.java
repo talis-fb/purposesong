@@ -21,6 +21,10 @@ public class Song extends ModelDatabaseEntity {
         this.userID = id;
     }
 
+    public String getPath() {
+        return path;
+    }
+
     public UUID getUserID() {
         return this.userID;
     }
