@@ -1,7 +1,5 @@
 package imd.ufrn.br.purposesong.view;
 
-import java.util.Optional;
-
 import imd.ufrn.br.purposesong.App;
 import imd.ufrn.br.purposesong.database.RepositoryFactory;
 import imd.ufrn.br.purposesong.entity.User;

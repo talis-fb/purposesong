@@ -3,6 +3,7 @@ package imd.ufrn.br.purposesong.view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import imd.ufrn.br.purposesong.view.session.UserStore;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
@@ -68,9 +69,34 @@ public class SettingsView implements Initializable {
         emailField.clear();
     }
 
+    @FXML
+    protected void updateUserSettings() {
+        if ((userNameField.getText().isEmpty() || emailField.getText().isEmpty()) && !changePassword.isSelected()) {
+            this.viewModel.empty();
+            return;
+        }
+
+        if (changePassword.isSelected()) {
+            if (userNameField.getText().isEmpty() || emailField.getText().isEmpty() || oldPassword.getText().isEmpty()
+                    || newPassword.getText().isEmpty()
+                    || repeatPassword.getText().isEmpty()) {
+                this.viewModel.empty();
+                return;
+            } else {
+                this.viewModel.updateUserNameEmail(userNameField.getText().toString(), emailField.getText().toString());
+                this.viewModel.updateAllUserSettings(userNameField.getText().toString(),
+                        emailField.getText().toString(), oldPassword.getText().toString(),
+                        newPassword.getText().toString(),
+                        repeatPassword.getText().toString());
+            }
+            return;
+        }
+
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // !Catch userNameField and EmailField in Control, then set() inside of
-        // TextField
+        userNameField.textProperty().bindBidirectional(UserStore.getInstance().activeUserLabelName);
+        emailField.textProperty().bindBidirectional(UserStore.getInstance().activeUserLabelEmail);
     }
 }

@@ -68,4 +68,20 @@ public class UserAlerts {
                         + "Talison: https://github.com/talis-fb\nJuliana: https://github.com/julianasantiago100");
         alert.show();
     }
+
+    public static void alertUpdateConfirmation() {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Updating your user account");
+        alert.setContentText(
+                "Please, check your information before you continue.\n Are you sure you want to update your account?");
+        alert.showAndWait();
+    }
+
+    public static void alertSomePasswordIsWrong() {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Passwords do not match");
+        alert.setContentText(
+                "Please ensure that Password and Confirm password fields match exactly or/and check your old password.");
+        alert.showAndWait();
+    }
 }
