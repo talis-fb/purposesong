@@ -1,18 +1,14 @@
 package imd.ufrn.br.purposesong.database.csv;
 
-import imd.ufrn.br.purposesong.entity.User;
-
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.UUID;
 
-public class CsvUtil {
+public class CsvOperator {
     private static final String CSV_DELIMITER = ",";
     private final String[] CSV_HEADER;
     private final String CSV_PATH;
-    public CsvUtil(String filePath, String[] headers){
+    public CsvOperator(String filePath, String[] headers){
         this.CSV_PATH = filePath;
         this.CSV_HEADER = headers;
     }

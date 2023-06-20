@@ -8,53 +8,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class CsvUserRepositoryImpl implements UserRepository {
+public class CsvUserRepositoryImpl
+        extends CsvAbstractRepositoryImpl<User>
+        implements UserRepository
+{
     private static final String CSV_FILE_PATH = "users.csv";
     private static final String[] CSV_HEADER = { "id","name","email","password","access" };
 
-    private static final CsvUtil csvOperator = new CsvUtil(CSV_FILE_PATH, CSV_HEADER);
-
-    @Override
-    public Optional<User> findById(UUID id) {
-        List<User> users = readCsvFile();
-        return users.stream()
-                .filter(user -> user.getId().equals(Optional.of(id)))
-                .findFirst();
-    }
-
-    @Override
-    public List<User> findAll() {
-        return readCsvFile();
-    }
-
-    @Override
-    public void update(UUID id, User value) {
-        List<User> users = readCsvFile();
-        for (int i = 0; i < users.size(); i++) {
-            User user = users.get(i);
-            if (user.getId().equals(Optional.of(id))) {
-                users.set(i, value);
-                break;
-            }
-        }
-        writeCsvFile(users);
-    }
-
-    @Override
-    public User create(User value) {
-        ArrayList<User> users = new ArrayList(readCsvFile());
-        value.setId(UUID.randomUUID());
-        users.add(value);
-        writeCsvFile(users);
-        return value;
-    }
-
-    @Override
-    public void delete(UUID id) {
-        ArrayList<User> users = new ArrayList(readCsvFile());
-        users.removeIf(user -> user.getId().equals(Optional.of(id)));
-        writeCsvFile(users);
-    }
+    private static final CsvOperator csvOperator = new CsvOperator(CSV_FILE_PATH, CSV_HEADER);
 
     @Override
     public Optional<User> findUserByUsername(String username) {
@@ -78,7 +39,7 @@ public class CsvUserRepositoryImpl implements UserRepository {
         return users.size();
     }
 
-    private List<User> readCsvFile() {
+    List<User> readCsvFile() {
         List<String[]> lines = csvOperator.readCsvFile();
 
         return lines.stream().map(fields -> {
@@ -88,16 +49,16 @@ public class CsvUserRepositoryImpl implements UserRepository {
             user.setEmail(fields[2]);
             user.setPassword(fields[3]);
 
-            switch (fields[4]) {
-                case "VIP": user.setVipUser();
-                case "NORMAL": user.setNormalUser();
-            }
+            if (fields[4].equals("VIP"))
+                user.setVipUser();
+            if (fields[4].equals("NORMAL"))
+                user.setNormalUser();
 
             return user;
         }).toList();
     }
 
-    private void writeCsvFile(List<User> users) {
+    void writeCsvFile(List<User> users) {
         // HEADER = { "id","name","email","password","access" };
         List<String[]> lines = users.stream().map(it -> {
             String[] line = {
@@ -105,7 +66,7 @@ public class CsvUserRepositoryImpl implements UserRepository {
                     it.getName(),
                     it.getEmail(),
                     it.getPassword(),
-                    it.getPassword()
+                    it.isVipUser() ? "VIP" : "NORMAL"
             };
             return line;
         }).toList();
