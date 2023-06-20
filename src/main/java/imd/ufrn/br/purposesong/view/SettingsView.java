@@ -65,8 +65,6 @@ public class SettingsView implements Initializable {
         newPasswordField.clear();
         oldPasswordField.clear();
         repeatPasswordField.clear();
-        // userNameField.clear();
-        // emailField.clear();
     }
 
     @FXML
@@ -87,7 +85,7 @@ public class SettingsView implements Initializable {
                 this.viewModel.updateAllUserSettings(userNameField.getText().toString(),
                         emailField.getText().toString(), oldPasswordField.getText().toString(),
                         newPasswordField.getText().toString(),
-                        repeatPasswordField.getText().toString());
+                        repeatPasswordField.getText().toString(), changePassword.isSelected());
                 return;
             }
         } else {

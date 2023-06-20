@@ -12,21 +12,27 @@ public class SettingsViewModel {
         user.getUser().get().setName(name);
         user.getUser().get().setEmail(email);
         UserAlerts.alertUpdateConfirmation();
+        this.goToMenu();
     }
 
-    public void updateAllUserSettings(String name, String email, String oldPass, String newPass, String repeatNewPass) {
+    public void updateAllUserSettings(String name, String email, String oldPass, String newPass, String repeatNewPass,
+            boolean changePassword) {
         user.getUser().get().setName(name);
         user.getUser().get().setEmail(email);
 
         // !Veryfing passwords
-        if (this.authenticationOldPassword(oldPass) && this.verifyingRepeatPassword(newPass, oldPass)) {
-            user.getUser().get().setPassword(newPass);
-            UserAlerts.alertUpdateConfirmation();
-        } else {
-            UserAlerts.alertSomePasswordIsWrong();
-            return;
+        if (changePassword) {
+            if (this.authenticationOldPassword(oldPass) && this.verifyingRepeatPassword(newPass, repeatNewPass)) {
+                user.getUser().get().setPassword(newPass);
+                if (UserAlerts.alertUpdateConfirmation()) {
+                    this.goToMenu();
+                }
+            } else {
+                UserAlerts.alertSomePasswordIsWrong();
+                return;
+            }
+
         }
-        this.goToMenu();
     }
 
     public void empty() {
@@ -34,10 +40,11 @@ public class SettingsViewModel {
     }
 
     public boolean authenticationOldPassword(String oldPassword) {
-        return oldPassword == user.getUser().get().getPassword();
+        return oldPassword.equals(user.getUser().get().getPassword());
     }
 
     public boolean verifyingRepeatPassword(String password1, String password2) {
+        System.out.println(password1 + " " + password2);
         return password1.equals(password2);
     }
 

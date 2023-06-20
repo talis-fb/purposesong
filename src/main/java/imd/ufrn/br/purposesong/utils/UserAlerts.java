@@ -69,12 +69,13 @@ public class UserAlerts {
         alert.show();
     }
 
-    public static void alertUpdateConfirmation() {
+    public static boolean alertUpdateConfirmation() {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("Updating your user account");
         alert.setContentText(
                 "Please, check your information before you continue.\n Are you sure you want to update your account?");
-        alert.showAndWait();
+        var result = alert.showAndWait();
+        return result.get().getText().equals("OK");
     }
 
     public static void alertSomePasswordIsWrong() {
