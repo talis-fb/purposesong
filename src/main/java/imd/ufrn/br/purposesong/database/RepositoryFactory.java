@@ -1,5 +1,6 @@
 package imd.ufrn.br.purposesong.database;
 
+import imd.ufrn.br.purposesong.database.csv.CsvUserRepositoryImpl;
 import imd.ufrn.br.purposesong.database.inmemory.InMemoryFolderRepositoryImpl;
 import imd.ufrn.br.purposesong.database.inmemory.InMemoryUserRepositoryImpl;
 import imd.ufrn.br.purposesong.database.inmemory.InMemorySongRepositoryImpl;
@@ -15,7 +16,7 @@ public class RepositoryFactory {
         folderRepository = InMemoryFolderRepositoryImpl.getInstance();
         playlistRepository = InMemoryPlaylistRepositoryImpl.getInstance();
         songRepository = InMemorySongRepositoryImpl.getInstance();
-        userRepository = InMemoryUserRepositoryImpl.getInstance();
+        userRepository = CsvUserRepositoryImpl.getInstance();
     }
 
     public static FolderRepository getFolderRepository() {
