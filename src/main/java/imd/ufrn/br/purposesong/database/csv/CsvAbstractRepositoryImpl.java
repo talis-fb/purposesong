@@ -2,7 +2,6 @@ package imd.ufrn.br.purposesong.database.csv;
 
 import imd.ufrn.br.purposesong.database.AbstractRepository;
 import imd.ufrn.br.purposesong.entity.ModelDatabaseEntity;
-import imd.ufrn.br.purposesong.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,10 +9,8 @@ import java.util.Optional;
 import java.util.UUID;
 
 public abstract class CsvAbstractRepositoryImpl<Entity extends ModelDatabaseEntity> implements AbstractRepository<Entity> {
-    private static final String CSV_FILE_PATH = "users.csv";
-    private static final String[] CSV_HEADER = { "id","name","email","password","access" };
-
-    private static final CsvOperator csvOperator = new CsvOperator(CSV_FILE_PATH, CSV_HEADER);
+    abstract List<Entity> readCsvFile();
+    abstract void writeCsvFile(List<Entity> users);
 
     @Override
     public Optional<Entity> findById(UUID id) {
@@ -56,9 +53,4 @@ public abstract class CsvAbstractRepositoryImpl<Entity extends ModelDatabaseEnti
         values.removeIf(user -> user.getId().equals(Optional.of(id)));
         writeCsvFile(values);
     }
-
-
-
-    abstract List<Entity> readCsvFile();
-    abstract void writeCsvFile(List<Entity> users);
 }
