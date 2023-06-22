@@ -137,14 +137,11 @@ public class MenuVipView implements Initializable {
     }
 
     @FXML
-    protected void createPlaylist() {
+    protected void openCreatePlaylist() {
         if (paneCreateNewPlaylist.isVisible())
             paneCreateNewPlaylist.setVisible(false);
         else
             paneCreateNewPlaylist.setVisible(true);
-        // var list = new
-        // this.viewModel.addNewPlaylist(UserStore.getInstance().getUser().get().getId(),
-        // playlistNameField, list );
     }
 
     @FXML
@@ -163,10 +160,16 @@ public class MenuVipView implements Initializable {
         if (newPlaylistNameField.getText().isEmpty() || newPlaylistField.getItems().isEmpty())
             UserAlerts.alertEmpytUser(); // !MUDARR
         else {
+
             var newPlaylist = this.viewModel.addNewPlaylist(UserStore.getInstance().getUser().get().getId().get(),
                     newPlaylistNameField.getText().toString(), newList);
-
-            playlistView.getItems().add(newPlaylist);
+            if (newPlaylist != null) {
+                playlistView.getItems().add(newPlaylist);
+                newPlaylistNameField.clear();
+                newPlaylistField.getItems().clear();
+                openCreatePlaylist();
+            } else
+                System.out.println("Não adicionou amigo");
         }
     }
 

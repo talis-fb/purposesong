@@ -30,10 +30,13 @@ public class MenuVipViewModel {
         playlist.setName(name);
         playlist.setSongsList(list);
 
-        // !Sending to DB
-        var repo = RepositoryFactory.getPlaylistRepository();
-        new AddPlaylist(repo).execute(playlist);
-        return playlist;
+        if (UserAlerts.alertNewPlaylistConfirmation(playlist)) {
+            // !Sending to DB
+            var repo = RepositoryFactory.getPlaylistRepository();
+            new AddPlaylist(repo).execute(playlist);
+            return playlist;
+        } else
+            return null;
     }
 
     public ArrayList<Image> getImages() {

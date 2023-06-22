@@ -1,5 +1,6 @@
 package imd.ufrn.br.purposesong.utils;
 
+import imd.ufrn.br.purposesong.entity.Playlist;
 import imd.ufrn.br.purposesong.entity.User;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -92,5 +93,13 @@ public class UserAlerts {
         alert.setContentText(
                 "You already have this song in your playlist. Please add one that you dont have yet");
         alert.show();
+    }
+
+    public static boolean alertNewPlaylistConfirmation(Playlist playlist) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirm your data");
+        alert.setContentText("Do you want to add " + playlist.getName() + " playlist to your account?");
+        var result = alert.showAndWait();
+        return result.get().getText().equals("OK");
     }
 }

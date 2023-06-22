@@ -206,7 +206,7 @@
                                     <Insets left="110.0" top="30.0" />
                                  </VBox.margin>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#createPlaylist" prefHeight="90.0" prefWidth="100.0" style="-fx-background-color: #800a6f; -fx-background-radius: 10;" text="New&#10;Playlist">
+                              <Button mnemonicParsing="false" onAction="#openCreatePlaylist" prefHeight="90.0" prefWidth="100.0" style="-fx-background-color: #800a6f; -fx-background-radius: 10;" text="New&#10;Playlist">
                                  <graphic>
                                     <ImageView fitHeight="43.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -318,7 +318,7 @@
                               </Label>
                            </children>
                         </VBox>
-                        <Pane fx:id="paneCreateNewPlaylist" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;">
+                        <Pane fx:id="paneCreateNewPlaylist" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: black;" visible="false">
                            <children>
                               <Label layoutX="107.0" layoutY="10.0" prefHeight="99.0" prefWidth="315.0" text="CREATE NEW PLAYLIST" textAlignment="CENTER" textFill="WHITE">
                                  <font>
