@@ -1,12 +1,9 @@
 package imd.ufrn.br.purposesong;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import imd.ufrn.br.purposesong.utils.UserAlerts;
+import imd.ufrn.br.purposesong.view.session.PlaylistStore;
 import imd.ufrn.br.purposesong.view.session.SongStore;
 import imd.ufrn.br.purposesong.view.session.UserStore;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -15,6 +12,7 @@ public class App {
 
     private UserStore userStore = UserStore.getInstance();
     private SongStore songStore = SongStore.getInstance();
+    private PlaylistStore playlistStore = PlaylistStore.getInstance();
 
     private Stage stage;
 
@@ -62,8 +60,11 @@ public class App {
 
     public void changeToLoginScene() {
         this.currentScene = this.loginViewScene;
+
         this.userStore.resetUser();
         this.songStore.resetStore();
+        this.playlistStore.resetStore();
+
         this.stage.setScene(this.currentScene);
         this.stage.show();
     }
@@ -80,6 +81,9 @@ public class App {
                 : this.menuNormalViewScene;
 
         this.songStore.fetchSongListOfCurrentUser();
+
+        if (this.userStore.getUser().get().isVipUser())
+            this.playlistStore.fetchPlaylistListOfCurrentUser();
 
         this.stage.setScene(this.currentScene);
         this.stage.show();

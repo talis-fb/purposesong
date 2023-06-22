@@ -23,10 +23,12 @@ public class InMemoryPlaylistRepositoryImpl extends InMemoryAbstractRepository<P
                 .collect(Collectors.toList());
     }
 
-
     // Singleton ---------
     private static InMemoryPlaylistRepositoryImpl instance = new InMemoryPlaylistRepositoryImpl();
-    private InMemoryPlaylistRepositoryImpl() {}
+
+    private InMemoryPlaylistRepositoryImpl() {
+    }
+
     public static InMemoryPlaylistRepositoryImpl getInstance() {
         return InMemoryPlaylistRepositoryImpl.instance;
     }

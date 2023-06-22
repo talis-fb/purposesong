@@ -1,7 +1,6 @@
 package imd.ufrn.br.purposesong.view.session;
 
 import imd.ufrn.br.purposesong.database.RepositoryFactory;
-import imd.ufrn.br.purposesong.database.UserRepository;
 import imd.ufrn.br.purposesong.entity.User;
 import imd.ufrn.br.purposesong.use_case.GetAllUsers;
 import javafx.beans.property.SimpleStringProperty;

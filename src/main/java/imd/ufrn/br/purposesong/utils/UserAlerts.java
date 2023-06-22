@@ -5,8 +5,6 @@ import imd.ufrn.br.purposesong.entity.User;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class UserAlerts {
     public static void alertLoginMessage() {
@@ -39,8 +37,6 @@ public class UserAlerts {
 
     public static void alertStartHere() {
         Alert alert = new Alert(AlertType.INFORMATION);
-        // alert.setGraphic(new
-        // ImageView("file:src/main/resources/imd/ufrn/br/purposesong/images/headphoneLOGO.png"));
         alert.getDialogPane().getStylesheets()
                 .add("file:src/main/resources/imd/ufrn/br/purposesong/themes/userAlert.css");
         alert.getDialogPane().getStyleClass().add("userAlert");

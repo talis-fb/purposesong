@@ -5,14 +5,11 @@ import java.util.ResourceBundle;
 import imd.ufrn.br.purposesong.utils.UserAlerts;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.AccessibleRole;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.PopupWindow.AnchorLocation;
 
 import java.net.URL;
 

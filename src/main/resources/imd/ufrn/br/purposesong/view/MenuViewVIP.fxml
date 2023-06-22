@@ -106,36 +106,6 @@
                               <Insets left="60.0" />
                            </GridPane.margin>
                         </ImageView>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
-                           <children>
-                              <ImageView fx:id="playing_song" fitHeight="91.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../images/default.png" />
-                                 </image>
-                                 <HBox.margin>
-                                    <Insets top="5.0" />
-                                 </HBox.margin>
-                              </ImageView>
-                              <VBox prefHeight="96.0" prefWidth="128.0">
-                                 <children>
-                                    <Label alignment="CENTER" text="Nome da Música">
-                                       <padding>
-                                          <Insets left="15.0" top="15.0" />
-                                       </padding>
-                                    </Label>
-                                    <Label prefHeight="18.0" prefWidth="130.0" text="Banda/Compositor">
-                                       <VBox.margin>
-                                          <Insets left="15.0" top="5.0" />
-                                       </VBox.margin>
-                                    </Label>
-                                    <Label text="Duração ">
-                                       <padding>
-                                          <Insets left="15.0" top="5.0" />
-                                       </padding>
-                                    </Label>
-                                 </children>
-                              </VBox>
-                           </children></HBox>
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="2">
@@ -249,6 +219,7 @@
                      <items>
                         <MenuItem mnemonicParsing="false" onAction="#addNewFile" text="Add new Song" />
                         <MenuItem mnemonicParsing="false" onAction="#addNewFolder" text="Add new List" />
+                        <MenuItem mnemonicParsing="false" onAction="#openCreatePlaylist" text="Add new Playlisit" />
                      </items>
                   </Menu>
                   <Menu mnemonicParsing="false" style="-fx-control-inner-background: black;" text="Player">

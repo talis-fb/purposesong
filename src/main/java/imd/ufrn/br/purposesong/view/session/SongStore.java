@@ -48,6 +48,7 @@ public class SongStore {
     }
 
     public void resetStore() {
+        songs.clear();// !Não funciona direito ! Conserte
         SongStore.instance = new SongStore();
     }
 

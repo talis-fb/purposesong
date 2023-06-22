@@ -1,54 +1,43 @@
 package imd.ufrn.br.purposesong.view;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 import imd.ufrn.br.purposesong.App;
-import imd.ufrn.br.purposesong.database.PlaylistRepository;
 import imd.ufrn.br.purposesong.database.RepositoryFactory;
 import imd.ufrn.br.purposesong.entity.Playlist;
 import imd.ufrn.br.purposesong.entity.Song;
-import imd.ufrn.br.purposesong.use_case.AddPlaylist;
+import imd.ufrn.br.purposesong.use_case.GetAllUserPlaylists;
 import imd.ufrn.br.purposesong.utils.OpenChooseFileDialog;
 import imd.ufrn.br.purposesong.utils.OpenChooseFolderDialog;
 import imd.ufrn.br.purposesong.utils.UserAlerts;
+import imd.ufrn.br.purposesong.view.session.PlaylistStore;
 import imd.ufrn.br.purposesong.view.session.SongStore;
-import javafx.scene.image.Image;
+import imd.ufrn.br.purposesong.view.session.UserStore;
 
 public class MenuVipViewModel {
     private App app = App.getInstance();
     private SongStore songStore = SongStore.getInstance();
+    private PlaylistStore playlistStore = PlaylistStore.getInstance();
 
-    private ArrayList<String> playlists;
-    private ArrayList<Image> images;
-
+    // !Playlists -----
     public Playlist addNewPlaylist(UUID userID, String name, List<Song> list) {
         // !Setting playlist
         Playlist playlist = new Playlist();
-        playlist.setId(userID);
+        playlist.setUserID(userID);
         playlist.setName(name);
         playlist.setSongsList(list);
 
-        if (UserAlerts.alertNewPlaylistConfirmation(playlist)) {
-            // !Sending to DB
-            var repo = RepositoryFactory.getPlaylistRepository();
-            new AddPlaylist(repo).execute(playlist);
-            return playlist;
-        } else
-            return null;
-    }
-
-    public ArrayList<Image> getImages() {
-        return images;
+        var saveInDB = this.playlistStore.savePlaylistInDB(playlist);
+        return saveInDB;
     }
 
     public List<Playlist> getUserPlaylists() {
-        /** GetAllPlaylistsOfUser */
-
-        return new ArrayList<Playlist>();
+        return new GetAllUserPlaylists(RepositoryFactory.getPlaylistRepository())
+                .execute(UserStore.getInstance().getUser().get());
     }
 
+    // Player -------
     public void playSong(Song song) {
         this.songStore.playSong(song);
     }

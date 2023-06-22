@@ -1,24 +1,15 @@
 package imd.ufrn.br.purposesong.view;
 
-import java.util.ArrayList;
-
 import imd.ufrn.br.purposesong.App;
 import imd.ufrn.br.purposesong.entity.Song;
 import imd.ufrn.br.purposesong.utils.OpenChooseFileDialog;
 import imd.ufrn.br.purposesong.utils.OpenChooseFolderDialog;
 import imd.ufrn.br.purposesong.utils.UserAlerts;
 import imd.ufrn.br.purposesong.view.session.SongStore;
-import javafx.scene.image.Image;
 
 public class MenuNormalViewModel {
     private App app = App.getInstance();
     private SongStore songStore = SongStore.getInstance();
-
-    private ArrayList<Image> images;
-
-    public ArrayList<Image> getImages() {
-        return images;
-    }
 
     public void playSong(Song song) {
         this.songStore.playSong(song);
