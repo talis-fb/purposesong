@@ -85,4 +85,12 @@ public class UserAlerts {
                 "Please ensure that Password and Confirm password fields match exactly or/and check your old password.");
         alert.showAndWait();
     }
+
+    public static void alertYouAlreadyAddedThisSong() {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("You have this song!");
+        alert.setContentText(
+                "You already have this song in your playlist. Please add one that you dont have yet");
+        alert.show();
+    }
 }

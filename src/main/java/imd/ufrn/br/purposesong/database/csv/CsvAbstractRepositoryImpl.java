@@ -8,8 +8,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public abstract class CsvAbstractRepositoryImpl<Entity extends ModelDatabaseEntity> implements AbstractRepository<Entity> {
+public abstract class CsvAbstractRepositoryImpl<Entity extends ModelDatabaseEntity>
+        implements AbstractRepository<Entity> {
     abstract List<Entity> readCsvFile();
+
     abstract void writeCsvFile(List<Entity> users);
 
     @Override

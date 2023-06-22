@@ -1,9 +1,15 @@
 package imd.ufrn.br.purposesong.view;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 import imd.ufrn.br.purposesong.App;
+import imd.ufrn.br.purposesong.database.PlaylistRepository;
+import imd.ufrn.br.purposesong.database.RepositoryFactory;
+import imd.ufrn.br.purposesong.entity.Playlist;
 import imd.ufrn.br.purposesong.entity.Song;
+import imd.ufrn.br.purposesong.use_case.AddPlaylist;
 import imd.ufrn.br.purposesong.utils.OpenChooseFileDialog;
 import imd.ufrn.br.purposesong.utils.OpenChooseFolderDialog;
 import imd.ufrn.br.purposesong.utils.UserAlerts;
@@ -17,24 +23,27 @@ public class MenuVipViewModel {
     private ArrayList<String> playlists;
     private ArrayList<Image> images;
 
-    public ArrayList<String> getPlaylists() {
-        return playlists;
-    }
+    public Playlist addNewPlaylist(UUID userID, String name, List<Song> list) {
+        // !Setting playlist
+        Playlist playlist = new Playlist();
+        playlist.setId(userID);
+        playlist.setName(name);
+        playlist.setSongsList(list);
 
-    public void setPlaylists(ArrayList<String> playlists) {
-        this.playlists = playlists;
+        // !Sending to DB
+        var repo = RepositoryFactory.getPlaylistRepository();
+        new AddPlaylist(repo).execute(playlist);
+        return playlist;
     }
 
     public ArrayList<Image> getImages() {
         return images;
     }
 
-    public void initializePlaylists() {
-        playlists = new ArrayList<>();
-        playlists.add("Rock Pesadão");
-        playlists.add("MPB");
-        playlists.add("Paz que acalma a alma");
-        playlists.add("Maranata ora vem!!");
+    public List<Playlist> getUserPlaylists() {
+        /** GetAllPlaylistsOfUser */
+
+        return new ArrayList<Playlist>();
     }
 
     public void playSong(Song song) {
@@ -57,9 +66,6 @@ public class MenuVipViewModel {
     }
 
     // Troca de tela ----------------
-    public void goToRegister() {
-        this.app.changeToRegisterScene();
-    }
 
     public void goToLogin() {
 
@@ -78,7 +84,6 @@ public class MenuVipViewModel {
     private static final MenuVipViewModel instance = new MenuVipViewModel();
 
     private MenuVipViewModel() {
-        initializePlaylists();
     }
 
     public static MenuVipViewModel getInstance() {

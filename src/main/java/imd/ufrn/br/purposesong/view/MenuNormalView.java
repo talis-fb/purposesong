@@ -5,6 +5,7 @@ import imd.ufrn.br.purposesong.player.SongPlayer;
 import imd.ufrn.br.purposesong.utils.SongCellFactory;
 import imd.ufrn.br.purposesong.view.session.SongStore;
 import imd.ufrn.br.purposesong.view.session.UserStore;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;

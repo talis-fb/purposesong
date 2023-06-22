@@ -3,17 +3,15 @@ package imd.ufrn.br.purposesong.database.csv;
 import imd.ufrn.br.purposesong.database.UserRepository;
 import imd.ufrn.br.purposesong.entity.User;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
 public class CsvUserRepositoryImpl
         extends CsvAbstractRepositoryImpl<User>
-        implements UserRepository
-{
+        implements UserRepository {
     private static final String CSV_FILE_PATH = "users.csv";
-    private static final String[] CSV_HEADER = { "id","name","email","password","access" };
+    private static final String[] CSV_HEADER = { "id", "name", "email", "password", "access" };
 
     private static final CsvOperator csvOperator = new CsvOperator(CSV_FILE_PATH, CSV_HEADER);
 
@@ -76,7 +74,10 @@ public class CsvUserRepositoryImpl
 
     // Singleton ---------------------
     private static final CsvUserRepositoryImpl instance = new CsvUserRepositoryImpl();
-    private CsvUserRepositoryImpl() {}
+
+    private CsvUserRepositoryImpl() {
+    }
+
     public static CsvUserRepositoryImpl getInstance() {
         return CsvUserRepositoryImpl.instance;
     }

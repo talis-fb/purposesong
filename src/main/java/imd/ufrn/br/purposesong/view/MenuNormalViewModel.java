@@ -14,16 +14,7 @@ public class MenuNormalViewModel {
     private App app = App.getInstance();
     private SongStore songStore = SongStore.getInstance();
 
-    private ArrayList<String> playlists;
     private ArrayList<Image> images;
-
-    public ArrayList<String> getPlaylists() {
-        return playlists;
-    }
-
-    public void setPlaylists(ArrayList<String> playlists) {
-        this.playlists = playlists;
-    }
 
     public ArrayList<Image> getImages() {
         return images;

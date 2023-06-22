@@ -26,7 +26,6 @@ public class SongStore {
 
     private String DEFAULT_SONG_IMAGE = "file:src/main/resources/imd/ufrn/br/purposesong/images/default.png";
 
-
     // Player
     public void playSong(Song song) {
         this.player.play(song);
@@ -35,7 +34,6 @@ public class SongStore {
     public void stopSong() {
         this.player.pause();
     }
-
 
     // Gerencia as property na memoria
     public void appendSongList(Song song) {
@@ -53,7 +51,6 @@ public class SongStore {
         SongStore.instance = new SongStore();
     }
 
-
     // Scan e busca de musicas
     public void fetchSongListOfCurrentUser() {
         var repoSongs = RepositoryFactory.getSongRepository();
@@ -63,7 +60,8 @@ public class SongStore {
         List<Song> songsInUserFolders = new GetAllSongsInUserFolder(repoFolders).execute(user);
         List<Song> allSongsOfUser = Stream
                 .concat(songOfUser.stream(), songsInUserFolders.stream())
-                .distinct() // TODO: Esse distinct não está funcionando como esperado, ele deveria considerar o path ou ID para fazer a distinção
+                .distinct() // TODO: Esse distinct não está funcionando como esperado, ele deveria
+                            // considerar o path ou ID para fazer a distinção
                 .toList();
 
         this.setSongList(allSongsOfUser);
@@ -73,7 +71,6 @@ public class SongStore {
         List<Song> songsOfFolder = new GetAllSongsOfFolder().execute(folder);
         songsOfFolder.forEach(this::appendSongList);
     }
-
 
     // Salvar nos database
     public void saveSongFileInDB(File file) {
@@ -104,7 +101,8 @@ public class SongStore {
     // Singleton ---------------------------
     private static SongStore instance = new SongStore();
 
-    private SongStore() {}
+    private SongStore() {
+    }
 
     public static SongStore getInstance() {
         return SongStore.instance;

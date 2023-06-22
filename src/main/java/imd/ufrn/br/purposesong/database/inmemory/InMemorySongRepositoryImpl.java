@@ -6,6 +6,8 @@ import imd.ufrn.br.purposesong.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class InMemorySongRepositoryImpl extends InMemoryAbstractRepository<Song> implements SongRepository {
@@ -22,6 +24,14 @@ public class InMemorySongRepositoryImpl extends InMemoryAbstractRepository<Song>
                 .stream()
                 .filter((it) -> it.userID.equals(user.getId().get()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<Song> findById(UUID id) {
+        return this.findAll()
+                .stream()
+                .filter((it) -> it.getId().get().equals(id))
+                .findFirst();
     }
 
     // Singleton ---------
