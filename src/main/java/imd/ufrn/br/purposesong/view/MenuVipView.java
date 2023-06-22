@@ -160,18 +160,19 @@ public class MenuVipView implements Initializable {
             paneCreateNewPlaylist.setVisible(true);
     }
 
+    private SongStore songStore = SongStore.getInstance();
+    private UserStore userStore = UserStore.getInstance();
+    private PlaylistStore playlistStore = PlaylistStore.getInstance();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        var songStore = SongStore.getInstance();
-        var userStore = UserStore.getInstance();
-        var playlistStore = PlaylistStore.getInstance();
 
         songView.cellFactoryProperty().set(new SongCellFactory());
         newPlaylistField.cellFactoryProperty().set(new SongCellFactory());
         playlistView.cellFactoryProperty().set(new PlaylistCellFactory());
 
         songView.itemsProperty().bind(songStore.songs);
-        nameActiveUser.textProperty().bindBidirectional(userStore.activeUserLabelName);
+        nameActiveUser.textProperty().bind(userStore.activeUserLabelName);
         playlistView.itemsProperty().bind(playlistStore.playlists);
 
         songView.setOnDragDetected(new EventHandler<MouseEvent>() {

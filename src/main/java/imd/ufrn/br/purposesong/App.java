@@ -96,7 +96,9 @@ public class App {
     }
 
     public void startHere() {
-        this.changeToLoginScene();
+        this.currentScene = this.loginViewScene;
+        this.stage.setScene(this.currentScene);
+        this.stage.show();
 
         if (this.userStore.quantityOfUsers() == 0)
             UserAlerts.alertStartHere();

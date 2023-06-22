@@ -48,8 +48,8 @@ public class SongStore {
     }
 
     public void resetStore() {
-        songs.clear();// !Não funciona direito ! Conserte
         SongStore.instance = new SongStore();
+        songs.setAll(new ArrayList<>());
     }
 
     // Scan e busca de musicas

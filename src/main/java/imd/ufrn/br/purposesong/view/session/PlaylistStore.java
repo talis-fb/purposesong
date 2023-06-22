@@ -1,5 +1,6 @@
 package imd.ufrn.br.purposesong.view.session;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import imd.ufrn.br.purposesong.database.RepositoryFactory;
@@ -21,8 +22,8 @@ public class PlaylistStore {
     }
 
     public void resetStore() {
-        playlists.clear();
         PlaylistStore.instance = new PlaylistStore();
+        playlists.setAll(new ArrayList<>());
     }
 
     // Scan e busca de musicas
