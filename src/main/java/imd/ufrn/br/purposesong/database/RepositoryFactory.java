@@ -3,6 +3,7 @@ package imd.ufrn.br.purposesong.database;
 import imd.ufrn.br.purposesong.database.csv.CsvFolderRepositoryImpl;
 import imd.ufrn.br.purposesong.database.csv.CsvSongRepositoryImpl;
 import imd.ufrn.br.purposesong.database.csv.CsvUserRepositoryImpl;
+import imd.ufrn.br.purposesong.database.csv.CsvPlaylistRepositoryImpl;
 import imd.ufrn.br.purposesong.database.inmemory.InMemoryFolderRepositoryImpl;
 import imd.ufrn.br.purposesong.database.inmemory.InMemoryUserRepositoryImpl;
 import imd.ufrn.br.purposesong.database.inmemory.InMemorySongRepositoryImpl;
@@ -16,7 +17,7 @@ public class RepositoryFactory {
 
     static {
         folderRepository = CsvFolderRepositoryImpl.getInstance();
-        playlistRepository = InMemoryPlaylistRepositoryImpl.getInstance();
+        playlistRepository = CsvPlaylistRepositoryImpl.getInstance();
         songRepository = CsvSongRepositoryImpl.getInstance();
         userRepository = CsvUserRepositoryImpl.getInstance();
     }
