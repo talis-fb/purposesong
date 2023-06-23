@@ -17,7 +17,7 @@ public class CsvPlaylistRepositoryImpl
         implements PlaylistRepository
 {
     private static final String CSV_FILE_PATH = "playlists.csv";
-    private static final String[] CSV_HEADER = { "id", "userID", "songs" };
+    private static final String[] CSV_HEADER = { "id", "name", "userID", "songs" };
 
     private static final CsvOperator csvOperator = new CsvOperator(CSV_FILE_PATH, CSV_HEADER);
 
@@ -31,14 +31,16 @@ public class CsvPlaylistRepositoryImpl
     }
 
     List<Playlist> readCsvFile() {
+        // HEADER = { "id", "name", "userID", "songs" }
         List<String[]> lines = csvOperator.readCsvFile();
 
         return lines.stream().map(fields -> {
             var playlist = new Playlist();
             playlist.setId(UUID.fromString(fields[0]));
-            playlist.setUserID(UUID.fromString(fields[1]));
+            playlist.setName(fields[1]);
+            playlist.setUserID(UUID.fromString(fields[2]));
 
-            String[] songIds = fields[2].split(",");
+            String[] songIds = fields[3].split(",");
             List<Song> songs = Arrays.stream(songIds)
                     .map(UUID::fromString)
                     .map(RepositoryFactory.getSongRepository()::findById)
@@ -52,7 +54,7 @@ public class CsvPlaylistRepositoryImpl
     }
 
     void writeCsvFile(List<Playlist> playlist) {
-        // HEADER = { "id", "userID", "songs" }
+        // HEADER = { "id", "name", "userID", "songs" }
         List<String[]> lines = playlist.stream().map(it -> {
             String songsIds = it.getSongs()
                     .stream()
@@ -64,6 +66,7 @@ public class CsvPlaylistRepositoryImpl
 
             String[] line = {
                     it.getId().get().toString(),
+                    it.getName(),
                     it.getUserID().toString(),
                     songsIds,
             };
