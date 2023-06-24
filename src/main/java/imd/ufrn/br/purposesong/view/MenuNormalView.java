@@ -92,7 +92,7 @@ public class MenuNormalView implements Initializable {
         songView.itemsProperty().bind(songStore.songs);
         songView.cellFactoryProperty().set(new SongCellFactory());
 
-        nameActiveUser.textProperty().bind(userStore.activeUserLabelName);
+        nameActiveUser.textProperty().bindBidirectional(userStore.activeUserLabelName);
 
         /*
          * // ! Properties of playlist and song listViews

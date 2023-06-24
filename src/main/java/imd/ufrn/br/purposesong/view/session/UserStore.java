@@ -12,6 +12,7 @@ import java.util.Optional;
 public class UserStore {
     private Optional<User> user;
     public StringProperty activeUserLabelName = new SimpleStringProperty("");
+    public StringProperty activeUserLabelEmail = new SimpleStringProperty("");
 
     public Optional<User> getUser() {
         return user;
@@ -19,7 +20,8 @@ public class UserStore {
 
     public void setUser(User user) {
         this.user = Optional.of(user);
-        this.activeUserLabelName.set("Olá, " + this.user.map(User::getName).orElse(" "));
+        this.activeUserLabelName.set(this.user.map(User::getName).orElse(" "));
+        this.activeUserLabelEmail.set(this.user.map(User::getEmail).orElse(" "));
     }
 
     public void resetUser() {
