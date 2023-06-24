@@ -41,11 +41,7 @@ public class RegisterViewModel {
     }
 
     public void back() {
-        if (this.userStore.getUser().isPresent()) {
-            this.goToMenu();
-        } else {
-            this.goToLogin();
-        }
+        this.goToLogin();
     }
 
     public boolean verifyingRepeatPassword(String password1, String password2) {
