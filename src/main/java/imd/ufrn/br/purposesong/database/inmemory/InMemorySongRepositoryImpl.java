@@ -26,14 +26,6 @@ public class InMemorySongRepositoryImpl extends InMemoryAbstractRepository<Song>
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public Optional<Song> findById(UUID id) {
-        return this.findAll()
-                .stream()
-                .filter((it) -> it.getId().get().equals(id))
-                .findFirst();
-    }
-
     // Singleton ---------
     private static final InMemorySongRepositoryImpl instance = new InMemorySongRepositoryImpl();
 

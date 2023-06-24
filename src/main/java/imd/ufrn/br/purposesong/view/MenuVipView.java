@@ -112,7 +112,7 @@ public class MenuVipView implements Initializable {
         newList.addAll(newPlaylistField.getItems());
 
         if (newPlaylistNameField.getText().isEmpty() || newPlaylistField.getItems().isEmpty())
-            UserAlerts.alertEmpytUser();
+            UserAlerts.alertEmpytFields();
         else {
             var newPlaylist = this.viewModel.addNewPlaylist(UserStore.getInstance().getUser().get().getId().get(),
                     newPlaylistNameField.getText().toString(), newList);

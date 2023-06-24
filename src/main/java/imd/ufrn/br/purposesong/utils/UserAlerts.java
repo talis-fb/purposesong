@@ -35,6 +35,14 @@ public class UserAlerts {
         alert.show();
     }
 
+    public static void alertEmpytFields() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("EMPYT FIELD");
+        alert.setHeaderText("Some field is empty");
+        alert.setContentText("You need to complete all the fields too continue");
+        alert.show();
+    }
+
     public static void alertStartHere() {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.getDialogPane().getStylesheets()

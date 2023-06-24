@@ -10,7 +10,7 @@ public class AddSong {
         this.songRepository = songRepository;
     }
 
-    public void execute(Song song) {
-        this.songRepository.create(song);
+    public Song execute(Song song) {
+        return this.songRepository.create(song);
     }
 }
