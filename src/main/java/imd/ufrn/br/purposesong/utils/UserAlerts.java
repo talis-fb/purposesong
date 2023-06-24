@@ -1,11 +1,10 @@
 package imd.ufrn.br.purposesong.utils;
 
+import imd.ufrn.br.purposesong.entity.Playlist;
 import imd.ufrn.br.purposesong.entity.User;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class UserAlerts {
     public static void alertLoginMessage() {
@@ -36,10 +35,16 @@ public class UserAlerts {
         alert.show();
     }
 
+    public static void alertEmpytFields() {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("EMPYT FIELD");
+        alert.setHeaderText("Some field is empty");
+        alert.setContentText("You need to complete all the fields too continue");
+        alert.show();
+    }
+
     public static void alertStartHere() {
         Alert alert = new Alert(AlertType.INFORMATION);
-        // alert.setGraphic(new
-        // ImageView("file:src/main/resources/imd/ufrn/br/purposesong/images/headphoneLOGO.png"));
         alert.getDialogPane().getStylesheets()
                 .add("file:src/main/resources/imd/ufrn/br/purposesong/themes/userAlert.css");
         alert.getDialogPane().getStyleClass().add("userAlert");
@@ -84,5 +89,21 @@ public class UserAlerts {
         alert.setContentText(
                 "Please ensure that Password and Confirm password fields match exactly or/and check your old password.");
         alert.showAndWait();
+    }
+
+    public static void alertYouAlreadyAddedThisSong() {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("You have this song!");
+        alert.setContentText(
+                "You already have this song in your playlist. Please add one that you dont have yet");
+        alert.show();
+    }
+
+    public static boolean alertNewPlaylistConfirmation(Playlist playlist) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        alert.setTitle("Confirm your data");
+        alert.setContentText("Do you want to add " + playlist.getName() + " playlist to your account?");
+        var result = alert.showAndWait();
+        return result.get().getText().equals("OK");
     }
 }

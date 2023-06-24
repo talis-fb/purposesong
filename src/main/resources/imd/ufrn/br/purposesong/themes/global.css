@@ -35,6 +35,14 @@
 /*	-fx-background-color: white;*/
 }
 
+.playlistName {
+    -fx-background-image: url("../images/background_image.jpg");
+    -fx-text-fill: white;
+    -fx-underline: true;
+    -fx-border-color: black;
+    -fx-background-radius: 24;
+}
+
 .textfield {
     -fx-background-color: white;
 }

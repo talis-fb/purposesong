@@ -13,7 +13,7 @@ public class SongCellFactory implements Callback<ListView<Song>, ListCell<Song>>
             public void updateItem(Song song, boolean empty) {
                 super.updateItem(song, empty);
                 if (empty || song == null) {
-
+                    setText(null);
                 } else {
                     setText(song.name);
                 }
