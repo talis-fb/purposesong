@@ -5,11 +5,9 @@ import imd.ufrn.br.purposesong.database.RepositoryFactory;
 import imd.ufrn.br.purposesong.entity.User;
 import imd.ufrn.br.purposesong.use_case.CreateNewUser;
 import imd.ufrn.br.purposesong.utils.UserAlerts;
-import imd.ufrn.br.purposesong.view.session.UserStore;
 
 public class RegisterViewModel {
     private App app = App.getInstance();
-    private UserStore userStore = UserStore.getInstance();
 
     public boolean createNewUser(String name, String email, String password, boolean isVip) {
         // !Setting new user
@@ -50,10 +48,6 @@ public class RegisterViewModel {
 
     public void goToLogin() {
         this.app.changeToLoginScene();
-    }
-
-    public void goToMenu() {
-        this.app.changeToMenuScene();
     }
 
     // Singleton -------------------

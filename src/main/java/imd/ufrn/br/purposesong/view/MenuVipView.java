@@ -82,6 +82,10 @@ public class MenuVipView implements Initializable {
     @FXML
     private Button addNewPlaylist;
 
+    private SongStore songStore = SongStore.getInstance();
+    private UserStore userStore = UserStore.getInstance();
+    private PlaylistStore playlistStore = PlaylistStore.getInstance();
+
     @FXML
     private void playSong() {
         try {
@@ -159,10 +163,6 @@ public class MenuVipView implements Initializable {
         else
             paneCreateNewPlaylist.setVisible(true);
     }
-
-    private SongStore songStore = SongStore.getInstance();
-    private UserStore userStore = UserStore.getInstance();
-    private PlaylistStore playlistStore = PlaylistStore.getInstance();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

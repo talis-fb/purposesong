@@ -95,29 +95,5 @@ public class MenuNormalView implements Initializable {
 
         nameActiveUser.textProperty().bindBidirectional(userStore.activeUserLabelName);
 
-        /*
-         * // ! Properties of playlist and song listViews
-         * SongView.getSelectionModel().selectedItemProperty().addListener(new
-         * ChangeListener<String>() {
-         * 
-         * @Override
-         * public void changed(ObservableValue<? extends String> arg0, String arg1,
-         * String arg2) {
-         * currentSong.visibleProperty().set(true);
-         * viewModel.setCurrentSong(SongView.getSelectionModel().getSelectedItem());
-         * try {
-         * atual_imagem.setImage(viewModel.getImages().get(SongView.getSelectionModel().
-         * getSelectedIndex()));
-         * } catch (Exception e) {
-         * atual_imagem
-         * .setImage(new Image(viewModel.getDefaultImage()));
-         * }
-         * myLabel.setText(viewModel.getCurrentSong());
-         * 
-         * ;
-         * }
-         * });
-         */
-
     }
 }
