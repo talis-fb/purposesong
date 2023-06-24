@@ -8,30 +8,18 @@ public class SettingsViewModel {
     private App app = App.getInstance();
     private UserStore user = UserStore.getInstance();
 
-    public void updateUserNameEmail(String name, String email) {
+    public void updateUserNameAndEmail(String name, String email) {
         user.getUser().get().setName(name);
         user.getUser().get().setEmail(email);
-        UserAlerts.alertUpdateConfirmation();
-        this.goToMenu();
     }
 
-    public void updateAllUserSettings(String name, String email, String oldPass, String newPass, String repeatNewPass,
-            boolean changePassword) {
-        user.getUser().get().setName(name);
-        user.getUser().get().setEmail(email);
+    public void updateUserPassword(String newPass) {
+        user.getUser().get().setPassword(newPass);
+    }
 
-        // !Veryfing passwords
-        if (changePassword) {
-            if (this.authenticationOldPassword(oldPass) && this.verifyingRepeatPassword(newPass, repeatNewPass)) {
-                user.getUser().get().setPassword(newPass);
-                if (UserAlerts.alertUpdateConfirmation()) {
-                    this.goToMenu();
-                }
-            } else {
-                UserAlerts.alertSomePasswordIsWrong();
-                return;
-            }
-
+    public void updateConfirmation() {
+        if (UserAlerts.alertUpdateConfirmation()) {
+            this.goToMenu();
         }
     }
 

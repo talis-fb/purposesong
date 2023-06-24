@@ -3,6 +3,7 @@ package imd.ufrn.br.purposesong.view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import imd.ufrn.br.purposesong.utils.UserAlerts;
 import imd.ufrn.br.purposesong.view.session.UserStore;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -69,10 +70,12 @@ public class SettingsView implements Initializable {
 
     @FXML
     protected void updateUserSettings() {
-        System.out.println(oldPasswordField.getText().toString());
+
         if (userNameField.getText().isEmpty() || emailField.getText().isEmpty()) {
             this.viewModel.empty();
             return;
+        } else {
+            this.viewModel.updateUserNameAndEmail(userNameField.getText().toString(), emailField.getText().toString());
         }
 
         if (changePassword.isSelected()) {
@@ -81,17 +84,16 @@ public class SettingsView implements Initializable {
                     || repeatPasswordField.getText().isEmpty()) {
                 this.viewModel.empty();
                 return;
+            } else if (this.viewModel.authenticationOldPassword(oldPasswordField.getText().toString())
+                    && this.viewModel.verifyingRepeatPassword(newPasswordField.getText().toString(),
+                            repeatPasswordField.getText().toString())) {
+                this.viewModel.updateUserPassword(newPasswordField.getText().toString());
             } else {
-                this.viewModel.updateAllUserSettings(userNameField.getText().toString(),
-                        emailField.getText().toString(), oldPasswordField.getText().toString(),
-                        newPasswordField.getText().toString(),
-                        repeatPasswordField.getText().toString(), changePassword.isSelected());
+                UserAlerts.alertSomePasswordIsWrong();
                 return;
             }
-        } else {
-            this.viewModel.updateUserNameEmail(userNameField.getText().toString(), emailField.getText().toString());
-
         }
+        this.viewModel.updateConfirmation();
 
     }
 
