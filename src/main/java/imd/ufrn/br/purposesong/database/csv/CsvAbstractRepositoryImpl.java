@@ -29,7 +29,7 @@ public abstract class CsvAbstractRepositoryImpl<Entity extends ModelDatabaseEnti
 
     @Override
     public void update(UUID id, Entity value) {
-        List<Entity> values = readCsvFile();
+        ArrayList<Entity> values = new ArrayList<>(readCsvFile());
         for (int i = 0; i < values.size(); i++) {
             Entity user = values.get(i);
             if (user.getId().equals(Optional.of(id))) {
