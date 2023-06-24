@@ -1,6 +1,8 @@
 package imd.ufrn.br.purposesong.view;
 
 import imd.ufrn.br.purposesong.App;
+import imd.ufrn.br.purposesong.entity.User;
+import imd.ufrn.br.purposesong.use_case.UpdateUser;
 import imd.ufrn.br.purposesong.utils.UserAlerts;
 import imd.ufrn.br.purposesong.view.session.UserStore;
 
@@ -9,16 +11,17 @@ public class SettingsViewModel {
     private UserStore user = UserStore.getInstance();
 
     public void updateUserNameAndEmail(String name, String email) {
-        user.getUser().get().setName(name);
-        user.getUser().get().setEmail(email);
+        this.user.getUser().get().setName(name);
+        this.user.getUser().get().setEmail(email);
     }
 
     public void updateUserPassword(String newPass) {
-        user.getUser().get().setPassword(newPass);
+        this.user.getUser().get().setPassword(newPass);
     }
 
     public void updateConfirmation() {
         if (UserAlerts.alertUpdateConfirmation()) {
+            this.user.updateUserInDB();
             this.goToMenu();
         }
     }
