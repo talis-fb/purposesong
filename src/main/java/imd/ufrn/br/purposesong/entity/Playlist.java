@@ -8,6 +8,18 @@ public class Playlist extends ModelDatabaseEntity {
     String name;
     public UUID userID;
 
+    public List<Song> getSongs() {
+        return songs;
+    }
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
+
+    public UUID getUserID() {
+        return userID;
+    }
+
     public void setUserID(UUID id) {
         this.userID = id;
     }

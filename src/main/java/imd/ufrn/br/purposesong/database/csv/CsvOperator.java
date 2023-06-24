@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CsvOperator {
-    private static final String CSV_DELIMITER = ",";
+    private static final String CSV_DELIMITER = ";";
     private final String[] CSV_HEADER;
     private final String CSV_PATH;
     public CsvOperator(String filePath, String[] headers){
@@ -46,5 +46,9 @@ public class CsvOperator {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static String getCsvDelimiter() {
+        return CSV_DELIMITER;
     }
 }
