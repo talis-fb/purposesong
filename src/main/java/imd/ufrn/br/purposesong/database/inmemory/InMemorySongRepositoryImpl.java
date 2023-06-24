@@ -6,6 +6,8 @@ import imd.ufrn.br.purposesong.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class InMemorySongRepositoryImpl extends InMemoryAbstractRepository<Song> implements SongRepository {

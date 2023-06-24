@@ -2,7 +2,6 @@ package imd.ufrn.br.purposesong.view;
 
 import imd.ufrn.br.purposesong.App;
 import imd.ufrn.br.purposesong.database.RepositoryFactory;
-import imd.ufrn.br.purposesong.database.inmemory.InMemoryUserRepositoryImpl;
 import imd.ufrn.br.purposesong.entity.User;
 import imd.ufrn.br.purposesong.use_case.LoginUser;
 import imd.ufrn.br.purposesong.utils.UserAlerts;

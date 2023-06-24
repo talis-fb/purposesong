@@ -3,6 +3,8 @@ package imd.ufrn.br.purposesong.view;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import imd.ufrn.br.purposesong.utils.UserAlerts;
+import imd.ufrn.br.purposesong.view.session.UserStore;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
@@ -64,13 +66,40 @@ public class SettingsView implements Initializable {
         newPasswordField.clear();
         oldPasswordField.clear();
         repeatPasswordField.clear();
-        userNameField.clear();
-        emailField.clear();
+    }
+
+    @FXML
+    protected void updateUserSettings() {
+
+        if (userNameField.getText().isEmpty() || emailField.getText().isEmpty()) {
+            this.viewModel.empty();
+            return;
+        } else {
+            this.viewModel.updateUserNameAndEmail(userNameField.getText().toString(), emailField.getText().toString());
+        }
+
+        if (changePassword.isSelected()) {
+            if (oldPasswordField.getText().isEmpty()
+                    || newPasswordField.getText().isEmpty()
+                    || repeatPasswordField.getText().isEmpty()) {
+                this.viewModel.empty();
+                return;
+            } else if (this.viewModel.authenticationOldPassword(oldPasswordField.getText().toString())
+                    && this.viewModel.verifyingRepeatPassword(newPasswordField.getText().toString(),
+                            repeatPasswordField.getText().toString())) {
+                this.viewModel.updateUserPassword(newPasswordField.getText().toString());
+            } else {
+                UserAlerts.alertSomePasswordIsWrong();
+                return;
+            }
+        }
+        this.viewModel.updateConfirmation();
+
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // !Catch userNameField and EmailField in Control, then set() inside of
-        // TextField
+        userNameField.textProperty().bindBidirectional(UserStore.getInstance().activeUserLabelName);
+        emailField.textProperty().bindBidirectional(UserStore.getInstance().activeUserLabelEmail);
     }
 }

@@ -1,42 +1,43 @@
 package imd.ufrn.br.purposesong.view;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 import imd.ufrn.br.purposesong.App;
+import imd.ufrn.br.purposesong.database.RepositoryFactory;
+import imd.ufrn.br.purposesong.entity.Playlist;
 import imd.ufrn.br.purposesong.entity.Song;
+import imd.ufrn.br.purposesong.use_case.GetAllUserPlaylists;
 import imd.ufrn.br.purposesong.utils.OpenChooseFileDialog;
 import imd.ufrn.br.purposesong.utils.OpenChooseFolderDialog;
 import imd.ufrn.br.purposesong.utils.UserAlerts;
+import imd.ufrn.br.purposesong.view.session.PlaylistStore;
 import imd.ufrn.br.purposesong.view.session.SongStore;
-import javafx.scene.image.Image;
+import imd.ufrn.br.purposesong.view.session.UserStore;
 
 public class MenuVipViewModel {
     private App app = App.getInstance();
     private SongStore songStore = SongStore.getInstance();
+    private PlaylistStore playlistStore = PlaylistStore.getInstance();
 
-    private ArrayList<String> playlists;
-    private ArrayList<Image> images;
+    // !Playlists -----
+    public Playlist addNewPlaylist(UUID userID, String name, List<Song> list) {
+        // !Setting playlist
+        Playlist playlist = new Playlist();
+        playlist.setUserID(userID);
+        playlist.setName(name);
+        playlist.setSongsList(list);
 
-    public ArrayList<String> getPlaylists() {
-        return playlists;
+        var saveInDB = this.playlistStore.savePlaylistInDB(playlist);
+        return saveInDB;
     }
 
-    public void setPlaylists(ArrayList<String> playlists) {
-        this.playlists = playlists;
+    public List<Playlist> getUserPlaylists() {
+        return new GetAllUserPlaylists(RepositoryFactory.getPlaylistRepository())
+                .execute(UserStore.getInstance().getUser().get());
     }
 
-    public ArrayList<Image> getImages() {
-        return images;
-    }
-
-    public void initializePlaylists() {
-        playlists = new ArrayList<>();
-        playlists.add("Rock Pesadão");
-        playlists.add("MPB");
-        playlists.add("Paz que acalma a alma");
-        playlists.add("Maranata ora vem!!");
-    }
-
+    // Player -------
     public void playSong(Song song) {
         this.songStore.playSong(song);
     }
@@ -57,9 +58,6 @@ public class MenuVipViewModel {
     }
 
     // Troca de tela ----------------
-    public void goToRegister() {
-        this.app.changeToRegisterScene();
-    }
 
     public void goToLogin() {
 
@@ -78,7 +76,6 @@ public class MenuVipViewModel {
     private static final MenuVipViewModel instance = new MenuVipViewModel();
 
     private MenuVipViewModel() {
-        initializePlaylists();
     }
 
     public static MenuVipViewModel getInstance() {

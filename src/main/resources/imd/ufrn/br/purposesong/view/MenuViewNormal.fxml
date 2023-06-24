@@ -241,7 +241,7 @@
                <children>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <ListView fx:id="songView" layoutY="63.0" prefHeight="452.0" prefWidth="342.0" style="-fx-control-inner-background: transparent; -fx-alignment: center;" styleClass="SongView" stylesheets="@../themes/global.css" AnchorPane.bottomAnchor="63.39999999999998" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="63.0" />
+                        <ListView fx:id="songView" editable="true" layoutY="63.0" prefHeight="452.0" prefWidth="342.0" style="-fx-control-inner-background: transparent; -fx-alignment: center;" styleClass="SongView" stylesheets="@../themes/global.css" AnchorPane.bottomAnchor="63.39999999999998" AnchorPane.leftAnchor="30.0" AnchorPane.topAnchor="63.0" />
                      </children>
                   </AnchorPane>
                   <GridPane GridPane.columnIndex="1">

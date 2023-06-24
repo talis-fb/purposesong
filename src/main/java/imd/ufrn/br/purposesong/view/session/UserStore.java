@@ -1,7 +1,6 @@
 package imd.ufrn.br.purposesong.view.session;
 
 import imd.ufrn.br.purposesong.database.RepositoryFactory;
-import imd.ufrn.br.purposesong.database.UserRepository;
 import imd.ufrn.br.purposesong.entity.User;
 import imd.ufrn.br.purposesong.use_case.GetAllUsers;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,6 +11,7 @@ import java.util.Optional;
 public class UserStore {
     private Optional<User> user;
     public StringProperty activeUserLabelName = new SimpleStringProperty("");
+    public StringProperty activeUserLabelEmail = new SimpleStringProperty("");
 
     public Optional<User> getUser() {
         return user;
@@ -19,7 +19,8 @@ public class UserStore {
 
     public void setUser(User user) {
         this.user = Optional.of(user);
-        this.activeUserLabelName.set("Olá, " + this.user.map(User::getName).orElse(" "));
+        this.activeUserLabelName.set(this.user.map(User::getName).orElse(" "));
+        this.activeUserLabelEmail.set(this.user.map(User::getEmail).orElse(" "));
     }
 
     public void resetUser() {

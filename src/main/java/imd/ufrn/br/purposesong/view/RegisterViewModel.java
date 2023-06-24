@@ -1,7 +1,5 @@
 package imd.ufrn.br.purposesong.view;
 
-import java.util.Optional;
-
 import imd.ufrn.br.purposesong.App;
 import imd.ufrn.br.purposesong.database.RepositoryFactory;
 import imd.ufrn.br.purposesong.entity.User;
@@ -43,11 +41,7 @@ public class RegisterViewModel {
     }
 
     public void back() {
-        if (this.userStore.getUser().isPresent()) {
-            this.goToMenu();
-        } else {
-            this.goToLogin();
-        }
+        this.goToLogin();
     }
 
     public boolean verifyingRepeatPassword(String password1, String password2) {
