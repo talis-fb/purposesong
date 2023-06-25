@@ -317,12 +317,13 @@
          <left>
             <AnchorPane prefHeight="579.0" prefWidth="248.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
                <children>
-                  <ListView fx:id="playlistView" layoutX="7.0" layoutY="136.0" prefHeight="290.0" prefWidth="200.0" style="-fx-control-inner-background: transparent;" styleClass="SongView" stylesheets="@../themes/global.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="60.0" />
+                  <ListView fx:id="playlistView" layoutX="7.0" layoutY="86.0" prefHeight="453.0" prefWidth="188.0" style="-fx-control-inner-background: transparent;" styleClass="SongView" stylesheets="@../themes/global.css" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="86.0" />
                   <Label layoutX="66.0" layoutY="29.0" text="User Playlists">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
+                  <Button fx:id="buttonShowAllSongs" layoutX="10.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#showAllUserSongs" prefHeight="26.0" prefWidth="188.0" style="-fx-background-color: #800a6f; -fx-alignment: left;" text="All Songs" />
                </children>
             </AnchorPane>
          </left>

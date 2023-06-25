@@ -3,7 +3,8 @@ package imd.ufrn.br.purposesong.view;
 import imd.ufrn.br.purposesong.view.session.PlaylistStore;
 import imd.ufrn.br.purposesong.view.session.SongStore;
 import imd.ufrn.br.purposesong.view.session.UserStore;
-
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -24,6 +25,8 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -81,6 +84,12 @@ public class MenuVipView implements Initializable {
 
     @FXML
     private Button addNewPlaylist;
+
+    @FXML
+    private Button buttonShowAllSongs;
+
+    @FXML
+    private Label currentSongName;
 
     private SongStore songStore = SongStore.getInstance();
     private UserStore userStore = UserStore.getInstance();
@@ -165,6 +174,11 @@ public class MenuVipView implements Initializable {
             paneCreateNewPlaylist.setVisible(true);
     }
 
+    @FXML
+    protected void showAllUserSongs() {
+        this.viewModel.showAllSongsOfUser();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -175,6 +189,14 @@ public class MenuVipView implements Initializable {
         songView.itemsProperty().bind(songStore.songs);
         nameActiveUser.textProperty().bind(userStore.activeUserLabelName);
         playlistView.itemsProperty().bind(playlistStore.playlists);
+
+        playlistView.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<Playlist>() {
+                    public void changed(ObservableValue<? extends Playlist> ov,
+                            Playlist old_val, Playlist new_val) {
+                        viewModel.showOnlySongsOfPlaylist(playlistView.getSelectionModel().getSelectedItem());
+                    }
+                });
 
         songView.setOnDragDetected(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
