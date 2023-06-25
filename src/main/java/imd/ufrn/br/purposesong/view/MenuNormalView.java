@@ -6,6 +6,7 @@ import imd.ufrn.br.purposesong.utils.SongCellFactory;
 import imd.ufrn.br.purposesong.view.session.SongStore;
 import imd.ufrn.br.purposesong.view.session.UserStore;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -43,6 +44,12 @@ public class MenuNormalView implements Initializable {
     private ImageView buttonPlay;
 
     @FXML
+    private Label currentSongName;
+
+    @FXML
+    private Label currentSongPath;
+
+    @FXML
     protected void playSong() {
         try {
             if (!SongPlayer.getInstance().isPlaying()) {
@@ -58,9 +65,13 @@ public class MenuNormalView implements Initializable {
         }
     }
 
+    private void resetPlayerIcon() {
+        buttonPlay.setImage(new Image("file:src/main/resources/imd/ufrn/br/purposesong/images/toque.png"));
+    }
+
     @FXML
     protected void goToLogin() {
-        currentSong.visibleProperty().set(false);
+        this.resetPlayerIcon();
         this.viewModel.goToLogin();
 
     }
@@ -95,5 +106,17 @@ public class MenuNormalView implements Initializable {
 
         nameActiveUser.textProperty().bindBidirectional(userStore.activeUserLabelName);
 
+        songView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Song>() {
+            public void changed(ObservableValue<? extends Song> ov,
+                    Song old_val, Song new_val) {
+                if (!songView.getSelectionModel().isEmpty()) {
+                    currentSongName.setText(songView.getSelectionModel().getSelectedItem().name);
+                    currentSongPath.setText("Path: " + songView.getSelectionModel().getSelectedItem().path);
+                } else {
+                    currentSongName.setText(" ");
+                    currentSongPath.setText(" ");
+                }
+            }
+        });
     }
 }
