@@ -135,6 +135,20 @@
                                  </children>
                               </VBox>
                            </children></HBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                           <children>
+                              <Label fx:id="currentSongName">
+                                 <VBox.margin>
+                                    <Insets left="15.0" top="23.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <Label fx:id="currentSongPath">
+                                 <VBox.margin>
+                                    <Insets left="15.0" top="3.0" />
+                                 </VBox.margin>
+                              </Label>
+                           </children>
+                        </VBox>
                      </children>
                   </GridPane>
                   <GridPane GridPane.columnIndex="2">
