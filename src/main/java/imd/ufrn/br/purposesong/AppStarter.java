@@ -1,11 +1,15 @@
 package imd.ufrn.br.purposesong;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.io.IOException;
+
+import imd.ufrn.br.purposesong.view.session.SongStore;
 
 public class AppStarter extends Application {
         @Override
@@ -42,6 +46,13 @@ public class AppStarter extends Application {
                 // Initial scene
                 // ----------------
                 app.startHere();
+
+                stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                        @Override
+                        public void handle(WindowEvent event) {
+                                SongStore.getInstance().resetStore();
+                        }
+                });
         }
 
         public static void main(String[] args) {

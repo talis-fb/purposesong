@@ -41,7 +41,6 @@ public class MenuVipViewModel {
                 songListSavedInDb.add(addSongUseCase.execute(song));
         }
 
-
         playlist.setSongsList(songListSavedInDb);
 
         var saveInDB = this.playlistStore.savePlaylistInDB(playlist);

@@ -38,12 +38,12 @@ public class RegisterViewModel {
         UserAlerts.alertEmpytUser();
     }
 
-    public void back() {
-        this.goToLogin();
-    }
-
     public boolean verifyingRepeatPassword(String password1, String password2) {
         return password1.equals(password2);
+    }
+
+    public void back() {
+        this.goToLogin();
     }
 
     public void goToLogin() {

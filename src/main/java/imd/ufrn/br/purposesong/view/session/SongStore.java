@@ -48,14 +48,15 @@ public class SongStore {
     public void setSongList(List<Song> songs) {
         Set<String> paths = new HashSet<>();
         List<Song> songsUniques = songs.stream()
-            .filter(song -> paths.add(song.getPath())) // return false if element is already in Set
-            .toList();
+                .filter(song -> paths.add(song.getPath())) // return false if element is already in Set
+                .toList();
 
         this.songs.setAll(songsUniques);
         this.songNames.setAll(this.songs.stream().map(it -> it.name).toList());
     }
 
     public void resetStore() {
+        this.stopSong();
         SongStore.instance = new SongStore();
         songs.setAll(new ArrayList<>());
     }

@@ -24,15 +24,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
-import imd.ufrn.br.purposesong.database.RepositoryFactory;
 import imd.ufrn.br.purposesong.entity.Playlist;
 import imd.ufrn.br.purposesong.entity.Song;
 import imd.ufrn.br.purposesong.player.SongPlayer;
@@ -50,13 +47,7 @@ public class MenuVipView implements Initializable {
     private ListView<Playlist> playlistView;
 
     @FXML
-    private ImageView currentImage;
-
-    @FXML
     private Label myLabel;
-
-    @FXML
-    private VBox currentSong;
 
     @FXML
     private Button play;
@@ -91,6 +82,9 @@ public class MenuVipView implements Initializable {
     @FXML
     private Label currentSongName;
 
+    @FXML
+    private Label currentSongPath;
+
     private SongStore songStore = SongStore.getInstance();
     private UserStore userStore = UserStore.getInstance();
     private PlaylistStore playlistStore = PlaylistStore.getInstance();
@@ -109,6 +103,10 @@ public class MenuVipView implements Initializable {
             System.out.println("We are still working on this....");
             buttonPlay.setImage(new Image("file:src/main/resources/imd/ufrn/br/purposesong/images/toque.png"));
         }
+    }
+
+    private void resetPlayerIcon() {
+        buttonPlay.setImage(new Image("file:src/main/resources/imd/ufrn/br/purposesong/images/toque.png"));
     }
 
     @FXML
@@ -142,7 +140,7 @@ public class MenuVipView implements Initializable {
 
     @FXML
     protected void goToLogin() {
-        currentSong.visibleProperty().set(false);
+        this.resetPlayerIcon();
         this.viewModel.goToLogin();
     }
 
@@ -197,6 +195,19 @@ public class MenuVipView implements Initializable {
                         viewModel.showOnlySongsOfPlaylist(playlistView.getSelectionModel().getSelectedItem());
                     }
                 });
+
+        songView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Song>() {
+            public void changed(ObservableValue<? extends Song> ov,
+                    Song old_val, Song new_val) {
+                if (!songView.getSelectionModel().isEmpty()) {
+                    currentSongName.setText(songView.getSelectionModel().getSelectedItem().name);
+                    currentSongPath.setText("Path: " + songView.getSelectionModel().getSelectedItem().path);
+                } else {
+                    currentSongName.setText(" ");
+                    currentSongPath.setText(" ");
+                }
+            }
+        });
 
         songView.setOnDragDetected(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
