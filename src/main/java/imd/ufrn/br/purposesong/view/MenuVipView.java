@@ -112,14 +112,15 @@ public class MenuVipView implements Initializable {
 
     @FXML
     protected void addPlaylist() {
-        ArrayList<Song> newList = new ArrayList<Song>();
-        newList.addAll(newPlaylistField.getItems());
+        ArrayList<Song> songsSelectedToPlaylist = new ArrayList<Song>();
+        songsSelectedToPlaylist.addAll(newPlaylistField.getItems());
 
         if (newPlaylistNameField.getText().isEmpty() || newPlaylistField.getItems().isEmpty())
             UserAlerts.alertEmpytFields();
         else {
-            var newPlaylist = this.viewModel.addNewPlaylist(UserStore.getInstance().getUser().get().getId().get(),
-                    newPlaylistNameField.getText().toString(), newList);
+            UUID userId = userStore.getUser().get().getId().get();
+            String playlistName = newPlaylistNameField.getText();
+            Playlist newPlaylist = this.viewModel.addNewPlaylist(userId, playlistName, songsSelectedToPlaylist);
             if (newPlaylist != null) {
                 playlistView.getItems().add(newPlaylist);
                 newPlaylistNameField.clear();
@@ -183,7 +184,10 @@ public class MenuVipView implements Initializable {
 
                 /* Put a SONGs on a dragboard */
                 ClipboardContent content = new ClipboardContent();
-                content.putString(songView.getSelectionModel().getSelectedItem().getId().get().toString());
+
+                Song songSelected = songView.getSelectionModel().getSelectedItem();
+
+                content.putString(songSelected.getPath());
                 db.setContent(content);
                 event.consume();
             }
@@ -213,7 +217,9 @@ public class MenuVipView implements Initializable {
                 Dragboard db = event.getDragboard();
                 boolean success = false;
                 if (db.hasString()) {
-                    var song = RepositoryFactory.getSongRepository().findById(UUID.fromString(db.getString()));
+                    var path = db.getString();
+                    var song = songView.getItems().stream().filter(it -> it.getPath().equals(path)).findFirst();
+
                     if (newPlaylistField.getItems().contains(song.get())) {
                         UserAlerts.alertYouAlreadyAddedThisSong();
                     } else {

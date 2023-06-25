@@ -1,10 +1,10 @@
 package imd.ufrn.br.purposesong.database.csv;
 
 import imd.ufrn.br.purposesong.database.SongRepository;
-import imd.ufrn.br.purposesong.database.UserRepository;
 import imd.ufrn.br.purposesong.entity.Song;
 import imd.ufrn.br.purposesong.entity.User;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -26,6 +26,25 @@ public class CsvSongRepositoryImpl
                 .toList();
     }
 
+    public Optional<Song> findByPath(String path) {
+        return this.findAll()
+                .stream()
+                .filter(it -> it.getPath().equals(path))
+                .findFirst();
+    }
+
+    @Override
+    public Song create(Song value) {
+        Optional<Song> songAlreadyInDb = this.findByPath(value.getPath());
+        if (songAlreadyInDb.isPresent())
+            return songAlreadyInDb.get();
+
+        ArrayList<Song> values = new ArrayList<>(readCsvFile());
+        value.setId(UUID.randomUUID());
+        values.add(value);
+        writeCsvFile(values);
+        return value;
+    }
 
     List<Song> readCsvFile() {
         List<String[]> lines = csvOperator.readCsvFile();

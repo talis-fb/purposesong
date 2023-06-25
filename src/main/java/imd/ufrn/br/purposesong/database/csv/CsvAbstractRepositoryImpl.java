@@ -42,7 +42,7 @@ public abstract class CsvAbstractRepositoryImpl<Entity extends ModelDatabaseEnti
 
     @Override
     public Entity create(Entity value) {
-        ArrayList<Entity> values = new ArrayList(readCsvFile());
+        ArrayList<Entity> values = new ArrayList<>(readCsvFile());
         value.setId(UUID.randomUUID());
         values.add(value);
         writeCsvFile(values);
@@ -51,7 +51,7 @@ public abstract class CsvAbstractRepositoryImpl<Entity extends ModelDatabaseEnti
 
     @Override
     public void delete(UUID id) {
-        ArrayList<Entity> values = new ArrayList(readCsvFile());
+        ArrayList<Entity> values = new ArrayList<>(readCsvFile());
         values.removeIf(user -> user.getId().equals(Optional.of(id)));
         writeCsvFile(values);
     }

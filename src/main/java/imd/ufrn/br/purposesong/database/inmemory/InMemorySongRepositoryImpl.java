@@ -26,6 +26,14 @@ public class InMemorySongRepositoryImpl extends InMemoryAbstractRepository<Song>
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public Optional<Song> findByPath(String path) {
+        return this.findAll()
+                .stream()
+                .filter(it -> it.getPath().equals(path))
+                .findFirst();
+    }
+
     // Singleton ---------
     private static final InMemorySongRepositoryImpl instance = new InMemorySongRepositoryImpl();
 
