@@ -6,7 +6,7 @@ import java.io.FileInputStream;
 import java.util.Optional;
 
 public class SongPlayer {
-    private Optional<Player> player;
+    private Optional<Player> player = Optional.empty();
     private Optional<Song> currentSong = Optional.empty();
     private boolean isPlayingState = false;
     private long currentSongTimeSeconds = 0;
