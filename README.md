@@ -1,5 +1,6 @@
 # PurposeSong
-Esta é uma aplicação JavaFX construída usando Maven. Ela fornece uma interface gráfica para executar determinadas tarefas.
+
+![Screenshot](https://res.cloudinary.com/dfjn94vg8/image/upload/v1687727344/b73d1420-3630-4d7b-90df-e05e21187f77_wmbgzw.jpg)
 
 # Pré-requisitos
 Certifique-se de ter o seguinte instalado em seu sistema:
@@ -11,8 +12,8 @@ Certifique-se de ter o seguinte instalado em seu sistema:
 
 Para executar a aplicação JavaFX, siga estas etapas:
 ```sh
-git clone <repository_url>
-cd javafx-application
+git clone https://github.com/talis-fb/purposesong.git
+cd purposesong
 mvn clean package
 mvn javafx:run
 ```
