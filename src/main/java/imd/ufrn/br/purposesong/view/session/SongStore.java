@@ -3,6 +3,7 @@ package imd.ufrn.br.purposesong.view.session;
 import imd.ufrn.br.purposesong.App;
 import imd.ufrn.br.purposesong.database.RepositoryFactory;
 import imd.ufrn.br.purposesong.entity.Folder;
+import imd.ufrn.br.purposesong.entity.Playlist;
 import imd.ufrn.br.purposesong.entity.Song;
 import imd.ufrn.br.purposesong.player.SongPlayer;
 import imd.ufrn.br.purposesong.use_case.*;
@@ -12,7 +13,9 @@ import javafx.collections.FXCollections;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 public class SongStore {
@@ -43,11 +46,17 @@ public class SongStore {
     }
 
     public void setSongList(List<Song> songs) {
-        this.songs.setAll(songs);
+        Set<String> paths = new HashSet<>();
+        List<Song> songsUniques = songs.stream()
+                .filter(song -> paths.add(song.getPath())) // return false if element is already in Set
+                .toList();
+
+        this.songs.setAll(songsUniques);
         this.songNames.setAll(this.songs.stream().map(it -> it.name).toList());
     }
 
     public void resetStore() {
+        this.stopSong();
         SongStore.instance = new SongStore();
         songs.setAll(new ArrayList<>());
     }
@@ -59,11 +68,7 @@ public class SongStore {
         var user = this.userStore.getUser().get();
         List<Song> songOfUser = new GetAllSongsOfUser(repoSongs).execute(user);
         List<Song> songsInUserFolders = new GetAllSongsInUserFolder(repoFolders).execute(user);
-        List<Song> allSongsOfUser = Stream
-                .concat(songOfUser.stream(), songsInUserFolders.stream())
-                .distinct() // TODO: Esse distinct não está funcionando como esperado, ele deveria
-                            // considerar o path ou ID para fazer a distinção
-                .toList();
+        List<Song> allSongsOfUser = Stream.concat(songOfUser.stream(), songsInUserFolders.stream()).toList();
 
         this.setSongList(allSongsOfUser);
     }
@@ -71,6 +76,10 @@ public class SongStore {
     public void fetchSongListOfScanInFolder(Folder folder) {
         List<Song> songsOfFolder = new GetAllSongsOfFolder().execute(folder);
         songsOfFolder.forEach(this::appendSongList);
+    }
+
+    public void setSongsListWithSongsOfPlaylist(Playlist playlist) {
+        this.setSongList(playlist.getSongs());
     }
 
     // Salvar nos database

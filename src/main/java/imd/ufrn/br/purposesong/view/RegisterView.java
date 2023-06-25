@@ -71,18 +71,6 @@ public class RegisterView implements Initializable {
 
     }
 
-    @FXML
-    protected void showPasswordField() {
-        var password = PasswordField.getText();
-        PasswordField.clear();
-        PasswordField.setPromptText(password);
-    }
-
-    @FXML
-    public void hidePasswordField() {
-
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 

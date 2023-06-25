@@ -3,6 +3,7 @@ package imd.ufrn.br.purposesong.view.session;
 import imd.ufrn.br.purposesong.database.RepositoryFactory;
 import imd.ufrn.br.purposesong.entity.User;
 import imd.ufrn.br.purposesong.use_case.GetAllUsers;
+import imd.ufrn.br.purposesong.use_case.UpdateUser;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -30,6 +31,11 @@ public class UserStore {
     public int quantityOfUsers() {
         var repo = RepositoryFactory.getUserRepository();
         return new GetAllUsers(repo).execute();
+    }
+
+    public void updateUserInDB() {
+        var repo = RepositoryFactory.getUserRepository();
+        new UpdateUser(repo).execute(this.user.get().getId().get(), this.user.get());
     }
 
     // Singleton

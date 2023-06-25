@@ -3,7 +3,8 @@ package imd.ufrn.br.purposesong.view;
 import imd.ufrn.br.purposesong.view.session.PlaylistStore;
 import imd.ufrn.br.purposesong.view.session.SongStore;
 import imd.ufrn.br.purposesong.view.session.UserStore;
-
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,13 +24,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.UUID;
 
-import imd.ufrn.br.purposesong.database.RepositoryFactory;
 import imd.ufrn.br.purposesong.entity.Playlist;
 import imd.ufrn.br.purposesong.entity.Song;
 import imd.ufrn.br.purposesong.player.SongPlayer;
@@ -47,13 +47,7 @@ public class MenuVipView implements Initializable {
     private ListView<Playlist> playlistView;
 
     @FXML
-    private ImageView currentImage;
-
-    @FXML
     private Label myLabel;
-
-    @FXML
-    private VBox currentSong;
 
     @FXML
     private Button play;
@@ -83,6 +77,19 @@ public class MenuVipView implements Initializable {
     private Button addNewPlaylist;
 
     @FXML
+    private Button buttonShowAllSongs;
+
+    @FXML
+    private Label currentSongName;
+
+    @FXML
+    private Label currentSongPath;
+
+    private SongStore songStore = SongStore.getInstance();
+    private UserStore userStore = UserStore.getInstance();
+    private PlaylistStore playlistStore = PlaylistStore.getInstance();
+
+    @FXML
     private void playSong() {
         try {
             if (!SongPlayer.getInstance().isPlaying()) {
@@ -98,6 +105,10 @@ public class MenuVipView implements Initializable {
         }
     }
 
+    private void resetPlayerIcon() {
+        buttonPlay.setImage(new Image("file:src/main/resources/imd/ufrn/br/purposesong/images/toque.png"));
+    }
+
     @FXML
     protected void deleteSong() {
         if (!newPlaylistField.getItems().isEmpty()) {
@@ -108,14 +119,15 @@ public class MenuVipView implements Initializable {
 
     @FXML
     protected void addPlaylist() {
-        ArrayList<Song> newList = new ArrayList<Song>();
-        newList.addAll(newPlaylistField.getItems());
+        ArrayList<Song> songsSelectedToPlaylist = new ArrayList<Song>();
+        songsSelectedToPlaylist.addAll(newPlaylistField.getItems());
 
         if (newPlaylistNameField.getText().isEmpty() || newPlaylistField.getItems().isEmpty())
             UserAlerts.alertEmpytFields();
         else {
-            var newPlaylist = this.viewModel.addNewPlaylist(UserStore.getInstance().getUser().get().getId().get(),
-                    newPlaylistNameField.getText().toString(), newList);
+            UUID userId = userStore.getUser().get().getId().get();
+            String playlistName = newPlaylistNameField.getText();
+            Playlist newPlaylist = this.viewModel.addNewPlaylist(userId, playlistName, songsSelectedToPlaylist);
             if (newPlaylist != null) {
                 playlistView.getItems().add(newPlaylist);
                 newPlaylistNameField.clear();
@@ -128,7 +140,7 @@ public class MenuVipView implements Initializable {
 
     @FXML
     protected void goToLogin() {
-        currentSong.visibleProperty().set(false);
+        this.resetPlayerIcon();
         this.viewModel.goToLogin();
     }
 
@@ -160,9 +172,10 @@ public class MenuVipView implements Initializable {
             paneCreateNewPlaylist.setVisible(true);
     }
 
-    private SongStore songStore = SongStore.getInstance();
-    private UserStore userStore = UserStore.getInstance();
-    private PlaylistStore playlistStore = PlaylistStore.getInstance();
+    @FXML
+    protected void showAllUserSongs() {
+        this.viewModel.showAllSongsOfUser();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -175,6 +188,27 @@ public class MenuVipView implements Initializable {
         nameActiveUser.textProperty().bind(userStore.activeUserLabelName);
         playlistView.itemsProperty().bind(playlistStore.playlists);
 
+        playlistView.getSelectionModel().selectedItemProperty().addListener(
+                new ChangeListener<Playlist>() {
+                    public void changed(ObservableValue<? extends Playlist> ov,
+                            Playlist old_val, Playlist new_val) {
+                        viewModel.showOnlySongsOfPlaylist(playlistView.getSelectionModel().getSelectedItem());
+                    }
+                });
+
+        songView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Song>() {
+            public void changed(ObservableValue<? extends Song> ov,
+                    Song old_val, Song new_val) {
+                if (!songView.getSelectionModel().isEmpty()) {
+                    currentSongName.setText(songView.getSelectionModel().getSelectedItem().name);
+                    currentSongPath.setText("Path: " + songView.getSelectionModel().getSelectedItem().path);
+                } else {
+                    currentSongName.setText(" ");
+                    currentSongPath.setText(" ");
+                }
+            }
+        });
+
         songView.setOnDragDetected(new EventHandler<MouseEvent>() {
             public void handle(MouseEvent event) {
                 /* drag was detected, start a drag-and-drop gesture */
@@ -183,7 +217,10 @@ public class MenuVipView implements Initializable {
 
                 /* Put a SONGs on a dragboard */
                 ClipboardContent content = new ClipboardContent();
-                content.putString(songView.getSelectionModel().getSelectedItem().getId().get().toString());
+
+                Song songSelected = songView.getSelectionModel().getSelectedItem();
+
+                content.putString(songSelected.getPath());
                 db.setContent(content);
                 event.consume();
             }
@@ -213,7 +250,9 @@ public class MenuVipView implements Initializable {
                 Dragboard db = event.getDragboard();
                 boolean success = false;
                 if (db.hasString()) {
-                    var song = RepositoryFactory.getSongRepository().findById(UUID.fromString(db.getString()));
+                    var path = db.getString();
+                    var song = songView.getItems().stream().filter(it -> it.getPath().equals(path)).findFirst();
+
                     if (newPlaylistField.getItems().contains(song.get())) {
                         UserAlerts.alertYouAlreadyAddedThisSong();
                     } else {
